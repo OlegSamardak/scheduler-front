@@ -8,6 +8,9 @@ import { WeekSwitcherComponent } from './week-switcher/week-switcher.component';
   imports: [
     CommonModule
   ],
-  declarations: [ScheduleInputComponent, DayComponent, WeekSwitcherComponent]
+  declarations: [ScheduleInputComponent, DayComponent, WeekSwitcherComponent],
+  exports:[
+    ScheduleInputComponent
+  ]
 })
 export class ScheduleInputModule { }
