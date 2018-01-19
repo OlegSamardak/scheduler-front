@@ -1,3 +1,10 @@
-<p>
-  break-selector works!
-</p>
+<div>
+  <mat-form-field>
+    <p>Пара {{lesson}}.</p>
+    <mat-select placeholder = 'Тривалість перерви'>
+      <mat-option *ngFor="let duration of breaksDuration" [value]="duration.value">
+        {{duration.value}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
