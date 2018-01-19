@@ -1,3 +1,12 @@
-<p>
-  time-customization works!
-</p>
+<div>
+  <mat-form-field>
+    <mat-select placeholder='Час початку першої пари'>
+      <mat-option *ngFor="let time of studyBeginningTime" [value]="time.value">
+        {{time.value}}
+      </mat-option>
+    </mat-select>
+    <div>
+
+    </div>
+  </mat-form-field>
+</div>
