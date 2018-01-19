@@ -5,16 +5,21 @@ import {FormComponent} from "./form.component";
 import {TimeCustomizationComponent} from "./time-customization/time-customization.component";
 import {MatSelectModule} from "@angular/material/select";
 import {MatButtonModule} from "@angular/material/button";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {MatFormFieldModule, MatInputModule} from "@angular/material";
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    MatSelectModule,
+    MatButtonModule,
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
   declarations: [GroupSelectComponent, FormComponent, TimeCustomizationComponent],
   exports:[
     FormComponent,
-    MatSelectModule,
-    MatButtonModule,
   ]
 })
 export class FormModule { }

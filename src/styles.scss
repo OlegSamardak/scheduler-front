@@ -26,12 +26,6 @@ $candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent, $candy-
 // that you are using.
 @include angular-material-theme($candy-app-theme);
 
-body {
-  display: block;
-  margin: 40px;
-  theme: angular-material-theme;
-}
-
-base-component{
-  margin: 8px;
+.mat-raised-button{
+  background: #b98e6e;
 }
