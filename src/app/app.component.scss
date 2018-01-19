@@ -1,1 +1,67 @@
-@import '../styles.scss';
+@import "../styles.scss";
+body {
+  margin: 40px;
+}
+
+.content {
+  grid-area: content;
+  position: relative;
+}
+
+.header {
+  grid-area: header;
+}
+
+.footer {
+  grid-area: footer;
+}
+
+.wrapper {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 100%;
+  grid-template-areas:
+    "header"
+    "content"
+    "footer";
+  background-color: blue;
+  color: #444;
+}
+
+
+.box {
+  background-color: lightblue;
+  color: black;
+  border-radius: 5px;
+  padding: 30px;
+  font-size: 150%;
+}
+
+.header,
+.footer {
+  background-color: lightblue;
+}
+
+.topleft {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.topright {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.bottomleft {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.bottomright {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
