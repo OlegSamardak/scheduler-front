@@ -1,12 +1,16 @@
-<div>
-  <mat-form-field>
-    <mat-select placeholder='Час початку першої пари'>
-      <mat-option *ngFor="let time of studyBeginningTime" [value]="time.value">
-        {{time.value}}
-      </mat-option>
-    </mat-select>
-    <div>
+<div class="center">
+  <div>
+    <mat-form-field>
+      <mat-select placeholder='Час початку першої пари'>
+        <mat-option *ngFor="let time of studyBeginningTime" [value]="time.value">
+          {{time.value}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div *ngFor="let number of numbers" >
+      <break-selector [lesson]="number">
 
+      </break-selector>
     </div>
-  </mat-form-field>
+  </div>
 </div>
