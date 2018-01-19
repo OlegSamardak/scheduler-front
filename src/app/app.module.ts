@@ -1,8 +1,11 @@
-import {BrowserModule} from "@angular/platform-browser";
-import {NgModule} from "@angular/core";
-import {MatSelectModule} from "@angular/material/select";
-import {MatButtonModule} from "@angular/material/button";
-import {AppComponent} from "./app.component";
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+
+import { AppComponent } from './app.component';
+import {FormModule} from "./form/form.module";
+import {ScheduleInputModule} from "./schedule-input/schedule-input.module";
+import {MatButtonModule, MatInputModule, MatSelectModule} from "@angular/material";
+
 
 @NgModule({
   declarations: [
@@ -10,8 +13,11 @@ import {AppComponent} from "./app.component";
   ],
   imports: [
     BrowserModule,
+    FormModule,
+    ScheduleInputModule,
     MatSelectModule,
-    MatButtonModule,
+    MatInputModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

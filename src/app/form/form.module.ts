@@ -8,6 +8,9 @@ import { TimeCustomizationComponent } from './time-customization/time-customizat
   imports: [
     CommonModule
   ],
-  declarations: [GroupSelectComponent, FormComponent, TimeCustomizationComponent]
+  declarations: [GroupSelectComponent, FormComponent, TimeCustomizationComponent],
+  exports:[
+    FormComponent
+  ]
 })
 export class FormModule { }
