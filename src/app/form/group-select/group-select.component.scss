@@ -3,6 +3,7 @@
 .group-select {
   display: flex;
   flex-direction: column;
+  margin-top: 10pt;
 }
 
 .group-select > * {
@@ -14,5 +15,5 @@
 }
 
 .basic-container {
-  padding: 5px;
+  padding: 10px;
 }
