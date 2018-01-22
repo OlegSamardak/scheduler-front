@@ -1,66 +1,8 @@
 @import "../styles.scss";
 
-.content {
-  grid-area: content;
-  position: relative;
-}
-
-.header {
-  grid-area: header;
-}
-
-.footer {
-  grid-area: footer;
-  font-size: 10pt;
-  float: right;
-}
-
-.wrapper {
-  display: grid;
-  grid-template-columns: 100%;
-  grid-template-areas:
-    "header"
-    "content"
-    "footer";
-  background-color: #dbc9a2;
-  color: #1c3927;
-}
-
-
-.box {
-  background-color: #f3edca;
-  margin-left: 150pt;
-  margin-right: 150pt;
-  color: #1c3927;
-  padding: 20px;
-  font-size: 150%;
-}
-
-.header,
-.footer {
-  background-color: #dbc9a2;
-}
-
-.topleft {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-.topright {
-  position: absolute;
-  top: 0;
-  right: 0;
-}
-
-.bottomleft {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-}
-
-.bottomright {
-  position: absolute;
-  bottom: 0;
-  right: 0;
+.navigation{
+  @extend .navbar;
+  @extend .navbar-expand-lg;
+  @extend .navbar-dark;
+  @extend .bg-dark
 }
