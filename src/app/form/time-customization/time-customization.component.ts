@@ -12,6 +12,9 @@ export class TimeCustomizationComponent implements OnInit {
     {value: '09:00'},
     {value: '09:30'}
   ];
+  lessonDuration =[
+    '45 хв', '80 хв'
+  ];
   numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
   constructor() { }
 

@@ -8,6 +8,15 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
+    <h3>Тривалість пари</h3>
+    <mat-form-field>
+      <mat-select placeholder='Тривалість пари'>
+        <mat-option *ngFor="let duration of lessonDuration" [value]="duration">
+          {{duration}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
     <div *ngFor="let number of numbers" >
       <break-selector [lesson]="number">
 
