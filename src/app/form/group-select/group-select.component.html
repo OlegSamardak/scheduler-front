@@ -2,8 +2,8 @@
 <div class="group-select">
   <div class="base-component">
     <mat-form-field class="group-select-small-width">
-      <input matInput placeholder="Group">
+      <input matInput placeholder="Group" #group>
     </mat-form-field>
-    <button mat-raised-button>Click me!</button>
+    <button mat-raised-button (click)="transmitGroup(group.value)">Click me!</button>
   </div>
 </div>
