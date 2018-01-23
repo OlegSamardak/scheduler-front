@@ -1,0 +1,24 @@
+<div class="lesson">
+  <div class="base-component">
+
+      <mat-form-field>
+        <input matInput [(ngModule)] = "subject" placeholder="Предмет" >
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput [(ngModule)] = "teacher" placeholder="Викладач">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput [(ngModule)] = "lectureHall" placeholder="Аудиторія">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-select [(value)]="lessonType" placeholder='Тип пари'>
+          <mat-option *ngFor="let type of lessonType" [value]="lessonType" (click)="changeLessonType(type.value)">
+            {{type.value}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+  </div>
+</div>

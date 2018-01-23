@@ -9,6 +9,8 @@ import {MatSelectModule} from "@angular/material/select";
 import {MatButtonModule} from "@angular/material/button";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatFormFieldModule, MatInputModule} from "@angular/material";
+import {LessonComponent} from "./day/lesson/lesson.component";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   imports: [
@@ -20,8 +22,10 @@ import {MatFormFieldModule, MatInputModule} from "@angular/material";
     MatInputModule,
     BrowserModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
-  declarations: [ScheduleInputComponent, DayComponent, WeekSwitcherComponent],
+  declarations: [ScheduleInputComponent, DayComponent, WeekSwitcherComponent, LessonComponent],
   exports:[
     ScheduleInputComponent
   ]

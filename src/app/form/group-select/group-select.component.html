@@ -2,8 +2,8 @@
 <div class="group-select">
   <div class="base-component">
     <mat-form-field class="group-select-small-width">
-      <input matInput placeholder="Group" #group>
+      <input matInput [(ngModel)] = "groupName" placeholder="Назва групи">
     </mat-form-field>
-    <button mat-raised-button (click)="transmitGroup(group.value)&&openSnackbar(false)">Click me!</button>
+    <button mat-raised-button (click)="transmitGroup(groupName)&&openSnackbar(false)">Ввести</button>
   </div>
 </div>
