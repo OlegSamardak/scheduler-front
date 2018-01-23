@@ -8,7 +8,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {MatSelectModule} from "@angular/material/select";
 import {MatButtonModule} from "@angular/material/button";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {MatFormFieldModule, MatInputModule} from "@angular/material";
+import {MatExpansionModule, MatFormFieldModule, MatInputModule} from "@angular/material";
 
 @NgModule({
   imports: [
@@ -20,6 +20,7 @@ import {MatFormFieldModule, MatInputModule} from "@angular/material";
     MatInputModule,
     BrowserModule,
     HttpClientModule,
+    MatExpansionModule
   ],
   declarations: [ScheduleInputComponent, DayComponent, WeekSwitcherComponent],
   exports:[
