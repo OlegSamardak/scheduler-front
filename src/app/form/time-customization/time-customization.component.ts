@@ -9,14 +9,14 @@ export class TimeCustomizationComponent implements OnInit {
   selectedStudyBeginning;
   selectedLessonDuration;
   studyBeginningTime = [
-    {value: '08:00', isSelected: false},
-    {value: '08:30', isSelected: false},
-    {value: '09:00', isSelected: false},
-    {value: '09:30', isSelected: false}
+    {value: '08:00'},
+    {value: '08:30'},
+    {value: '09:00'},
+    {value: '09:30'}
   ];
   lessonDuration =[
-    {value: '45 хв',  isSelected: false},
-    {value: '80 хв',  isSelected: false}
+    {value: '45 хв'},
+    {value: '80 хв'}
   ];
   breaks = [
     {value: '1', selectedValue: ''},
