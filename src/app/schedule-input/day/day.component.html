@@ -1,3 +1,9 @@
-<p>
-  day works!
-</p>
+<div class="day">
+  <div class="base-component">
+    <ol>
+      <li *ngFor="let activeLesson of lessons; let i = index">
+        <lesson [lessonNumber]="activeLesson.value" (onLesson)="lessonChange(i, $event)"></lesson>
+      </li>
+    </ol>
+  </div>
+</div>

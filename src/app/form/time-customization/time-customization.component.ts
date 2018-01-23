@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from "@angular/core";
 
 @Component({
   selector: 'time-customization',
@@ -48,12 +48,8 @@ export class TimeCustomizationComponent implements OnInit {
 
   breakChange(index, value){
     this.breaks[index].selectedValue = value;
-    console.log(this.breaks[index].selectedValue);
+    console.debug(this.breaks[index].selectedValue);
     this.onBreak.emit(this.breaks);
-  }
-
-  changeBreakDration(){
-
   }
 
   constructor() { }
