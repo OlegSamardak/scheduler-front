@@ -6,12 +6,14 @@ import { TimeCustomizationComponent } from './time-customization/time-customizat
 import {MatSelectModule} from "@angular/material";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { BreakSelectorComponent } from './time-customization/break-selector/break-selector.component';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   imports: [
     CommonModule,
     MatSelectModule,
     BrowserAnimationsModule,
+    FormsModule
   ],
   declarations: [GroupSelectComponent, FormComponent, TimeCustomizationComponent, BreakSelectorComponent],
   exports:[

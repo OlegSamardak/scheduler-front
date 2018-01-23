@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'break-selector',
@@ -7,6 +7,10 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class BreakSelectorComponent implements OnInit {
   @Input() lesson: string;
+  @Output() onDuration = new EventEmitter();
+  selectedDuration: {
+    value: any;
+  };
   breaksDuration = [
     {value: '5 хв'},
     {value: '10 хв'},
@@ -22,6 +26,11 @@ export class BreakSelectorComponent implements OnInit {
     {value: '60 хв'},
 
   ];
+
+  durationChange(breakDuration){
+    this.onDuration.emit(breakDuration.value);
+  }
+
   constructor() { }
 
   ngOnInit() {

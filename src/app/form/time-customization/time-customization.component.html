@@ -2,23 +2,23 @@
   <div>
     <h3>Час початку занять</h3>
     <mat-form-field>
-      <mat-select placeholder='Час початку першої пари'>
-        <mat-option *ngFor="let time of studyBeginningTime" [value]="time.value">
+      <mat-select [(value)]="selectedStudyBeginning"  placeholder='Час початку першої пари'>
+        <mat-option *ngFor="let time of studyBeginningTime" [value]="studyBeginningTime" (click)="changeStudyBeginning(time.value)">
           {{time.value}}
         </mat-option>
       </mat-select>
     </mat-form-field>
     <h3>Тривалість пари</h3>
     <mat-form-field>
-      <mat-select placeholder='Тривалість пари'>
-        <mat-option *ngFor="let duration of lessonDuration" [value]="duration">
-          {{duration}}
+      <mat-select [(value)]="lessonDuration" placeholder='Тривалість пари'>
+        <mat-option *ngFor="let duration of lessonDuration" [value]="lessonDuration" (click)="changeLessonDuration(duration.value)">
+          {{duration.value}}
         </mat-option>
       </mat-select>
     </mat-form-field>
 
-    <div *ngFor="let number of numbers" >
-      <break-selector [lesson]="number">
+    <div *ngFor="let activeBreak of breaks; let i = index" >
+      <break-selector [lesson]="activeBreak.value" (onDuration)="breakChange(i, $event)">
 
       </break-selector>
     </div>
