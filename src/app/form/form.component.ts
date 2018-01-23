@@ -6,6 +6,23 @@ import {Component, OnInit} from "@angular/core";
   styleUrls: ['./form.component.scss']
 })
 export class FormComponent implements OnInit {
+  selectedLessonDuration;
+  selectedStudyBeginning;
+  selectedBreakDuration;
+  selectLessonDuration(selectedDuration){
+    this.selectedLessonDuration = selectedDuration;
+    console.log(this.selectedLessonDuration);
+  }
+
+  selectStudyBeginning(selectedStudyBeginning){
+    this.selectedStudyBeginning = selectedStudyBeginning;
+    console.log(this.selectedStudyBeginning);
+  }
+
+  selectBreakDuration(breakDuration){
+    this.selectedBreakDuration = breakDuration;
+    console.log(this.selectedBreakDuration)
+  }
 
   constructor() { }
 
