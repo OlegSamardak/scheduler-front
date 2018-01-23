@@ -1,7 +1,9 @@
 <div class="day">
   <div class="base-component">
-    <div *ngFor="let activeBreak of breaks; let i = index" >
-      <lesson [lessonNumber]="activeLesson.value" (onDuration)="breakChange(i, $event)"></lesson>
-    </div>
+    <ol>
+      <li *ngFor="let activeLesson of lessons; let i = index">
+        <lesson [lessonNumber]="activeLesson.value" (onLesson)="lessonChange(i, $event)"></lesson>
+      </li>
+    </ol>
   </div>
 </div>
