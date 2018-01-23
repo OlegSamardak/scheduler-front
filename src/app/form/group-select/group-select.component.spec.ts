@@ -1,6 +1,5 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { GroupSelectComponent } from './group-select.component';
+import {async, ComponentFixture, TestBed} from "@angular/core/testing";
+import {GroupSelectComponent} from "./group-select.component";
 
 describe('GroupSelectComponent', () => {
   let component: GroupSelectComponent;
@@ -10,7 +9,7 @@ describe('GroupSelectComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ GroupSelectComponent ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
