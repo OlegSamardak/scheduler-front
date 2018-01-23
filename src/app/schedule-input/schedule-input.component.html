@@ -1,4 +1,18 @@
 <div>
-  <day></day>
+  <div class="row">
+    <div class="col-4"></div>
+    <div></div>
+    <div class="col-6">
+      <h3>Введіть відомості про пари:</h3>
+    </div>
+    <div class="col-2"></div>
+  </div>
+
+  <mat-expansion-panel *ngFor="let week of weeks">
+    <mat-expansion-panel-header>
+      {{week.name}}
+    </mat-expansion-panel-header>
+    <day></day>
+  </mat-expansion-panel>
   <week-switcher></week-switcher>
 </div>

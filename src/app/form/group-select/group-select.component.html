@@ -1,9 +1,10 @@
 
 <div class="group-select">
+  <h5>Введіть групу, для якої хочете ввести розклад:</h5>
   <div class="base-component">
     <mat-form-field class="group-select-small-width">
-      <input matInput [(ngModel)] = "groupName" placeholder="Назва групи">
+      <input matInput placeholder="Група" #group>
     </mat-form-field>
-    <button mat-raised-button (click)="transmitGroup(groupName)&&openSnackbar(false)">Ввести</button>
+    <button mat-raised-button (click)="transmitGroup(group.value)&&openSnackbar(false)">Вибрати</button>
   </div>
 </div>
