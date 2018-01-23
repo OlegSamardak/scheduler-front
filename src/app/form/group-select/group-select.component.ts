@@ -24,11 +24,12 @@ export class GroupSelectComponent implements OnInit {
   transmitGroup(groupName: string){
     this.groupName = groupName;
     this.checkingExistenceOfGroup(this.groupName);
-    console.log(groupName);
+    this.onGroupName.emit(this.groupName);
+    //console.log(groupName);
   }
 
-  createSnackbarOfExistenceOfGroup(checkExistenceOfGroup: boolean){
-    if (checkExistenceOfGroup!){
+  openSnackbar(checkExistenceOfGroup: boolean){
+    if (checkExistenceOfGroup){
       this.snackBar.open('This group exists! Create new schedule?', 'Yes', {
         duration: 2000,
       });

@@ -9,7 +9,14 @@ export class FormComponent implements OnInit {
 
   constructor() { }
 
+  groupName: string;
+
   ngOnInit() {
+  }
+
+  setGroup(event) {
+    this.groupName = event;
+    console.log(this.groupName);
   }
 
 }
