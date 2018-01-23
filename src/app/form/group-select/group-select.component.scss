@@ -1,0 +1,19 @@
+@import '../../../styles.scss';
+
+.group-select {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10pt;
+}
+
+.group-select > * {
+  width: 100%;
+}
+
+.group-select-small-width{
+  width: 50%;
+}
+
+.basic-container {
+  padding: 10px;
+}

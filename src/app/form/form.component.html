@@ -1,4 +1,4 @@
 <div>
-  <group-select></group-select>
+  <group-select (onGroupName) = "setGroup($event)"></group-select>
   <time-customization (onBreak)="selectBreakDuration($event)" (onLessonDuration)="selectLessonDuration($event)" (onStudyBeginning)="selectStudyBeginning($event)"></time-customization>
 </div>

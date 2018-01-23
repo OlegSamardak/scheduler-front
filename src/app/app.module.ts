@@ -1,10 +1,9 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-
-import { AppComponent } from './app.component';
+import {BrowserModule} from "@angular/platform-browser";
+import {NgModule} from "@angular/core";
+import {AppComponent} from "./app.component";
 import {FormModule} from "./form/form.module";
 import {ScheduleInputModule} from "./schedule-input/schedule-input.module";
-import {MatButtonModule, MatInputModule, MatSelectModule} from "@angular/material";
+import {MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule} from "@angular/material";
 
 
 @NgModule({
@@ -17,7 +16,8 @@ import {MatButtonModule, MatInputModule, MatSelectModule} from "@angular/materia
     ScheduleInputModule,
     MatSelectModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    MatFormFieldModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

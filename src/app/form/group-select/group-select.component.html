@@ -1,3 +1,9 @@
-<p>
-  group-select works!
-</p>
+
+<div class="group-select">
+  <div class="base-component">
+    <mat-form-field class="group-select-small-width">
+      <input matInput placeholder="Group" #group>
+    </mat-form-field>
+    <button mat-raised-button (click)="transmitGroup(group.value)&&openSnackbar(false)">Click me!</button>
+  </div>
+</div>
