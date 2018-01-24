@@ -3,8 +3,8 @@
   <h5>Введіть групу, для якої хочете ввести розклад:</h5>
   <div class="base-component">
     <mat-form-field class="group-select-small-width">
-      <input matInput placeholder="Група" #group>
+      <input matInput [(ngModel)] = "groupName" placeholder="Група">
     </mat-form-field>
-    <button mat-raised-button (click)="transmitGroup(group.value)&&openSnackbar(false)">Вибрати</button>
+    <button mat-raised-button (click)="transmitGroup(groupName)&&openSnackbar(true)">Вибрати</button>
   </div>
 </div>
