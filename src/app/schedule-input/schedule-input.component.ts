@@ -14,7 +14,6 @@ export class ScheduleInputComponent implements OnInit {
     {value: 4, name: 'Четвер'},
     {value: 5, name: 'П`ятниця'},
     {value: 6, name: 'Субота'},
-
   ];
 
   constructor() { }

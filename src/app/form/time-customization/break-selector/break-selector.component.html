@@ -1,6 +1,6 @@
 <div>
   <h5>Пара {{lesson}}</h5>
-  <mat-form-field  [style.width]="'70%'">
+  <mat-form-field  [style.width]="'85%'">
     <mat-select [(value)]="selectedDuration" placeholder = 'Тривалість перерви'>
       <mat-option *ngFor="let duration of breaksDuration" [value]="duration" (click)="durationChange(selectedDuration)">
         {{duration.value}}

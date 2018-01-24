@@ -1,5 +1,23 @@
-<div class="center">
-  <div>
+<div class="card">
+  <div class="card-body">
+    <h2>Час навчання</h2>
+
+    <h5>Дата початку занять</h5>
+    <!--<mat-form-field  [style.width]="'70%'">-->
+      <!--<input matInput [matDatepicker]="picker" placeholder="Choose a date">-->
+      <!--<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>-->
+      <!--<mat-datepicker #picker></mat-datepicker>-->
+    <!--</mat-form-field>-->
+
+    <h5>Кількість учбових тижнів</h5>
+    <mat-form-field [style.width]="'70%'">
+      <mat-select [(value)]="selectedNumberOfWeeks"  placeholder='Кількість учбових тижнів'>
+        <mat-option *ngFor="let number of numberOfWeeks" [value]="numberOfWeeks" (click)="changeNumberOfWeeks(number.value)">
+          {{number.value}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
     <h5>Час початку занять</h5>
     <mat-form-field [style.width]="'70%'">
       <mat-select [(value)]="selectedStudyBeginning"  placeholder='Час початку першої пари'>
@@ -8,6 +26,7 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
+
     <h5>Тривалість пари</h5>
     <mat-form-field [style.width]="'70%'">
       <mat-select [(value)]="selectedLessonDuration" placeholder='Тривалість пари'>

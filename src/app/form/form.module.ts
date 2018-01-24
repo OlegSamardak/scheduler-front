@@ -8,7 +8,7 @@ import {TimeCustomizationComponent} from "./time-customization/time-customizatio
 import {MatSelectModule} from "@angular/material/select";
 import {MatButtonModule} from "@angular/material/button";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {MatFormFieldModule, MatInputModule} from "@angular/material";
+import {MatFormFieldModule, MatInputModule, MatDatepickerModule} from "@angular/material";
 import {BreakSelectorComponent} from "./time-customization/break-selector/break-selector.component";
 import {FormsModule} from "@angular/forms";
 
@@ -24,7 +24,8 @@ import {FormsModule} from "@angular/forms";
     MatInputModule,
     BrowserModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    MatDatepickerModule,
   ],
   declarations: [GroupSelectComponent, FormComponent, TimeCustomizationComponent, BreakSelectorComponent],
   exports:[

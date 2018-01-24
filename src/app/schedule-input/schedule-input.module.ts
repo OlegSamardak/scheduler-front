@@ -2,13 +2,12 @@ import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {ScheduleInputComponent} from "./schedule-input.component";
 import {DayComponent} from "./day/day.component";
-import {WeekSwitcherComponent} from "./week-switcher/week-switcher.component";
 import {BrowserModule} from "@angular/platform-browser";
 import {HttpClientModule} from "@angular/common/http";
 import {MatSelectModule} from "@angular/material/select";
 import {MatButtonModule} from "@angular/material/button";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {MatFormFieldModule, MatInputModule, MatExpansionModule} from "@angular/material";
+import {MatFormFieldModule, MatInputModule, MatExpansionModule, MatTabsModule} from "@angular/material";
 import {LessonComponent} from "./day/lesson/lesson.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
@@ -24,9 +23,10 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatTabsModule
   ],
-  declarations: [ScheduleInputComponent, DayComponent, WeekSwitcherComponent, LessonComponent],
+  declarations: [ScheduleInputComponent, DayComponent, LessonComponent],
   exports:[
     ScheduleInputComponent
   ]

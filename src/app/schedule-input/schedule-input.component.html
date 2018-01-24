@@ -1,18 +1,23 @@
 <div>
-  <div class="row">
-    <div class="col-4"></div>
-    <div></div>
-    <div class="col-6">
-      <h3>Введіть відомості про пари:</h3>
-    </div>
-    <div class="col-2"></div>
-  </div>
+  <h2>Відомості про пари:</h2>
 
-    <mat-expansion-panel *ngFor="let week of weeks">
-      <mat-expansion-panel-header>
-        <h6>{{week.name}}</h6>
-      </mat-expansion-panel-header>
-      <day></day>
-    </mat-expansion-panel>
-    <week-switcher></week-switcher>
+  <mat-tab-group>
+    <mat-tab label="Перший тиждень">
+      <mat-expansion-panel *ngFor="let week of weeks">
+        <mat-expansion-panel-header>
+         <h6>{{week.name}}</h6>
+        </mat-expansion-panel-header>
+        <day></day>
+      </mat-expansion-panel>
+    </mat-tab>
+    <mat-tab label="Другий тиждень">
+      <mat-expansion-panel *ngFor="let week of weeks">
+       <mat-expansion-panel-header>
+          <h6>{{week.name}}</h6>
+       </mat-expansion-panel-header>
+       <day></day>
+      </mat-expansion-panel>
+    </mat-tab>
+  </mat-tab-group>
+
 </div>
