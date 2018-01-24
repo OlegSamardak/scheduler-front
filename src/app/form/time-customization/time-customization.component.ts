@@ -18,23 +18,25 @@ export class TimeCustomizationComponent implements OnInit {
     {value: '45 хв'},
     {value: '80 хв'}
   ];
-  breaks = [
+  oddBreaks = [
     {value: '1', selectedValue: ''},
-    {value: '2', selectedValue: ''},
     {value: '3', selectedValue: ''},
-    {value: '4', selectedValue: ''},
     {value: '5', selectedValue: ''},
-    {value: '6', selectedValue: ''},
     {value: '7', selectedValue: ''},
-    {value: '8', selectedValue: ''},
-    {value: '9', selectedValue: ''}
     ];
 
-
+  evenBreaks = [
+    {value: '2', selectedValue: ''},
+    {value: '4', selectedValue: ''},
+    {value: '6', selectedValue: ''},
+    {value: '8', selectedValue: ''},
+  ];
 
   @Output() onStudyBeginning = new EventEmitter();
   @Output() onLessonDuration = new EventEmitter();
-  @Output() onBreak = new EventEmitter();
+  @Output() onOddBreak = new EventEmitter();
+  @Output() onEvenBreak = new EventEmitter();
+
 
   changeStudyBeginning(studyBeginning){
     this.selectedStudyBeginning = studyBeginning;
@@ -47,9 +49,13 @@ export class TimeCustomizationComponent implements OnInit {
   }
 
   breakChange(index, value){
-    this.breaks[index].selectedValue = value;
-    console.debug(this.breaks[index].selectedValue);
-    this.onBreak.emit(this.breaks);
+    this.oddBreaks[index].selectedValue = value;
+    this.evenBreaks[index].selectedValue = value;
+    console.log(this.oddBreaks[index].selectedValue);
+    console.log(this.evenBreaks[index].selectedValue);
+    this.onOddBreak.emit(this.oddBreaks);
+    this.onEvenBreak.emit(this.evenBreaks);
+
   }
 
   constructor() { }
