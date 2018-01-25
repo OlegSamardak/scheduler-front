@@ -4,6 +4,7 @@ import {AppComponent} from "./app.component";
 import {FormModule} from "./form/form.module";
 import {ScheduleInputModule} from "./schedule-input/schedule-input.module";
 import {MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule} from "@angular/material";
+import {HttpClientModule} from "@angular/common/http";
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import {MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule} fr
     MatInputModule,
     MatButtonModule,
     MatFormFieldModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

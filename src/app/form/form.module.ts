@@ -11,6 +11,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatFormFieldModule, MatInputModule} from "@angular/material";
 import {BreakSelectorComponent} from "./time-customization/break-selector/break-selector.component";
 import {FormsModule} from "@angular/forms";
+import { DialogComponent } from './group-select/dialog/dialog.component';
 
 @NgModule({
   imports: [
@@ -26,7 +27,7 @@ import {FormsModule} from "@angular/forms";
     HttpClientModule,
     FormsModule
   ],
-  declarations: [GroupSelectComponent, FormComponent, TimeCustomizationComponent, BreakSelectorComponent],
+  declarations: [GroupSelectComponent, FormComponent, TimeCustomizationComponent, BreakSelectorComponent, DialogComponent],
   exports:[
     FormComponent,
   ]
