@@ -3,6 +3,7 @@ import {MatSnackBar} from "@angular/material";
 import {HttpClient} from "@angular/common/http";
 import "rxjs/add/observable/of";
 import {Observable} from "rxjs";
+import {GroupService} from "../../model/service/group.service";
 
 @Component({
   selector: 'group-select',
@@ -12,14 +13,9 @@ import {Observable} from "rxjs";
 export class GroupSelectComponent implements OnInit {
 
   groupName: string;
-  snackBar: MatSnackBar;
   @Output() onGroupName = new EventEmitter<string>();
 
-  constructor(private http: HttpClient) { }
-
-  checkingExistenceOfGroup (groupName: string): Observable<any> {
-    return this.http.get<any>('/groups');
-  }
+  constructor(private groupService: GroupService) { }
 
   transmitGroup(groupName: string){
     this.groupName = groupName;
@@ -28,13 +24,7 @@ export class GroupSelectComponent implements OnInit {
     //console.log(groupName);
   }
 
-  openSnackbar(checkExistenceOfGroup: boolean){
-    if (checkExistenceOfGroup){
-      this.snackBar.open('This group exists! Create new schedule?', 'Yes', {
-        duration: 2000,
-      });
-    }
-  }
+
 
   ngOnInit() {
   }
