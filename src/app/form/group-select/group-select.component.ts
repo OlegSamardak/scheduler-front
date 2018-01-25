@@ -21,11 +21,11 @@ export class GroupSelectComponent implements OnInit {
     return this.http.get<any>('/groups');
   }
 
-  transmitGroup(groupName: string){
+  transmitGroup(groupName: string, checkExistenceOfGroup: boolean){
     this.groupName = groupName;
     this.checkingExistenceOfGroup(this.groupName);
     this.onGroupName.emit(this.groupName);
-    //console.log(groupName);
+    this.openSnackbar(checkExistenceOfGroup);
   }
 
   openSnackbar(checkExistenceOfGroup: boolean){

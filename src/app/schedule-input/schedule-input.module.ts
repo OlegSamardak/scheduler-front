@@ -24,7 +24,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     FormsModule,
     ReactiveFormsModule,
     MatExpansionModule,
-    MatTabsModule
+    MatTabsModule,
   ],
   declarations: [ScheduleInputComponent, DayComponent, LessonComponent],
   exports:[

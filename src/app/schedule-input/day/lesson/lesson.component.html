@@ -14,8 +14,8 @@
       </mat-form-field>
 
       <mat-form-field class="lessonType">
-        <mat-select [(value)]="lessonType" placeholder='Тип пари'>
-          <mat-option *ngFor="let type of lessonType" [value]="lessonType" (click)="lessonTypeChange(type.value)">
+        <mat-select [(value)]="selectedLessonType" placeholder='Тип пари'>
+          <mat-option *ngFor="let type of lessonType" [value]="type" (click)="lessonTypeChange(selectedLessonType)">
             {{type.value}}
           </mat-option>
         </mat-select>
