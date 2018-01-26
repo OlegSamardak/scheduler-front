@@ -46,7 +46,6 @@ export class FormComponent implements OnInit {
 
   setGroup(event) {
     this.groupName = event;
-    console.log(this.groupName);
   }
 
 }

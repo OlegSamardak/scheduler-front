@@ -10,6 +10,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatFormFieldModule, MatInputModule, MatExpansionModule, MatTabsModule} from "@angular/material";
 import {LessonComponent} from "./day/lesson/lesson.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 
 @NgModule({
   imports: [
@@ -25,6 +26,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     ReactiveFormsModule,
     MatExpansionModule,
     MatTabsModule,
+    NgbModule
   ],
   declarations: [ScheduleInputComponent, DayComponent, LessonComponent],
   exports:[

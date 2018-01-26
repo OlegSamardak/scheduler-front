@@ -16,6 +16,10 @@ export class ScheduleInputComponent implements OnInit {
     {value: 6, name: 'Субота'},
   ];
 
+  copySchedule(){
+
+  }
+
   constructor() { }
 
   ngOnInit() {
