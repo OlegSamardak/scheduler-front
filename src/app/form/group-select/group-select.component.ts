@@ -24,7 +24,7 @@ export class GroupSelectComponent implements OnInit {
   transmitGroup(groupName: string, checkExistenceOfGroup: boolean){
     this.groupName = groupName;
     this.onGroupName.emit(this.groupName);
-    this.openSnackbar(checkExistenceOfGroup);
+    // this.openSnackbar(checkExistenceOfGroup);
   }
 
   openDialog(): void {
