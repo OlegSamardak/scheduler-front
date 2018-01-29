@@ -1,18 +1,39 @@
-<div>
-  <div class="row">
-    <div class="col-4"></div>
-    <div></div>
-    <div class="col-6">
-      <h3>Відомості про пари:</h3>
-    </div>
-    <div class="col-2"></div>
-  </div>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
 
-  <mat-expansion-panel *ngFor="let week of weeks">
-    <mat-expansion-panel-header>
-      <h6>{{week.name}}</h6>
-    </mat-expansion-panel-header>
-    <day></day>
-  </mat-expansion-panel>
-  <week-switcher></week-switcher>
+<div>
+  <h2>Відомості про пари:</h2>
+
+  <mat-tab-group>
+    <mat-tab label="Перший тиждень">
+      <ngb-accordion #acc="ngbAccordion" [destroyOnHide]=false>
+        <ngb-panel *ngFor="let week of weeks; let i = index">
+          <ng-template ngbPanelTitle>
+            {{week.name}}
+          </ng-template>
+          <ng-template ngbPanelContent>
+            <day></day>
+          </ng-template>
+        </ngb-panel>
+      </ngb-accordion>
+    </mat-tab>
+    <mat-tab label="Другий тиждень">
+      <ngb-accordion #acc="ngbAccordion" [destroyOnHide]=false>
+        <ngb-panel *ngFor="let week of weeks; let i = index">
+          <ng-template ngbPanelTitle>
+            {{week.name}}
+          </ng-template>
+          <ng-template ngbPanelContent>
+            <day></day>
+          </ng-template>
+        </ngb-panel>
+      </ngb-accordion>
+    </mat-tab>
+    <mat-tab disabled>
+      <ng-template mat-tab-label>
+        <button mat-raised-button (click)="copySchedule()">Скопіювати розклад с першого в другий тиждень</button>
+      </ng-template>
+    </mat-tab>
+  </mat-tab-group>
+
 </div>

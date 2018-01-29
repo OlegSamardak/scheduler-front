@@ -5,6 +5,7 @@ import {FormModule} from "./form/form.module";
 import {ScheduleInputModule} from "./schedule-input/schedule-input.module";
 import {MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule} from "@angular/material";
 import {HttpClientModule} from "@angular/common/http";
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import {HttpClientModule} from "@angular/common/http";
     MatInputModule,
     MatButtonModule,
     MatFormFieldModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

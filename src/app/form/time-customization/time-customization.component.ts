@@ -3,11 +3,28 @@ import {Component, EventEmitter, OnInit, Output} from "@angular/core";
 @Component({
   selector: 'time-customization',
   templateUrl: './time-customization.component.html',
-  styleUrls: ['./time-customization.component.scss']
+  styleUrls: ['./time-customization.component.scss'],
 })
 export class TimeCustomizationComponent implements OnInit {
+
+  selectedStudyBeginningDate;
+  selectedNumberOfWeeks;
   selectedStudyBeginning;
   selectedLessonDuration;
+
+  numberOfWeeks = [
+    {value: '10'},
+    {value: '11'},
+    {value: '12'},
+    {value: '13'},
+    {value: '14'},
+    {value: '15'},
+    {value: '16'},
+    {value: '17'},
+    {value: '18'},
+    {value: '19'},
+    {value: '20'}
+  ];
   studyBeginningTime = [
     {value: '08:00'},
     {value: '08:30'},
@@ -32,11 +49,28 @@ export class TimeCustomizationComponent implements OnInit {
     {value: '8', selectedValue: ''},
   ];
 
+  @Output() onNumberOfWeeks = new EventEmitter();
+  @Output() onStudyBeginningDate = new EventEmitter();
   @Output() onStudyBeginning = new EventEmitter();
   @Output() onLessonDuration = new EventEmitter();
   @Output() onOddBreak = new EventEmitter();
   @Output() onEvenBreak = new EventEmitter();
 
+  myFilter = (d: Date): boolean => {
+    const day = d.getDay();
+    return day !== 0 && day !== 6;
+  }
+
+  changeStudyBeginningDate(studyBeginningDate){
+    this.selectedStudyBeginningDate = studyBeginningDate;
+    this.onStudyBeginningDate.emit(this.selectedStudyBeginningDate);
+    console.log(this.selectedStudyBeginningDate);
+  }
+
+  changeNumberOfWeeks(numberOfWeeks){
+    this.selectedNumberOfWeeks = numberOfWeeks;
+    this.onNumberOfWeeks.emit(this.selectedNumberOfWeeks);
+  }
 
   changeStudyBeginning(studyBeginning){
     this.selectedStudyBeginning = studyBeginning;
@@ -52,17 +86,13 @@ export class TimeCustomizationComponent implements OnInit {
     this.oddBreaks[index].selectedValue = value;
     this.evenBreaks[index].selectedValue = value;
     console.log(this.oddBreaks[index].selectedValue);
-    console.log(this.evenBreaks[index].selectedValue);
     this.onOddBreak.emit(this.oddBreaks);
     this.onEvenBreak.emit(this.evenBreaks);
-
   }
 
   constructor() { }
 
   ngOnInit() {
   }
-
-
 
 }

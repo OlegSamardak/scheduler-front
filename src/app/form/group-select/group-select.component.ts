@@ -17,23 +17,23 @@ export class GroupSelectComponent implements OnInit {
   groupName: string;
   @Output() onGroupName = new EventEmitter<string>();
 
-  constructor(private groupService: GroupService, public dialog: MatDialog) { }
+  constructor(private groupService: GroupService, public dialog: MatDialog) {
+    this.acceptGroup = false;
+   }
 
-  transmitGroup(groupName: string){
+  transmitGroup(groupName: string, checkExistenceOfGroup: boolean){
     this.groupName = groupName;
     this.onGroupName.emit(this.groupName);
-    //console.log(groupName);
+    this.openSnackbar(checkExistenceOfGroup);
   }
 
   openDialog(): void {
     let dialogRef = this.dialog.open(DialogComponent, );
   }
 
-
-
-  checkExistence(name: string){
-    // this.groupService.checkGroupExistence(name).subscribe(accept => this.acceptGroup = accept);
-    this.openDialog();
+  checkExistence(name: string) {
+    this.groupService.checkGroupExistence(name).subscribe(accept => this.acceptGroup = accept);
+    // this.openDialog();
   }
 
   ngOnInit() {

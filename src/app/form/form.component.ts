@@ -7,11 +7,24 @@ import {Component, OnInit} from "@angular/core";
 })
 export class FormComponent implements OnInit {
   selectedLessonDuration;
+  selectedStudyBeginningDate;
   selectedStudyBeginning;
+  selectedNumberOfWeeks;
   selectedBreakDuration;
+
   selectLessonDuration(selectedDuration){
     this.selectedLessonDuration = selectedDuration;
     console.log(this.selectedLessonDuration);
+  }
+
+  selectNumberOfWeeks(selectedNumberOfWeeks){
+    this.selectedNumberOfWeeks = selectedNumberOfWeeks;
+    console.log(this.selectedNumberOfWeeks);
+  }
+
+  selectStudyBeginningDate(selectedStudyBeginningDate){
+    this.selectedStudyBeginningDate = selectedStudyBeginningDate;
+    console.log(this.selectedStudyBeginningDate);
   }
 
   selectStudyBeginning(selectedStudyBeginning){
@@ -33,7 +46,6 @@ export class FormComponent implements OnInit {
 
   setGroup(event) {
     this.groupName = event;
-    console.log(this.groupName);
   }
 
 }
