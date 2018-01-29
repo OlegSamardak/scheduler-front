@@ -1,39 +1,39 @@
 import {Component, OnInit, Output, EventEmitter} from "@angular/core";
-import {MatSnackBar} from "@angular/material";
+import {MatDialog, MatSnackBar} from "@angular/material";
 import {HttpClient} from "@angular/common/http";
 import "rxjs/add/observable/of";
 import {Observable} from "rxjs";
+import {GroupService} from "../../model/service/group.service";
+import {DialogComponent} from "./dialog/dialog.component";
 
 @Component({
   selector: 'group-select',
   templateUrl: './group-select.component.html',
-  styleUrls: ['./group-select.component.scss']
+  styleUrls: ['./group-select.component.scss'],
+  providers: [GroupService, MatDialog]
 })
 export class GroupSelectComponent implements OnInit {
-
+  acceptGroup: boolean;
   groupName: string;
-  snackBar: MatSnackBar;
   @Output() onGroupName = new EventEmitter<string>();
 
-  constructor(private http: HttpClient) { }
-
-  checkingExistenceOfGroup (groupName: string): Observable<any> {
-    return this.http.get<any>('/groups');
-  }
+  constructor(private groupService: GroupService, public dialog: MatDialog) {
+    this.acceptGroup = false;
+   }
 
   transmitGroup(groupName: string, checkExistenceOfGroup: boolean){
     this.groupName = groupName;
-    this.checkingExistenceOfGroup(this.groupName);
     this.onGroupName.emit(this.groupName);
-    this.openSnackbar(checkExistenceOfGroup);
+    // this.openSnackbar(checkExistenceOfGroup);
   }
 
-  openSnackbar(checkExistenceOfGroup: boolean){
-    if (checkExistenceOfGroup){
-      this.snackBar.open('This group exists! Create new schedule?', 'Yes', {
-        duration: 2000,
-      });
-    }
+  openDialog(): void {
+    let dialogRef = this.dialog.open(DialogComponent, );
+  }
+
+  checkExistence(name: string) {
+    this.groupService.checkGroupExistence(name).subscribe(accept => this.acceptGroup = accept);
+    // this.openDialog();
   }
 
   ngOnInit() {
