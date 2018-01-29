@@ -11,6 +11,7 @@ import {MatFormFieldModule, MatInputModule, MatExpansionModule, MatTabsModule} f
 import {LessonComponent} from "./day/lesson/lesson.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import {WeekComponent} from "./week/week.component";
 
 @NgModule({
   imports: [
@@ -28,7 +29,7 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
     MatTabsModule,
     NgbModule
   ],
-  declarations: [ScheduleInputComponent, DayComponent, LessonComponent],
+  declarations: [ScheduleInputComponent, DayComponent, LessonComponent, WeekComponent],
   exports:[
     ScheduleInputComponent
   ]

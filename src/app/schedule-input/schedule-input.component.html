@@ -6,28 +6,10 @@
 
   <mat-tab-group>
     <mat-tab label="Перший тиждень">
-      <ngb-accordion #acc="ngbAccordion" [destroyOnHide]=false>
-        <ngb-panel *ngFor="let week of weeks; let i = index">
-          <ng-template ngbPanelTitle>
-            {{week.name}}
-          </ng-template>
-          <ng-template ngbPanelContent>
-            <day></day>
-          </ng-template>
-        </ngb-panel>
-      </ngb-accordion>
+      <week></week>
     </mat-tab>
     <mat-tab label="Другий тиждень">
-      <ngb-accordion #acc="ngbAccordion" [destroyOnHide]=false>
-        <ngb-panel *ngFor="let week of weeks; let i = index">
-          <ng-template ngbPanelTitle>
-            {{week.name}}
-          </ng-template>
-          <ng-template ngbPanelContent>
-            <day></day>
-          </ng-template>
-        </ngb-panel>
-      </ngb-accordion>
+      <week></week>
     </mat-tab>
     <mat-tab disabled>
       <ng-template mat-tab-label>
