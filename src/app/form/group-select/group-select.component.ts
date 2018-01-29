@@ -9,7 +9,8 @@ import {DialogComponent} from "./dialog/dialog.component";
 @Component({
   selector: 'group-select',
   templateUrl: './group-select.component.html',
-  styleUrls: ['./group-select.component.scss']
+  styleUrls: ['./group-select.component.scss'],
+  providers: [GroupService, MatDialog]
 })
 export class GroupSelectComponent implements OnInit {
   acceptGroup: boolean;
@@ -25,14 +26,7 @@ export class GroupSelectComponent implements OnInit {
   }
 
   openDialog(): void {
-    let dialogRef = this.dialog.open(DialogComponent, {
-      width: '250px',
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      // this.animal = result;
-    });
+    let dialogRef = this.dialog.open(DialogComponent, );
   }
 
 
