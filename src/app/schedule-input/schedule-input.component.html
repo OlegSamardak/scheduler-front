@@ -9,7 +9,7 @@
       <ngb-accordion #acc="ngbAccordion" [destroyOnHide]=false>
         <ngb-panel *ngFor="let week of weeks; let i = index">
           <ng-template ngbPanelTitle>
-            <h6>{{week.name}}</h6>
+            {{week.name}}
           </ng-template>
           <ng-template ngbPanelContent>
             <day></day>
@@ -21,7 +21,7 @@
       <ngb-accordion #acc="ngbAccordion" [destroyOnHide]=false>
         <ngb-panel *ngFor="let week of weeks; let i = index">
           <ng-template ngbPanelTitle>
-            <h6>{{week.name}}</h6>
+            {{week.name}}
           </ng-template>
           <ng-template ngbPanelContent>
             <day></day>

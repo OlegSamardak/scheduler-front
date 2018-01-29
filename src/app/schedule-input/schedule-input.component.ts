@@ -16,6 +16,24 @@ export class ScheduleInputComponent implements OnInit {
     {value: 6, name: 'Субота'},
   ];
 
+  lowerWeeks = [
+    {value: 1, name: 'Monday'},
+    {value: 2, name: 'Tuesday'},
+    {value: 3, name: 'Wednesday'},
+    {value: 4, name: 'Thursday'},
+    {value: 5, name: 'Friday'},
+    {value: 6, name: 'Saturday'},
+  ];
+
+  upperWeeks = [
+    {value: 1, name: 'Monday'},
+    {value: 2, name: 'Tuesday'},
+    {value: 3, name: 'Wednesday'},
+    {value: 4, name: 'Thursday'},
+    {value: 5, name: 'Friday'},
+    {value: 6, name: 'Saturday'},
+  ];
+
   copySchedule(){
 
   }
