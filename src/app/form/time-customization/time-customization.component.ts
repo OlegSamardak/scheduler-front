@@ -64,7 +64,6 @@ export class TimeCustomizationComponent implements OnInit {
   changeStudyBeginningDate(studyBeginningDate){
     this.selectedStudyBeginningDate = studyBeginningDate;
     this.onStudyBeginningDate.emit(this.selectedStudyBeginningDate);
-    console.log(this.selectedStudyBeginningDate);
   }
 
   changeNumberOfWeeks(numberOfWeeks){

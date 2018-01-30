@@ -1,8 +1,6 @@
 import {Component, OnInit, Output, EventEmitter} from "@angular/core";
-import {MatDialog, MatSnackBar} from "@angular/material";
-import {HttpClient} from "@angular/common/http";
+import {MatDialog} from "@angular/material";
 import "rxjs/add/observable/of";
-import {Observable} from "rxjs";
 import {GroupService} from "../../model/service/group.service";
 import {DialogComponent} from "./dialog/dialog.component";
 
@@ -24,7 +22,6 @@ export class GroupSelectComponent implements OnInit {
   transmitGroup(groupName: string, checkExistenceOfGroup: boolean){
     this.groupName = groupName;
     this.onGroupName.emit(this.groupName);
-    // this.openSnackbar(checkExistenceOfGroup);
   }
 
   openDialog(): void {

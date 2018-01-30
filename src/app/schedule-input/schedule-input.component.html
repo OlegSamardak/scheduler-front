@@ -9,12 +9,11 @@
       <week></week>
     </mat-tab>
     <mat-tab label="Другий тиждень">
-      <week></week>
-    </mat-tab>
-    <mat-tab disabled>
-      <ng-template mat-tab-label>
-        <button mat-raised-button (click)="copySchedule()">Перенести розклад</button>
-      </ng-template>
+      <p>
+        <button mat-raised-button class="right-float" (click)="copySchedule()">Перенести розклад з першого тиждня</button> <br>
+        <br>
+        <week></week>
+      </p>
     </mat-tab>
   </mat-tab-group>
 
