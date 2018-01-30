@@ -2,11 +2,4 @@
   <group-select (onGroupName) = "setGroup($event)"></group-select>
   <time-customization (onBreak)="selectBreakDuration($event)" (onLessonDuration)="selectLessonDuration($event)" (onStudyBeginning)="selectStudyBeginning($event)" (onStudyBeginningDate)="selectStudyBeginningDate($event)" (onNumberOfWeeks)="selectNumberOfWeeks($event)"></time-customization>
 
-  <div>
-    <p class="m-0 text-center text-black">
-      <button mat-raised-button >Попередній крок</button>
-      <button mat-raised-button (click) = "nextStep()">Наступний крок</button>
-    </p>
-  </div>
-
 </div>
