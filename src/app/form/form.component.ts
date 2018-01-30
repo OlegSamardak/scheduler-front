@@ -12,6 +12,8 @@ export class FormComponent implements OnInit {
   selectedNumberOfWeeks;
   selectedBreakDuration;
 
+  nextStep(){ }
+
   selectLessonDuration(selectedDuration){
     this.selectedLessonDuration = selectedDuration;
     console.log(this.selectedLessonDuration);

@@ -3,10 +3,19 @@ import {NgModule} from "@angular/core";
 import {AppComponent} from "./app.component";
 import {FormModule} from "./form/form.module";
 import {ScheduleInputModule} from "./schedule-input/schedule-input.module";
-import {MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule} from "@angular/material";
+import {
+  MatButtonModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatSelectModule,
+  MAT_DATE_LOCALE,
+  NativeDateModule,
+  MatDatepickerModule,
+  MatStepperModule
+} from "@angular/material";
 import {HttpClientModule} from "@angular/common/http";
-import { MatStepperModule} from "@angular/material";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import {AppRoutingModule} from ".//app-routing.module";
 
 
 @NgModule({
@@ -23,9 +32,14 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
     MatFormFieldModule,
     HttpClientModule,
     NgbModule.forRoot(),
-    MatStepperModule
+    MatStepperModule,
+    MatDatepickerModule,
+    NativeDateModule,
+    AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    {provide: MAT_DATE_LOCALE, useValue: 'uk-UA'},
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -8,11 +8,16 @@ import {TimeCustomizationComponent} from "./time-customization/time-customizatio
 import {MatSelectModule} from "@angular/material/select";
 import {MatButtonModule} from "@angular/material/button";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {MatDialogModule, MatFormFieldModule, MatInputModule} from "@angular/material";
-import { MatDatepickerModule, MatNativeDateModule} from "@angular/material";
+import {
+  MatDialogModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatDatepickerModule,
+  MatNativeDateModule
+} from "@angular/material";
 import {BreakSelectorComponent} from "./time-customization/break-selector/break-selector.component";
 import {FormsModule} from "@angular/forms";
-import { DialogComponent } from './group-select/dialog/dialog.component';
+import {DialogComponent} from "./group-select/dialog/dialog.component";
 
 @NgModule({
   imports: [
@@ -29,7 +34,7 @@ import { DialogComponent } from './group-select/dialog/dialog.component';
     FormsModule,
     MatDialogModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
   ],
   declarations: [GroupSelectComponent, FormComponent, TimeCustomizationComponent, BreakSelectorComponent, DialogComponent],
   exports:[

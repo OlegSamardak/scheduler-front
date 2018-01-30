@@ -7,7 +7,7 @@ import {Component, OnInit} from "@angular/core";
 })
 export class WeekComponent implements OnInit {
 
-  weeks = [
+  days = [
     {value: 1, name: 'Понеділок'},
     {value: 2, name: 'Вівторок'},
     {value: 3, name: 'Середа'},

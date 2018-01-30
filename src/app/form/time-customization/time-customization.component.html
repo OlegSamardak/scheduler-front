@@ -4,9 +4,9 @@
 
     <h5>Дата початку занять</h5>
     <mat-form-field  [style.width]="'70%'">
-      <input matInput [(ngModel)]="selectedStudyBeginningDate" (ngModelChange)="changeStudyBeginningDate(selectedStudyBeginningDate)" [matDatepickerFilter]="myFilter" [matDatepicker]="dp3" placeholder="Виберіть дату" disabled>
-      <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
-      <mat-datepicker touchUi="true" #dp3 disabled="false"></mat-datepicker>
+      <input matInput [(ngModel)]="selectedStudyBeginningDate" (ngModelChange)="changeStudyBeginningDate(selectedStudyBeginningDate)" [matDatepickerFilter]="myFilter" [matDatepicker]="dp" placeholder="Виберіть дату" disabled>
+      <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+      <mat-datepicker touchUi="true" #dp disabled="false"></mat-datepicker>
     </mat-form-field>
 
     <h5>Кількість навчальних тижнів</h5>
