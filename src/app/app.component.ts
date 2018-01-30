@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthorizationService } from './model/service/authorization.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -6,11 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit {
 
-  constructor(private authorizationService: AuthorizationService){
+  constructor(private authorizationService: AuthorizationService) {
 
   }
 
-  ngOnInit(){
-
+  ngOnInit() {
+    this.authorizationService.authorize();
   }
 }
