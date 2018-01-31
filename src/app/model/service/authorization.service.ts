@@ -7,7 +7,7 @@ export class AuthorizationService {
   constructor(private http: HttpClient) { }
 
   authorize(){
-    this.http.get(`http://localhost:9000/login/google`);
+    return this.http.get(`http://localhost:9000/login/google`);
   }
 
 }

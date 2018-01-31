@@ -23,7 +23,7 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
     MatFormFieldModule,
     HttpClientModule,
     NgbModule.forRoot(),
-    MatStepperModule
+    MatStepperModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
