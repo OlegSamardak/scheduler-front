@@ -10,4 +10,8 @@ export class AuthorizationService {
     return this.http.get(`http://localhost:9000/login/google`);
   }
 
+  codeForApi(uri){
+    return this.http.post(uri);
+  }
+
 }
