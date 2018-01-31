@@ -8,23 +8,32 @@ import {Component, OnInit, Output, EventEmitter} from "@angular/core";
 export class DayComponent implements OnInit {
 
   @Output() onLesson = new EventEmitter();
+  @Output() onOneDay = new EventEmitter();
 
-  lessons = [
-    {value: '1', selectedValue: ''},
-    {value: '2', selectedValue: ''},
-    {value: '3', selectedValue: ''},
-    {value: '4', selectedValue: ''},
-    {value: '5', selectedValue: ''},
-    {value: '6', selectedValue: ''},
-    {value: '7', selectedValue: ''},
-    {value: '8', selectedValue: ''},
-    {value: '9', selectedValue: ''}
+  day = [
+    {value: '1', selectedValue: '', oneLesson: ''},
+    {value: '2', selectedValue: '', oneLesson: ''},
+    {value: '3', selectedValue: '', oneLesson: ''},
+    {value: '4', selectedValue: '', oneLesson: ''},
+    {value: '5', selectedValue: '', oneLesson: ''},
+    {value: '6', selectedValue: '', oneLesson: ''},
+    {value: '7', selectedValue: '', oneLesson: ''},
+    {value: '8', selectedValue: '', oneLesson: ''},
+    {value: '9', selectedValue: '', oneLesson: ''}
   ];
 
-  lessonChange(index, value){
-    this.lessons[index].selectedValue = value;
-    console.debug(this.lessons[index].selectedValue);
-    this.onLesson.emit(this.lessons);
+  dayChange(){
+    this.onOneDay.emit(this.day);
+  }
+
+  lessonNumberChange(index, value){
+    this.day[index].selectedValue = value;
+    this.onLesson.emit(this.day);
+  }
+
+  lessonChange(index, lesson) {
+    this.day[index].oneLesson = lesson;
+    this.dayChange();
   }
 
   constructor() { }

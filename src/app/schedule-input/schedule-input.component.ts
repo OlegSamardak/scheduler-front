@@ -7,8 +7,6 @@ import {Component, OnInit} from "@angular/core";
 })
 export class ScheduleInputComponent implements OnInit {
 
-
-
   lowerWeeks = [
     {value: 1, name: 'Monday'},
     {value: 2, name: 'Tuesday'},

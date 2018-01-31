@@ -2,20 +2,20 @@
   <div class="base-component">
 
       <mat-form-field class="subject">
-        <input matInput [(ngModel)] = "subject" placeholder="Предмет">
+        <input matInput [(ngModel)] = "lesson.subject" (ngModelChange)="lessonChange()" placeholder="Предмет">
       </mat-form-field>
 
       <mat-form-field class="teacher">
-        <input matInput [(ngModel)] = "teacher" placeholder="Викладач">
+        <input matInput [(ngModel)] = "lesson.teacher" (ngModelChange)="lessonChange()" placeholder="Викладач">
       </mat-form-field>
 
       <mat-form-field class="lectureHall">
-        <input matInput [(ngModel)] = "lectureHall" placeholder="Аудиторія">
+        <input matInput [(ngModel)] = "lesson.lectureHall" (ngModelChange)="lessonChange()" placeholder="Аудиторія">
       </mat-form-field>
 
       <mat-form-field class="lessonType">
-        <mat-select [(value)]="selectedLessonType" placeholder='Тип пари'>
-          <mat-option *ngFor="let type of lessonType" [value]="type" (click)="lessonTypeChange(selectedLessonType)">
+        <mat-select [(value)]="lesson.lessonType" placeholder='Тип пари'>
+          <mat-option *ngFor="let type of lessonTypes" [value]="type" (click)="lessonChange()">
             {{type.value}}
           </mat-option>
         </mat-select>

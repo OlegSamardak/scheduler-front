@@ -1,8 +1,8 @@
 <div class="day">
   <div class="base-component">
     <ol>
-      <li *ngFor="let activeLesson of lessons; let i = index">
-        <lesson [lessonNumber]="activeLesson.value" (onLesson)="lessonChange(i, $event)"></lesson>
+      <li *ngFor="let activeLesson of day; let i = index">
+        <lesson [lessonNumber]="activeLesson.value" (onLesson)="lessonNumberChange(i, $event)" (onOneLesson)="lessonChange(activeLesson.value, $event)"></lesson>
       </li>
     </ol>
   </div>

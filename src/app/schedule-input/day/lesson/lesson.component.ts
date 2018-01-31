@@ -8,19 +8,16 @@ import {Component, OnInit, Input, Output, EventEmitter} from "@angular/core";
 export class LessonComponent implements OnInit {
 
   @Input() lessonNumber: string;
-  @Output() onLessonType = new EventEmitter();
-  @Output() onSubject = new EventEmitter();
-  @Output() onTeacher = new EventEmitter();
-  @Output() onLectureHall = new EventEmitter();
-  subject: string;
-  teacher: string;
-  lectureHall: string;
+  @Output() onOneLesson = new EventEmitter();
 
-  selectedLessonType: {
-    value: any;
+  lesson = {
+    lessonType: '',
+    subject: '',
+    teacher: '',
+    lectureHall: '',
   };
 
-  lessonType = [
+  lessonTypes = [
     {value: 'Лекція'},
     {value: 'Практичне заняття'},
     {value: 'Семінар'},
@@ -28,20 +25,8 @@ export class LessonComponent implements OnInit {
     {value: 'Самостійна робота'},
   ];
 
-  lessonTypeChange(lessonType){
-    this.onLessonType.emit(lessonType.value);
-  }
-
-  subjectChange(subject){
-    this.onSubject.emit(subject.value);
-  }
-
-  teacherChange(teacher){
-    this.onTeacher.emit(teacher.value);
-  }
-
-  lectureHallChange(lectureHall){
-    this.onLectureHall.emit(lectureHall.value);
+  lessonChange(){
+    this.onOneLesson.emit(this.lesson);
   }
 
   constructor() { }

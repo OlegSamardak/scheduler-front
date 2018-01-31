@@ -1,10 +1,10 @@
 <ngb-accordion #acc="ngbAccordion" [destroyOnHide]=false>
-  <ngb-panel *ngFor="let day of days; let i = index">
+  <ngb-panel *ngFor="let day of week; let i = index">
     <ng-template ngbPanelTitle>
       {{day.name}}
     </ng-template>
     <ng-template ngbPanelContent>
-      <day></day>
+      <day (onOneDay)="dayChange(i,$event)"></day>
     </ng-template>
   </ngb-panel>
 </ngb-accordion>

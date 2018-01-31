@@ -6,14 +6,16 @@ import {Component, OnInit} from "@angular/core";
   styleUrls: ['./form.component.scss']
 })
 export class FormComponent implements OnInit {
+
+  groupName;
   selectedLessonDuration;
   selectedStudyBeginningDate;
   selectedStudyBeginning;
   selectedNumberOfWeeks;
   selectedBreakDuration;
 
-  selectLessonDuration(selectedDuration){
-    this.selectedLessonDuration = selectedDuration;
+  selectLessonDuration(selectedLessonDuration){
+    this.selectedLessonDuration = selectedLessonDuration;
     console.log(this.selectedLessonDuration);
   }
 
@@ -37,15 +39,13 @@ export class FormComponent implements OnInit {
     console.log(this.selectedBreakDuration)
   }
 
-  constructor() { }
-
-  groupName: string;
-
-  ngOnInit() {
-  }
-
   setGroup(event) {
     this.groupName = event;
+  }
+
+  constructor() { }
+
+  ngOnInit() {
   }
 
 }
