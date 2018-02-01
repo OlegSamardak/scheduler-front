@@ -1,5 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'schedule-input',
@@ -22,10 +23,13 @@ export class ScheduleInputComponent implements OnInit {
     console.log(this.schedule[1].oneWeek);
   }
 
-  constructor(
-    private http: HttpClient) { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
+  }
+
+  previousStep(){
+    this.router.navigate(['/time-customization']);
   }
 
 }
