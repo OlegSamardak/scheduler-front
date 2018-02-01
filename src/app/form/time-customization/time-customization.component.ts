@@ -1,4 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from "@angular/core";
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'time-customization',
@@ -6,6 +7,8 @@ import {Component, EventEmitter, OnInit, Output} from "@angular/core";
   styleUrls: ['./time-customization.component.scss'],
 })
 export class TimeCustomizationComponent implements OnInit {
+
+  constructor(private router: Router) { }
 
   inputDate;
 
@@ -105,7 +108,10 @@ export class TimeCustomizationComponent implements OnInit {
     this.onBreak.emit(this.breaks);
   }
 
-  constructor() { }
+  previousStep(){
+    this.router.navigate(['/group-select']);
+  }
+
 
   ngOnInit() {
   }
