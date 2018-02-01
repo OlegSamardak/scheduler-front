@@ -112,6 +112,9 @@ export class TimeCustomizationComponent implements OnInit {
     this.router.navigate(['/group-select']);
   }
 
+  nextStep(){
+    this.router.navigate(['/schedule-input']);
+  }
 
   ngOnInit() {
   }
