@@ -7,6 +7,8 @@ import {Component, EventEmitter, OnInit, Output} from "@angular/core";
 })
 export class TimeCustomizationComponent implements OnInit {
 
+  inputDate;
+
   selectedStudyBeginningDate;
   selectedNumberOfWeeks;
   selectedStudyBeginning;
@@ -72,8 +74,14 @@ export class TimeCustomizationComponent implements OnInit {
     return day !== 0 && day !== 6;
   }
 
-  changeStudyBeginningDate(studyBeginningDate){
-    this.selectedStudyBeginningDate = studyBeginningDate;
+  toTimestamp(strDate){
+    let datum = Date.parse(strDate);
+    return datum/1000;
+  }
+
+  changeStudyBeginningDate(inputDate){
+    this.selectedStudyBeginningDate = this.toTimestamp(inputDate);
+    console.log(this.selectedStudyBeginningDate);
     this.onStudyBeginningDate.emit(this.selectedStudyBeginningDate);
   }
 

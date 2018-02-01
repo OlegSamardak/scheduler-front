@@ -28,7 +28,7 @@ export class GroupSelectComponent implements OnInit {
   // }
 
   checkExistence(name: string) {
-    // this.groupService.checkGroupExistence(name).subscribe(accept => this.acceptGroup = accept);
+    this.groupService.checkGroupExistence(name).subscribe(accept => this.acceptGroup = accept);
     this.transmitGroup(name);
     // this.openDialog();
   }
