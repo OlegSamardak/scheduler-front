@@ -1,14 +1,26 @@
-import {Component} from "@angular/core";
-
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import { AuthorizationService } from './model/service/authorization.service';
+import {ActivatedRoute} from "@angular/router";
+import {Observable} from "rxjs/Observable";
+import {Subscription} from "rxjs/Subscription";
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  providers: [AuthorizationService]
 })
-export class AppComponent {
+export class AppComponent implements OnInit, OnDestroy {
 
   groupName;
   timeCustomization;
+
+  code = '';
+  private loggedIn = false;
+  sub: Subscription;
+
+  constructor(private authorizationService: AuthorizationService, private route: ActivatedRoute) {
+
+  }
 
   setGroup(groupName) {
     this.groupName = groupName;
@@ -20,4 +32,28 @@ export class AppComponent {
     console.log(this.timeCustomization);
   }
 
+  authorize(){
+    this.authorizationService.authorize().subscribe((redirectUri) => {
+      if (this.code == '' && !this.loggedIn) {
+        this.loggedIn = true;
+        window.location.href = redirectUri.response;
+      }
+    });
+  }
+
+  ngOnInit() {
+    // this.sub = this.route.queryParams.subscribe(params => {
+    //   console.log(params['code']);
+    //   if (params['code']) {
+    //     this.code = params['code'] || 0;
+    //     this.authorizationService.codeForApi(this.code).subscribe(response => console.log('logged in'));
+    //   }
+    //   else
+    //     this.authorize();
+    // });
+  }
+
+  ngOnDestroy(){
+    this.sub.unsubscribe();
+  }
 }

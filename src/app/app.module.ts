@@ -16,7 +16,7 @@ import {
 import {HttpClientModule} from "@angular/common/http";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {AppRoutingModule} from ".//app-routing.module";
-
+import {ActivatedRoute, RouterModule} from "@angular/router";
 
 @NgModule({
   declarations: [
@@ -35,11 +35,12 @@ import {AppRoutingModule} from ".//app-routing.module";
     MatStepperModule,
     MatDatepickerModule,
     NativeDateModule,
-    AppRoutingModule
+    AppRoutingModule,
+    RouterModule.forRoot([])
   ],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'uk-UA'},
-],
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
