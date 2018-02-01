@@ -1,4 +1,5 @@
 import {Component, OnInit} from "@angular/core";
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 @Component({
   selector: 'schedule-input',
@@ -21,7 +22,8 @@ export class ScheduleInputComponent implements OnInit {
     console.log(this.schedule[1].oneWeek);
   }
 
-  constructor() { }
+  constructor(
+    private http: HttpClient) { }
 
   ngOnInit() {
   }

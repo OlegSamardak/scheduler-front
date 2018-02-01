@@ -13,18 +13,18 @@ export class BreakSelectorComponent implements OnInit {
   };
 
   breaksDuration = [
-    {value: '5 хв'},
-    {value: '10 хв'},
-    {value: '15 хв'},
-    {value: '20 хв'},
-    {value: '25 хв'},
-    {value: '30 хв'},
-    {value: '35 хв'},
-    {value: '40 хв'},
-    {value: '45 хв'},
-    {value: '50 хв'},
-    {value: '55 хв'},
-    {value: '60 хв'},
+    {value: '5'},
+    {value: '10'},
+    {value: '15'},
+    {value: '20'},
+    {value: '25'},
+    {value: '30'},
+    {value: '35'},
+    {value: '40'},
+    {value: '45'},
+    {value: '50'},
+    {value: '55'},
+    {value: '60'},
   ];
 
   durationChange(breakDuration){

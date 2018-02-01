@@ -10,12 +10,12 @@ export class FormComponent implements OnInit {
   @Output() onTimeCustomization = new EventEmitter();
 
   timeCustomization = {
-    groupName: null,
-    selectedLessonDuration: null,
-    selectedStudyBeginningDate: null,
-    selectedStudyBeginning: null,
-    selectedNumberOfWeeks: null,
-    selectedBreakDuration: null,
+    group: null,
+    breaks: null,
+    first_day: null,
+    lesson_duration: null,
+    first_lesson: null,
+    numberOfWeeks: null,
   };
 
   timeCustomizationChange(){
@@ -23,32 +23,33 @@ export class FormComponent implements OnInit {
   }
 
   selectLessonDuration(selectedLessonDuration){
-    this.timeCustomization.selectedLessonDuration = selectedLessonDuration;
+    this.timeCustomization.lesson_duration = selectedLessonDuration;
     this.timeCustomizationChange();
   }
 
   selectNumberOfWeeks(selectedNumberOfWeeks){
-    this.timeCustomization.selectedNumberOfWeeks = selectedNumberOfWeeks;
+    this.timeCustomization.numberOfWeeks = selectedNumberOfWeeks;
     this.timeCustomizationChange();
   }
 
   selectStudyBeginningDate(selectedStudyBeginningDate){
-    this.timeCustomization.selectedStudyBeginningDate = selectedStudyBeginningDate;
+    this.timeCustomization.first_day = selectedStudyBeginningDate;
     this.timeCustomizationChange();
   }
 
   selectStudyBeginning(selectedStudyBeginning){
-    this.timeCustomization.selectedStudyBeginning = selectedStudyBeginning;
+    this.timeCustomization.first_lesson = selectedStudyBeginning;
     this.timeCustomizationChange();
   }
 
   selectBreakDuration(breakDuration){
-    this.timeCustomization.selectedBreakDuration = breakDuration;
+    this.timeCustomization.breaks = breakDuration;
+    console.log(this.timeCustomization);
     this.timeCustomizationChange();
   }
 
   setGroup(groupName) {
-    this.timeCustomization.groupName = groupName;
+    this.timeCustomization.group = groupName;
     this.timeCustomizationChange();
   }
 
