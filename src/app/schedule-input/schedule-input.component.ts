@@ -7,26 +7,18 @@ import {Component, OnInit} from "@angular/core";
 })
 export class ScheduleInputComponent implements OnInit {
 
-  lowerWeeks = [
-    {value: 1, name: 'Monday'},
-    {value: 2, name: 'Tuesday'},
-    {value: 3, name: 'Wednesday'},
-    {value: 4, name: 'Thursday'},
-    {value: 5, name: 'Friday'},
-    {value: 6, name: 'Saturday'},
+  schedule = [
+    {name: 'UpperWeek', oneWeek: null},
+    {name: 'LowerWeek', oneWeek: null},
   ];
 
-  upperWeeks = [
-    {value: 1, name: 'Monday'},
-    {value: 2, name: 'Tuesday'},
-    {value: 3, name: 'Wednesday'},
-    {value: 4, name: 'Thursday'},
-    {value: 5, name: 'Friday'},
-    {value: 6, name: 'Saturday'},
-  ];
+  weekChange(index, week){
+    this.schedule[index].oneWeek = week;
+  }
 
   copySchedule(){
-
+    this.schedule[1].oneWeek = this.schedule[0].oneWeek;
+    console.log(this.schedule[1].oneWeek);
   }
 
   constructor() { }

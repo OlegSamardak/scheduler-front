@@ -10,7 +10,7 @@
 <div class="container">
 
   <div class="row card">
-    <div class="col-sm card-body">
+    <div class="col-sm card-body" (onGroupName)="setGroup($event)" (onTimeCustomization)="setTimeCustomization($event)">
       <router-outlet></router-outlet>
     </div>
   </div>

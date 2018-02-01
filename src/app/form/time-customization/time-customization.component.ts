@@ -35,26 +35,37 @@ export class TimeCustomizationComponent implements OnInit {
     {value: '45 хв'},
     {value: '80 хв'}
   ];
+
   oddBreaks = [
-    {value: '1', selectedValue: ''},
-    {value: '3', selectedValue: ''},
-    {value: '5', selectedValue: ''},
-    {value: '7', selectedValue: ''},
-    ];
+    {value: '2'},
+    {value: '4'},
+    {value: '6'},
+    {value: '8'},
+  ];
 
   evenBreaks = [
+    {value: '1'},
+    {value: '3'},
+    {value: '5'},
+    {value: '7'},
+  ];
+
+  breaks = [
+    {value: '1', selectedValue: ''},
     {value: '2', selectedValue: ''},
+    {value: '3', selectedValue: ''},
     {value: '4', selectedValue: ''},
+    {value: '5', selectedValue: ''},
     {value: '6', selectedValue: ''},
-    {value: '8', selectedValue: ''},
+    {value: '7', selectedValue: ''},
+    {value: '8', selectedValue: ''}
   ];
 
   @Output() onNumberOfWeeks = new EventEmitter();
   @Output() onStudyBeginningDate = new EventEmitter();
   @Output() onStudyBeginning = new EventEmitter();
   @Output() onLessonDuration = new EventEmitter();
-  @Output() onOddBreak = new EventEmitter();
-  @Output() onEvenBreak = new EventEmitter();
+  @Output() onBreak = new EventEmitter();
 
   myFilter = (d: Date): boolean => {
     const day = d.getDay();
@@ -82,11 +93,8 @@ export class TimeCustomizationComponent implements OnInit {
   }
 
   breakChange(index, value){
-    this.oddBreaks[index].selectedValue = value;
-    this.evenBreaks[index].selectedValue = value;
-    console.log(this.oddBreaks[index].selectedValue);
-    this.onOddBreak.emit(this.oddBreaks);
-    this.onEvenBreak.emit(this.evenBreaks);
+    this.breaks[index].selectedValue = value;
+    this.onBreak.emit(this.breaks);
   }
 
   constructor() { }

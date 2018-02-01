@@ -8,9 +8,16 @@ import {Component} from "@angular/core";
 export class AppComponent {
 
   groupName;
+  timeCustomization;
 
-  setGroup(event) {
-    this.groupName = event;
+  setGroup(groupName) {
+    this.groupName = groupName;
+    console.log(this.groupName);
+  }
+
+  setTimeCustomization(timeCustomization) {
+    this.timeCustomization = timeCustomization;
+    console.log(this.timeCustomization);
   }
 
 }

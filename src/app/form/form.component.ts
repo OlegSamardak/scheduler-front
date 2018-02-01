@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, Output, EventEmitter} from "@angular/core";
 
 @Component({
   selector: 'form-comp',
@@ -7,40 +7,49 @@ import {Component, OnInit} from "@angular/core";
 })
 export class FormComponent implements OnInit {
 
-  groupName;
-  selectedLessonDuration;
-  selectedStudyBeginningDate;
-  selectedStudyBeginning;
-  selectedNumberOfWeeks;
-  selectedBreakDuration;
+  @Output() onTimeCustomization = new EventEmitter();
+
+  timeCustomization = {
+    groupName: null,
+    selectedLessonDuration: null,
+    selectedStudyBeginningDate: null,
+    selectedStudyBeginning: null,
+    selectedNumberOfWeeks: null,
+    selectedBreakDuration: null,
+  };
+
+  timeCustomizationChange(){
+    this.onTimeCustomization.emit(this.timeCustomization);
+  }
 
   selectLessonDuration(selectedLessonDuration){
-    this.selectedLessonDuration = selectedLessonDuration;
-    console.log(this.selectedLessonDuration);
+    this.timeCustomization.selectedLessonDuration = selectedLessonDuration;
+    this.timeCustomizationChange();
   }
 
   selectNumberOfWeeks(selectedNumberOfWeeks){
-    this.selectedNumberOfWeeks = selectedNumberOfWeeks;
-    console.log(this.selectedNumberOfWeeks);
+    this.timeCustomization.selectedNumberOfWeeks = selectedNumberOfWeeks;
+    this.timeCustomizationChange();
   }
 
   selectStudyBeginningDate(selectedStudyBeginningDate){
-    this.selectedStudyBeginningDate = selectedStudyBeginningDate;
-    console.log(this.selectedStudyBeginningDate);
+    this.timeCustomization.selectedStudyBeginningDate = selectedStudyBeginningDate;
+    this.timeCustomizationChange();
   }
 
   selectStudyBeginning(selectedStudyBeginning){
-    this.selectedStudyBeginning = selectedStudyBeginning;
-    console.log(this.selectedStudyBeginning);
+    this.timeCustomization.selectedStudyBeginning = selectedStudyBeginning;
+    this.timeCustomizationChange();
   }
 
   selectBreakDuration(breakDuration){
-    this.selectedBreakDuration = breakDuration;
-    console.log(this.selectedBreakDuration)
+    this.timeCustomization.selectedBreakDuration = breakDuration;
+    this.timeCustomizationChange();
   }
 
-  setGroup(event) {
-    this.groupName = event;
+  setGroup(groupName) {
+    this.timeCustomization.groupName = groupName;
+    this.timeCustomizationChange();
   }
 
   constructor() { }

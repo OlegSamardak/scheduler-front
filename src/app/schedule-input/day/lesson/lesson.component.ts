@@ -1,4 +1,4 @@
-import {Component, OnInit, Input, Output, EventEmitter} from "@angular/core";
+import {Component, OnInit, Output, EventEmitter} from "@angular/core";
 
 @Component({
   selector: 'lesson',
@@ -7,14 +7,13 @@ import {Component, OnInit, Input, Output, EventEmitter} from "@angular/core";
 })
 export class LessonComponent implements OnInit {
 
-  @Input() lessonNumber: string;
   @Output() onOneLesson = new EventEmitter();
 
   lesson = {
-    lessonType: '',
-    subject: '',
-    teacher: '',
-    lectureHall: '',
+    lessonType: null,
+    subject: null,
+    teacher: null,
+    lectureHall: null,
   };
 
   lessonTypes = [
