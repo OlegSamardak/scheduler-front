@@ -14,7 +14,7 @@ export class AppComponent implements OnInit, OnDestroy {
   private loggedIn = false;
   sub: Subscription;
 
-  constructor(private authorizationService: AuthorizationService, private rout: ActivatedRoute) {
+  constructor(private authorizationService: AuthorizationService, private route: ActivatedRoute) {
 
   }
 
@@ -28,11 +28,11 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.sub = this.rout.queryParams.subscribe(params => {
+    this.sub = this.route.queryParams.subscribe(params => {
       console.log(params['code']);
       if (params['code']) {
         this.code = params['code'] || 0;
-        console.log(params['code']);
+        this.authorizationService.codeForApi(this.code).subscribe(response => console.log('logged in'));
       }
       else
         this.authorize();
