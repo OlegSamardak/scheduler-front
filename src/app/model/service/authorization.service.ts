@@ -7,11 +7,11 @@ export class AuthorizationService {
   constructor(private http: HttpClient) { }
 
   authorize(){
-    return this.http.get(`http://localhost:9000/login/google`);
+    return this.http.get<any>(`http://localhost:9000/login/google`);
   }
 
-  codeForApi(uri){
-    return this.http.post(uri);
+  codeForApi(uri, code){
+    return this.http.post(uri, code);
   }
 
 }

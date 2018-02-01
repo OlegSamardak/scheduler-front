@@ -7,6 +7,7 @@ import {MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule} fr
 import {HttpClientModule} from "@angular/common/http";
 import { MatStepperModule} from "@angular/material";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import {ActivatedRoute, RouterModule} from "@angular/router";
 
 
 @NgModule({
@@ -24,8 +25,9 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
     HttpClientModule,
     NgbModule.forRoot(),
     MatStepperModule,
+    RouterModule.forRoot([])
   ],
-  providers: [],
+  providers: [ ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
