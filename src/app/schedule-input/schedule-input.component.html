@@ -1,18 +1,20 @@
-<div>
-  <h2>Відомості про пари:</h2>
+<div class="card">
+  <div class="card-body">
+    <h2>Відомості про пари:</h2>
 
-  <mat-tab-group >
-    <mat-tab label="Перший тиждень">
-      <week (onOneWeek)="weekChange(0,$event)"></week>
-    </mat-tab>
-    <mat-tab label="Другий тиждень">
-      <p>
-        <button mat-raised-button class="right-float" (click)="copySchedule()">Перенести розклад з першого тиждня</button> <br>
-        <br>
-        <week (onOneWeek)="weekChange(1,$event)"></week>
-      </p>
-    </mat-tab>
-  </mat-tab-group>
+    <mat-tab-group >
+      <mat-tab label="Перший тиждень">
+        <week (onOneWeek)="weekChange(0,$event)"></week>
+      </mat-tab>
+      <mat-tab label="Другий тиждень">
+        <p>
+          <button mat-raised-button class="right-float" (click)="copySchedule()">Перенести розклад з першого тиждня</button> <br>
+          <br>
+          <week (onOneWeek)="weekChange(1,$event)"></week>
+        </p>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
 </div>
 
 <div>
