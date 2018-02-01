@@ -16,7 +16,7 @@ import {
 import {HttpClientModule} from "@angular/common/http";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {AppRoutingModule} from ".//app-routing.module";
-import {ActivatedRoute, RouterModule} from "@angular/router";
+import {RouterModule} from "@angular/router";
 
 @NgModule({
   declarations: [

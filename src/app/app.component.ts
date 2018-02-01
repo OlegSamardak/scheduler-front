@@ -1,7 +1,6 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import { AuthorizationService } from './model/service/authorization.service';
+import {Component, OnDestroy, OnInit} from "@angular/core";
+import {AuthorizationService} from "./model/service/authorization.service";
 import {ActivatedRoute} from "@angular/router";
-import {Observable} from "rxjs/Observable";
 import {Subscription} from "rxjs/Subscription";
 @Component({
   selector: 'app-root',
