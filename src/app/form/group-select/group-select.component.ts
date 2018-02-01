@@ -2,6 +2,7 @@ import {Component, OnInit, Output, EventEmitter} from "@angular/core";
 import {MatDialog} from "@angular/material";
 import "rxjs/add/observable/of";
 import {GroupService} from "../../model/service/group.service";
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'group-select',
@@ -14,7 +15,7 @@ export class GroupSelectComponent implements OnInit {
   groupName: string;
   @Output() onGroupName = new EventEmitter<string>();
 
-  constructor(private groupService: GroupService, public dialog: MatDialog) {
+  constructor(private groupService: GroupService, public dialog: MatDialog, private router: Router) {
     this.acceptGroup = false;
    }
 
@@ -31,6 +32,10 @@ export class GroupSelectComponent implements OnInit {
     this.groupService.checkGroupExistence(name).subscribe(accept => this.acceptGroup = accept);
     this.transmitGroup(name);
     // this.openDialog();
+  }
+
+  nextStep(){
+    this.router.navigate(['/time-customization']);
   }
 
   ngOnInit() {
