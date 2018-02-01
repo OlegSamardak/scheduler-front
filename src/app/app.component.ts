@@ -28,15 +28,15 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.sub = this.route.queryParams.subscribe(params => {
-      console.log(params['code']);
-      if (params['code']) {
-        this.code = params['code'] || 0;
-        this.authorizationService.codeForApi(this.code).subscribe(response => console.log('logged in'));
-      }
-      else
-        this.authorize();
-    });
+    // this.sub = this.route.queryParams.subscribe(params => {
+    //   console.log(params['code']);
+    //   if (params['code']) {
+    //     this.code = params['code'] || 0;
+    //     this.authorizationService.codeForApi(this.code).subscribe(response => console.log('logged in'));
+    //   }
+    //   else
+    //     this.authorize();
+    // });
   }
 
   ngOnDestroy(){
