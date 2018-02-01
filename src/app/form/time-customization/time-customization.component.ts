@@ -1,14 +1,16 @@
 import {Component, EventEmitter, OnInit, Output} from "@angular/core";
 import {Router} from '@angular/router';
+import {DataSenderService} from '../../model/service/data-sender.service';
 
 @Component({
   selector: 'time-customization',
   templateUrl: './time-customization.component.html',
   styleUrls: ['./time-customization.component.scss'],
+  providers: [DataSenderService]
 })
 export class TimeCustomizationComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private dataSenser: DataSenderService) { }
 
   inputDate;
 
@@ -75,7 +77,7 @@ export class TimeCustomizationComponent implements OnInit {
   myFilter = (d: Date): boolean => {
     const day = d.getDay();
     return day !== 0 && day !== 6;
-  }
+  };
 
   toTimestamp(strDate){
     let datum = Date.parse(strDate);
@@ -84,6 +86,7 @@ export class TimeCustomizationComponent implements OnInit {
 
   changeStudyBeginningDate(inputDate){
     this.selectedStudyBeginningDate = this.toTimestamp(inputDate);
+    this.dataSenser.template.first_day = this.selectedStudyBeginningDate;
     console.log(this.selectedStudyBeginningDate);
     this.onStudyBeginningDate.emit(this.selectedStudyBeginningDate);
   }
@@ -94,18 +97,21 @@ export class TimeCustomizationComponent implements OnInit {
   }
 
   changeStudyBeginning(studyBeginning){
+    this.dataSenser.template.first_lesson = this.selectedStudyBeginning;
     this.selectedStudyBeginning = studyBeginning;
     this.onStudyBeginning.emit(this.selectedStudyBeginning);
   }
 
   changeLessonDuration(lessonDuration){
     this.selectedLessonDuration = lessonDuration;
+    this.dataSenser.template.lesson_duration = this.selectedLessonDuration;
     this.onLessonDuration.emit(this.selectedLessonDuration);
   }
 
   breakChange(index, value){
     this.breaks[index].selectedValue = value;
-    this.onBreak.emit(this.breaks);
+    this.dataSenser.template.breaks = this.breaks;
+    // this.onBreak.emit(this.breaks);
   }
 
   previousStep(){

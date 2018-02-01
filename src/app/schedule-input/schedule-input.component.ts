@@ -1,11 +1,13 @@
 import {Component, OnInit} from "@angular/core";
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Router} from '@angular/router';
+import {DataSenderService} from '../model/service/data-sender.service';
 
 @Component({
   selector: 'schedule-input',
   templateUrl: './schedule-input.component.html',
-  styleUrls: ['./schedule-input.component.scss']
+  styleUrls: ['./schedule-input.component.scss'],
+  providers: [DataSenderService]
 })
 export class ScheduleInputComponent implements OnInit {
 
@@ -23,7 +25,11 @@ export class ScheduleInputComponent implements OnInit {
     console.log(this.schedule[1].oneWeek);
   }
 
-  constructor(private router: Router) { }
+  templateFactory(){
+   // this.dataSender.template.schedule_template[0][0][0].classroom = this.schedule[0].oneWeek[0].oneD;
+  }
+
+  constructor(private router: Router, private dataSender: DataSenderService) { }
 
   ngOnInit() {
   }
