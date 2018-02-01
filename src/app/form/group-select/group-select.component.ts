@@ -35,7 +35,7 @@ export class GroupSelectComponent implements OnInit {
   }
 
   nextStep(){
-    this.router.navigate(['/time-customization']);
+    this.router.navigate(['/time']);
   }
 
   ngOnInit() {

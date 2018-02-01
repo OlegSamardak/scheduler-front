@@ -29,7 +29,7 @@ export class ScheduleInputComponent implements OnInit {
   }
 
   previousStep(){
-    this.router.navigate(['/time-customization']);
+    this.router.navigate(['/time']);
   }
 
 }
