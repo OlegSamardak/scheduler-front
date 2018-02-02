@@ -16,19 +16,13 @@ export class GroupSelectComponent implements OnInit, OnDestroy {
   groupName: string;
   @Output() onGroupName = new EventEmitter<string>();
 
-  constructor(private groupService: GroupService, public dialog: MatDialog, private router: Router, private dataSender: DataSenderService) {
+  constructor(private groupService: GroupService, public dialog: MatDialog, private router: Router, public dataSender: DataSenderService) {
     this.acceptGroup = false;
    }
 
-  get data(): any {
-    return this.dataSender.template.group;
-  }
-  set data(value: any) {
-    this.dataSender.template.group = value;
-  }
-
-  transmitGroup(groupName: string){
+  transmitGroup(groupName: string) {
     this.groupName = groupName;
+    this.dataSender.template.group = groupName;
     this.onGroupName.emit(this.groupName);
   }
 
@@ -43,7 +37,7 @@ export class GroupSelectComponent implements OnInit, OnDestroy {
   }
 
   nextStep(){
-    this.router.navigate(['/time']);
+    // this.router.navigate(['/time']);
   }
 
   ngOnInit() {

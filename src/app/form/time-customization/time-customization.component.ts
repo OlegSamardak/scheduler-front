@@ -12,8 +12,9 @@ export class TimeCustomizationComponent implements OnInit, OnDestroy {
 
   constructor(private router: Router, private dataSender: DataSenderService) { }
 
-  inputDate;
 
+  inputDate;
+  group: string;
   selectedStudyBeginningDate;
   selectedNumberOfWeeks;
   selectedStudyBeginning;
@@ -80,8 +81,8 @@ export class TimeCustomizationComponent implements OnInit, OnDestroy {
   };
 
   toTimestamp(strDate){
-    let datum = Date.parse(strDate);
-    return datum/1000;
+    const datum = Date.parse(strDate);
+    return datum / 1000;
   }
 
   changeStudyBeginningDate(inputDate){
@@ -114,23 +115,22 @@ export class TimeCustomizationComponent implements OnInit, OnDestroy {
     // this.onBreak.emit(this.breaks);
   }
 
-  previousStep(){
-    this.router.navigate(['/group']);
+  previousStep() {
+    // this.router.navigate(['/group']);
   }
 
-  nextStep(){
-    this.router.navigate(['/lessons']);
+  nextStep() {
+    // this.router.navigate(['/lessons']);
   }
 
   ngOnInit() {
-
   }
 
-  ngOnDestroy(){
-    this.dataSender.template.first_day = this.selectedStudyBeginningDate;
-    this.dataSender.template.first_lesson = this.selectedStudyBeginning;
-    this.dataSender.template.lesson_duration = this.selectedLessonDuration;
+  ngOnDestroy() {
     this.dataSender.template.breaks = this.breaks;
+    this.dataSender.template.lesson_duration = this.selectedLessonDuration;
+    this.dataSender.template.first_lesson = this.selectedStudyBeginning;
+    this.dataSender.template.first_day = this.selectedStudyBeginningDate;
   }
 
 }
