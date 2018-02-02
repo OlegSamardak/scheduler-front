@@ -1,4 +1,5 @@
 import {Injectable} from "@angular/core";
+import {HttpClient} from '@angular/common/http';
 
 @Injectable()
 export class DataSenderService {
@@ -9,146 +10,16 @@ export class DataSenderService {
     ],
     first_day: null,
     lesson_duration: null,
-    first_lesson: '8:00',
+    first_lesson: '',
     schedule_template: [
-      [
-        [
-          {
-            title: 'Programming',
-            teacher: 'Ivan Ivanovych Petrenko',
-            lesson_type: 'lection',
-            classroom: '321'
-          },
-          {},
-          {},
-          {},
-          {},
-          {},
-          {}
-        ],
-        [
-          {},
-          {},
-          {},
-          {},
-          {},
-          {},
-          {}
-        ],
-        [
-          {},
-          {},
-          {},
-          {},
-          {},
-          {},
-          {}
-        ],
-        [
-          {},
-          {},
-          {},
-          {},
-          {},
-          {},
-          {}
-        ],
-        [
-          {},
-          {},
-          {},
-          {},
-          {},
-          {},
-          {}
-        ],
-        [
-          {},
-          {},
-          {},
-          {},
-          {},
-          {},
-          {}
-        ],
-        [
-          {},
-          {},
-          {},
-          {},
-          {},
-          {},
-          {}
-        ]
-      ],
-      [
-        [
-          {},
-          {},
-          {},
-          {},
-          {},
-          {},
-          {}
-        ],
-        [
-          {},
-          {},
-          {},
-          {},
-          {},
-          {},
-          {}
-        ],
-        [
-          {},
-          {},
-          {},
-          {},
-          {},
-          {},
-          {}
-        ],
-        [
-          {},
-          {},
-          {},
-          {},
-          {},
-          {},
-          {}
-        ],
-        [
-          {},
-          {},
-          {},
-          {},
-          {},
-          {},
-          {}
-        ],
-        [
-          {},
-          {},
-          {},
-          {},
-          {},
-          {},
-          {}
-        ],
-        [
-          {},
-          {},
-          {},
-          {},
-          {},
-          {},
-          {}
-        ]
-      ]
+
     ]
   };
 
-  constructor() { }
+  postTemplate(template: any){
+    return this.http.post(`http://localhost:9000/template`, template);
+  }
+
+  constructor(private http: HttpClient) { }
 
 }

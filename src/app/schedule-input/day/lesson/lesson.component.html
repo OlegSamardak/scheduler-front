@@ -16,7 +16,7 @@
       <mat-form-field class="lessonType">
         <mat-select [(value)]="lesson.lessonType" placeholder='Тип пари'>
           <mat-option *ngFor="let type of lessonTypes" [value]="type" (click)="lessonChange()">
-            {{type.value}}
+            {{type}}
           </mat-option>
         </mat-select>
       </mat-form-field>

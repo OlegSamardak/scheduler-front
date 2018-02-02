@@ -17,11 +17,11 @@ export class LessonComponent implements OnInit {
   };
 
   lessonTypes = [
-    {value: 'Лекція'},
-    {value: 'Практичне заняття'},
-    {value: 'Семінар'},
-    {value: 'Лабораторна робота'},
-    {value: 'Самостійна робота'},
+    'Лекція',
+    'Практичне заняття',
+    'Семінар',
+    'Лабораторна робота',
+    'Самостійна робота',
   ];
 
   lessonChange(){
