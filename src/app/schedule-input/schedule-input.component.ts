@@ -1,6 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Router} from '@angular/router';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'schedule-input',
@@ -30,6 +29,10 @@ export class ScheduleInputComponent implements OnInit {
 
   previousStep(){
     this.router.navigate(['/time']);
+  }
+
+  nextStep(){
+    this.router.navigate(['/finish']);
   }
 
 }

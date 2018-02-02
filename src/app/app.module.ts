@@ -17,10 +17,12 @@ import {HttpClientModule} from "@angular/common/http";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {AppRoutingModule} from ".//app-routing.module";
 import {RouterModule} from "@angular/router";
+import {EndPageComponent} from "./end-page/end-page.component";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    EndPageComponent
   ],
   imports: [
     BrowserModule,
