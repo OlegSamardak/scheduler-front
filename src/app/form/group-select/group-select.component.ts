@@ -1,4 +1,4 @@
-import {Component, OnInit, Output, EventEmitter} from "@angular/core";
+import {Component, OnInit, Output, EventEmitter, OnDestroy} from '@angular/core';
 import {MatDialog} from "@angular/material";
 import "rxjs/add/observable/of";
 import {GroupService} from "../../model/service/group.service";
@@ -9,26 +9,20 @@ import {DataSenderService} from '../../model/service/data-sender.service';
   selector: 'group-select',
   templateUrl: './group-select.component.html',
   styleUrls: ['./group-select.component.scss'],
-  providers: [GroupService, MatDialog, DataSenderService]
+  providers: [GroupService, MatDialog]
 })
-export class GroupSelectComponent implements OnInit {
+export class GroupSelectComponent implements OnInit, OnDestroy {
   acceptGroup: boolean;
   groupName: string;
   @Output() onGroupName = new EventEmitter<string>();
 
-  constructor(private groupService: GroupService, public dialog: MatDialog, private router: Router, private dataSender: DataSenderService) {
+  constructor(private groupService: GroupService, public dialog: MatDialog, private router: Router, public dataSender: DataSenderService) {
     this.acceptGroup = false;
    }
 
-  get data(): any {
-    return this.dataSender.template.group;
-  }
-  set data(value: any) {
-    this.dataSender.template.group = value;
-  }
-
-  transmitGroup(groupName: string){
+  transmitGroup(groupName: string) {
     this.groupName = groupName;
+    this.dataSender.template.group = groupName;
     this.onGroupName.emit(this.groupName);
   }
 
@@ -43,10 +37,15 @@ export class GroupSelectComponent implements OnInit {
   }
 
   nextStep(){
-    this.router.navigate(['/time']);
+    // this.router.navigate(['/time']);
   }
 
   ngOnInit() {
+  }
+
+  ngOnDestroy(){
+    this.dataSender.template.group = this.groupName;
+    console.log(this.dataSender.template.group);
   }
 
 }

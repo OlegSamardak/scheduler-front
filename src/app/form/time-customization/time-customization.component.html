@@ -51,7 +51,7 @@
 
 <div>
   <p class="m-0 text-center text-black">
-    <button mat-raised-button (click)="previousStep()" >Попередній крок</button>
-    <button mat-raised-button (click)="nextStep()">Наступний крок</button>
+    <button mat-raised-button [routerLink]="'/group'" (click)="previousStep()" >Попередній крок</button>
+    <button mat-raised-button [routerLink]="'/lessons'" (click)="nextStep()">Наступний крок</button>
   </p>
 </div>
