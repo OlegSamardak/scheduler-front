@@ -1,5 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from "@angular/core";
-import {Router} from '@angular/router';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'time-customization',
@@ -37,8 +37,8 @@ export class TimeCustomizationComponent implements OnInit {
     {value: '09:30'}
   ];
   lessonDuration =[
-    {value: '45 хв'},
-    {value: '80 хв'}
+    {value: '45'},
+    {value: '80'}
   ];
 
   oddBreaks = [
@@ -106,6 +106,32 @@ export class TimeCustomizationComponent implements OnInit {
   breakChange(index, value){
     this.breaks[index].selectedValue = value;
     this.onBreak.emit(this.breaks);
+  }
+
+  setStandartCHDTU(){
+    this.selectedStudyBeginning = '08:30';
+    this.selectedLessonDuration = '80';
+    this.breaks[0].selectedValue = '10';
+    this.breaks[1].selectedValue = '30';
+    this.breaks[2].selectedValue = '10';
+    this.breaks[3].selectedValue = '10';
+    this.breaks[4].selectedValue = '10';
+    this.breaks[5].selectedValue = '10';
+    this.breaks[6].selectedValue = '10';
+    this.breaks[7].selectedValue = '10';
+  }
+
+  setStandartCHNU(){
+    this.selectedStudyBeginning = '08:00';
+    this.selectedLessonDuration = '80';
+    this.breaks[0].selectedValue = '20';
+    this.breaks[1].selectedValue = '20';
+    this.breaks[2].selectedValue = '20';
+    this.breaks[3].selectedValue = '20';
+    this.breaks[4].selectedValue = '15';
+    this.breaks[5].selectedValue = '15';
+    this.breaks[6].selectedValue = '15';
+    this.breaks[7].selectedValue = '15';
   }
 
   previousStep(){

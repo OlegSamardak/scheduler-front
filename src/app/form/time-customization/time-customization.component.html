@@ -18,32 +18,42 @@
       </mat-select>
     </mat-form-field>
 
-    <h5>Час початку занять</h5>
-    <mat-form-field [style.width]="'70%'">
-      <mat-select [(value)]="selectedStudyBeginning"  placeholder='Час початку першої пари'>
-        <mat-option *ngFor="let time of studyBeginningTime" [value]="time" (click)="changeStudyBeginning(selectedStudyBeginning)">
-          {{time.value}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
+    <div class="card">
+      <div class="card-body">
+        <p>
+          <button mat-raised-button (click)="setStandartCHDTU()">Стандартні значення для ЧНУ</button>
+          <button mat-raised-button class="right-float" (click)="setStandartCHNU()">Стандартні значення для ЧДТУ</button> <br>
+          <br>
+        </p>
 
-    <h5>Тривалість пари</h5>
-    <mat-form-field [style.width]="'70%'">
-      <mat-select [(value)]="selectedLessonDuration" placeholder='Тривалість пари'>
-        <mat-option *ngFor="let duration of lessonDuration" [value]="duration" (click)="changeLessonDuration(selectedLessonDuration)">
-          {{duration.value}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
+        <h5>Час початку занять</h5>
+        <mat-form-field [style.width]="'70%'">
+          <mat-select [(value)]="selectedStudyBeginning"  placeholder='Час початку першої пари'>
+            <mat-option *ngFor="let time of studyBeginningTime" [value]="time" (click)="changeStudyBeginning(selectedStudyBeginning)">
+              {{time.value}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
 
-    <div class="row">
-      <div class="col-6">
-        <break-selector *ngFor="let activeBreak of evenBreaks; let i = index" [lesson]="activeBreak.value" (onDuration)="breakChange(activeBreak.value-1, $event)">
-        </break-selector>
-      </div>
-      <div class="col-6">
-        <break-selector *ngFor="let activeBreak of oddBreaks; let i = index" [lesson]="activeBreak.value" (onDuration)="breakChange(activeBreak.value-1, $event)">
-        </break-selector>
+        <h5>Тривалість пари</h5>
+        <mat-form-field [style.width]="'70%'">
+          <mat-select [(value)]="selectedLessonDuration" placeholder='Тривалість пари'>
+            <mat-option *ngFor="let duration of lessonDuration" [value]="duration" (click)="changeLessonDuration(selectedLessonDuration)">
+              {{duration.value}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <div class="row">
+          <div class="col-6">
+            <break-selector *ngFor="let activeBreak of evenBreaks; let i = index" [lesson]="activeBreak.value" (onDuration)="breakChange(activeBreak.value-1, $event)">
+            </break-selector>
+          </div>
+          <div class="col-6">
+            <break-selector *ngFor="let activeBreak of oddBreaks; let i = index" [lesson]="activeBreak.value" (onDuration)="breakChange(activeBreak.value-1, $event)">
+            </break-selector>
+          </div>
+        </div>
       </div>
     </div>
   </div>
