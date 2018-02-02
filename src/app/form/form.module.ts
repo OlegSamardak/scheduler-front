@@ -18,6 +18,7 @@ import {
 import {BreakSelectorComponent} from "./time-customization/break-selector/break-selector.component";
 import {FormsModule} from "@angular/forms";
 import {DialogComponent} from "./group-select/dialog/dialog.component";
+import {RouterModule} from '@angular/router';
 
 @NgModule({
   imports: [
@@ -35,6 +36,7 @@ import {DialogComponent} from "./group-select/dialog/dialog.component";
     MatDialogModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    RouterModule
   ],
   declarations: [GroupSelectComponent, FormComponent, TimeCustomizationComponent, BreakSelectorComponent, DialogComponent],
   exports:[

@@ -1,17 +1,20 @@
-import {Component, EventEmitter, OnInit, Output} from "@angular/core";
-import {Router} from "@angular/router";
+import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
+import {Router} from '@angular/router';
+import {DataSenderService} from '../../model/service/data-sender.service';
 
 @Component({
   selector: 'time-customization',
   templateUrl: './time-customization.component.html',
   styleUrls: ['./time-customization.component.scss'],
+  providers: []
 })
-export class TimeCustomizationComponent implements OnInit {
+export class TimeCustomizationComponent implements OnInit, OnDestroy {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private dataSender: DataSenderService) { }
+
 
   inputDate;
-
+  group: string;
   selectedStudyBeginningDate;
   selectedNumberOfWeeks;
   selectedStudyBeginning;
@@ -75,15 +78,16 @@ export class TimeCustomizationComponent implements OnInit {
   myFilter = (d: Date): boolean => {
     const day = d.getDay();
     return day !== 0 && day !== 6;
-  }
+  };
 
   toTimestamp(strDate){
-    let datum = Date.parse(strDate);
-    return datum/1000;
+    const datum = Date.parse(strDate);
+    return datum / 1000;
   }
 
   changeStudyBeginningDate(inputDate){
     this.selectedStudyBeginningDate = this.toTimestamp(inputDate);
+    this.dataSender.template.first_day = this.selectedStudyBeginningDate;
     console.log(this.selectedStudyBeginningDate);
     this.onStudyBeginningDate.emit(this.selectedStudyBeginningDate);
   }
@@ -94,18 +98,21 @@ export class TimeCustomizationComponent implements OnInit {
   }
 
   changeStudyBeginning(studyBeginning){
+    this.dataSender.template.first_lesson = this.selectedStudyBeginning;
     this.selectedStudyBeginning = studyBeginning;
     this.onStudyBeginning.emit(this.selectedStudyBeginning);
   }
 
   changeLessonDuration(lessonDuration){
     this.selectedLessonDuration = lessonDuration;
+    this.dataSender.template.lesson_duration = this.selectedLessonDuration;
     this.onLessonDuration.emit(this.selectedLessonDuration);
   }
 
   breakChange(index, value){
     this.breaks[index].selectedValue = value;
-    this.onBreak.emit(this.breaks);
+    this.dataSender.template.breaks = this.breaks;
+    // this.onBreak.emit(this.breaks);
   }
 
   setStandartCHDTU(){
@@ -138,11 +145,18 @@ export class TimeCustomizationComponent implements OnInit {
     this.router.navigate(['/group']);
   }
 
-  nextStep(){
-    this.router.navigate(['/lessons']);
+  nextStep() {
+    // this.router.navigate(['/lessons']);
   }
 
   ngOnInit() {
+  }
+
+  ngOnDestroy() {
+    this.dataSender.template.breaks = this.breaks;
+    this.dataSender.template.lesson_duration = this.selectedLessonDuration;
+    this.dataSender.template.first_lesson = this.selectedStudyBeginning;
+    this.dataSender.template.first_day = this.selectedStudyBeginningDate;
   }
 
 }

@@ -18,6 +18,7 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {AppRoutingModule} from ".//app-routing.module";
 import {RouterModule} from "@angular/router";
 import {EndPageComponent} from "./end-page/end-page.component";
+import {DataSenderService} from './model/service/data-sender.service';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import {EndPageComponent} from "./end-page/end-page.component";
   ],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'uk-UA'},
+    DataSenderService
   ],
   bootstrap: [AppComponent]
 })
