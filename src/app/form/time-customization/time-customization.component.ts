@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from "@angular/core";
+import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
 import {Router} from '@angular/router';
 import {DataSenderService} from '../../model/service/data-sender.service';
 
@@ -6,11 +6,11 @@ import {DataSenderService} from '../../model/service/data-sender.service';
   selector: 'time-customization',
   templateUrl: './time-customization.component.html',
   styleUrls: ['./time-customization.component.scss'],
-  providers: [DataSenderService]
+  providers: []
 })
-export class TimeCustomizationComponent implements OnInit {
+export class TimeCustomizationComponent implements OnInit, OnDestroy {
 
-  constructor(private router: Router, private dataSenser: DataSenderService) { }
+  constructor(private router: Router, private dataSender: DataSenderService) { }
 
   inputDate;
 
@@ -86,7 +86,7 @@ export class TimeCustomizationComponent implements OnInit {
 
   changeStudyBeginningDate(inputDate){
     this.selectedStudyBeginningDate = this.toTimestamp(inputDate);
-    this.dataSenser.template.first_day = this.selectedStudyBeginningDate;
+    this.dataSender.template.first_day = this.selectedStudyBeginningDate;
     console.log(this.selectedStudyBeginningDate);
     this.onStudyBeginningDate.emit(this.selectedStudyBeginningDate);
   }
@@ -97,20 +97,20 @@ export class TimeCustomizationComponent implements OnInit {
   }
 
   changeStudyBeginning(studyBeginning){
-    this.dataSenser.template.first_lesson = this.selectedStudyBeginning;
+    this.dataSender.template.first_lesson = this.selectedStudyBeginning;
     this.selectedStudyBeginning = studyBeginning;
     this.onStudyBeginning.emit(this.selectedStudyBeginning);
   }
 
   changeLessonDuration(lessonDuration){
     this.selectedLessonDuration = lessonDuration;
-    this.dataSenser.template.lesson_duration = this.selectedLessonDuration;
+    this.dataSender.template.lesson_duration = this.selectedLessonDuration;
     this.onLessonDuration.emit(this.selectedLessonDuration);
   }
 
   breakChange(index, value){
     this.breaks[index].selectedValue = value;
-    this.dataSenser.template.breaks = this.breaks;
+    this.dataSender.template.breaks = this.breaks;
     // this.onBreak.emit(this.breaks);
   }
 
@@ -123,6 +123,14 @@ export class TimeCustomizationComponent implements OnInit {
   }
 
   ngOnInit() {
+
+  }
+
+  ngOnDestroy(){
+    this.dataSender.template.first_day = this.selectedStudyBeginningDate;
+    this.dataSender.template.first_lesson = this.selectedStudyBeginning;
+    this.dataSender.template.lesson_duration = this.selectedLessonDuration;
+    this.dataSender.template.breaks = this.breaks;
   }
 
 }

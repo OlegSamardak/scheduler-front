@@ -7,7 +7,7 @@ import {DataSenderService} from '../model/service/data-sender.service';
   selector: 'schedule-input',
   templateUrl: './schedule-input.component.html',
   styleUrls: ['./schedule-input.component.scss'],
-  providers: [DataSenderService]
+  providers: []
 })
 export class ScheduleInputComponent implements OnInit {
 
@@ -32,6 +32,7 @@ export class ScheduleInputComponent implements OnInit {
   constructor(private router: Router, private dataSender: DataSenderService) { }
 
   ngOnInit() {
+    console.dir(this.dataSender.template);
   }
 
   previousStep(){

@@ -17,6 +17,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {AppRoutingModule} from ".//app-routing.module";
 import {RouterModule} from "@angular/router";
+import {DataSenderService} from './model/service/data-sender.service';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import {RouterModule} from "@angular/router";
   ],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'uk-UA'},
+    DataSenderService
   ],
   bootstrap: [AppComponent]
 })
