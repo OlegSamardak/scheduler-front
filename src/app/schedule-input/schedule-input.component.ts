@@ -1,8 +1,6 @@
-
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Router} from '@angular/router';
-import {DataSenderService} from '../model/service/data-sender.service';
+import {Component, OnDestroy, OnInit} from "@angular/core";
+import {Router} from "@angular/router";
+import {DataSenderService} from "../model/service/data-sender.service";
 
 @Component({
   selector: 'schedule-input',

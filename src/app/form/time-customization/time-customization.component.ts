@@ -1,6 +1,6 @@
-import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
-import {Router} from '@angular/router';
-import {DataSenderService} from '../../model/service/data-sender.service';
+import {Component, EventEmitter, OnDestroy, OnInit, Output} from "@angular/core";
+import {Router} from "@angular/router";
+import {DataSenderService} from "../../model/service/data-sender.service";
 
 @Component({
   selector: 'time-customization',

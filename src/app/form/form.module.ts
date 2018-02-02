@@ -18,7 +18,7 @@ import {
 import {BreakSelectorComponent} from "./time-customization/break-selector/break-selector.component";
 import {FormsModule} from "@angular/forms";
 import {DialogComponent} from "./group-select/dialog/dialog.component";
-import {RouterModule} from '@angular/router';
+import {RouterModule} from "@angular/router";
 
 @NgModule({
   imports: [

@@ -1,9 +1,9 @@
-import {Component, OnInit, Output, EventEmitter, OnDestroy} from '@angular/core';
+import {Component, OnInit, Output, EventEmitter, OnDestroy} from "@angular/core";
 import {MatDialog} from "@angular/material";
 import "rxjs/add/observable/of";
 import {GroupService} from "../../model/service/group.service";
-import {Router} from '@angular/router';
-import {DataSenderService} from '../../model/service/data-sender.service';
+import {Router} from "@angular/router";
+import {DataSenderService} from "../../model/service/data-sender.service";
 
 @Component({
   selector: 'group-select',

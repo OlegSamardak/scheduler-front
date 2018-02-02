@@ -18,7 +18,7 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {AppRoutingModule} from ".//app-routing.module";
 import {RouterModule} from "@angular/router";
 import {EndPageComponent} from "./end-page/end-page.component";
-import {DataSenderService} from './model/service/data-sender.service';
+import {DataSenderService} from "./model/service/data-sender.service";
 
 @NgModule({
   declarations: [
