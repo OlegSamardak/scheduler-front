@@ -9,7 +9,7 @@ export class WeekComponent implements OnInit {
 
   @Output() onOneWeek = new EventEmitter();
 
-  week = [
+  weekInWork = [
     {value: 1, name: 'Понеділок', oneDay: null},
     {value: 2, name: 'Вівторок', oneDay: null},
     {value: 3, name: 'Середа', oneDay: null},
@@ -18,12 +18,22 @@ export class WeekComponent implements OnInit {
     {value: 6, name: 'Субота', oneDay: null},
   ];
 
+  week = [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  ]
+
   weekChange(){
     this.onOneWeek.emit(this.week);
   }
 
   dayChange(index, day) {
-    this.week[index].oneDay = day;
+    this.weekInWork[index].oneDay = day;
+    this.week[index] = this.weekInWork[index].oneDay;
     this.weekChange();
   }
 

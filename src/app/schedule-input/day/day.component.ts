@@ -9,16 +9,28 @@ export class DayComponent implements OnInit {
 
   @Output() onOneDay = new EventEmitter();
 
+  dayInWork = [
+    {oneLesson: null},
+    {oneLesson: null},
+    {oneLesson: null},
+    {oneLesson: null},
+    {oneLesson: null},
+    {oneLesson: null},
+    {oneLesson: null},
+    {oneLesson: null},
+    {oneLesson: null}
+  ];
+
   day = [
-    {value: '1', oneLesson: null},
-    {value: '2', oneLesson: null},
-    {value: '3', oneLesson: null},
-    {value: '4', oneLesson: null},
-    {value: '5', oneLesson: null},
-    {value: '6', oneLesson: null},
-    {value: '7', oneLesson: null},
-    {value: '8', oneLesson: null},
-    {value: '9', oneLesson: null}
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
   ];
 
   dayChange(){
@@ -26,7 +38,8 @@ export class DayComponent implements OnInit {
   }
 
   lessonChange(index, lesson) {
-    this.day[index].oneLesson = lesson;
+    this.dayInWork[index].oneLesson = lesson;
+    this.day[index] = this.dayInWork[index].oneLesson;
     this.dayChange();
   }
 

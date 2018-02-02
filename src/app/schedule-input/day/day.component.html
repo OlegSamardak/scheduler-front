@@ -1,7 +1,7 @@
 <div class="day">
   <div class="base-component">
     <ol>
-      <li *ngFor="let lesson of day; let i = index">
+      <li *ngFor="let lesson of dayInWork; let i = index">
         <lesson (onOneLesson)="lessonChange(i, $event)"></lesson>
       </li>
     </ol>

@@ -1,5 +1,5 @@
 <ngb-accordion #acc="ngbAccordion" [destroyOnHide]=false>
-  <ngb-panel *ngFor="let day of week; let i = index">
+  <ngb-panel *ngFor="let day of weekInWork; let i = index">
     <ng-template ngbPanelTitle>
       {{day.name}}
     </ng-template>
