@@ -1,6 +1,7 @@
 import {Component, OnDestroy, OnInit} from "@angular/core";
 import {Router} from "@angular/router";
 import {DataSenderService} from "../../model/service/data-sender.service";
+import {FormControl, Validators} from '@angular/forms';
 
 @Component({
   selector: 'time-customization',
@@ -11,15 +12,16 @@ import {DataSenderService} from "../../model/service/data-sender.service";
 export class TimeCustomizationComponent implements OnInit, OnDestroy {
 
   constructor(private router: Router, private dataSender: DataSenderService) { }
-
-
+  studyBeginningDayEmpty = true;
+  numberOfWeeksEmpty = true;
+  studyBeginningEmpty = true;
+  lessonDurationEmpty = true;
   inputDate;
   group: string;
   selectedStudyBeginningDate;
   selectedNumberOfWeeks;
   selectedStudyBeginning;
   selectedLessonDuration;
-
   numberOfWeeks = [
     {value: '10'},
     {value: '11'},
@@ -43,21 +45,18 @@ export class TimeCustomizationComponent implements OnInit, OnDestroy {
     {value: '45'},
     {value: '80'}
   ];
-
   oddBreaks = [
     {value: '2'},
     {value: '4'},
     {value: '6'},
     {value: '8'},
   ];
-
   evenBreaks = [
     {value: '1'},
     {value: '3'},
     {value: '5'},
     {value: '7'},
   ];
-
   breaks = [
     {value: '1', selectedValue: ''},
     {value: '2', selectedValue: ''},
@@ -74,6 +73,14 @@ export class TimeCustomizationComponent implements OnInit, OnDestroy {
     return day !== 0 && day !== 6;
   };
 
+  changeEmpty(value: string): boolean {
+    if (value == null || value === '') {
+      return true;
+    }
+    else
+      return false;
+  }
+
   toTimestamp(strDate){
     const datum = Date.parse(strDate);
     return datum;
@@ -82,21 +89,25 @@ export class TimeCustomizationComponent implements OnInit, OnDestroy {
   changeStudyBeginningDate(inputDate){
     this.selectedStudyBeginningDate = this.toTimestamp(inputDate);
     this.dataSender.template.first_day = this.selectedStudyBeginningDate;
+    this.studyBeginningDayEmpty = this.changeEmpty(inputDate);
     console.log(this.selectedStudyBeginningDate);
   }
 
   changeNumberOfWeeks(numberOfWeeks){
     this.selectedNumberOfWeeks = numberOfWeeks;
+    this.numberOfWeeksEmpty = this.changeEmpty(numberOfWeeks);
   }
 
   changeStudyBeginning(studyBeginning){
     this.dataSender.template.first_lesson = this.selectedStudyBeginning;
     this.selectedStudyBeginning = studyBeginning;
+    this.studyBeginningEmpty = this.changeEmpty(studyBeginning);
   }
 
   changeLessonDuration(lessonDuration){
     this.selectedLessonDuration = lessonDuration;
     this.dataSender.template.lesson_duration = this.selectedLessonDuration;
+    this.lessonDurationEmpty = this.changeEmpty(lessonDuration);
   }
 
   breakChange(index, value){
