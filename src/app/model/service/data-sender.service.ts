@@ -10,11 +10,10 @@ export class DataSenderService {
     breaks: [
     ],
     first_day: null,
+    number_of_weeks: null,
     lesson_duration: null,
     first_lesson: '',
-    schedule_template: [
-
-    ]
+    schedule_template: [ ]
   };
 
   postTemplate(template: any, code: string){

@@ -2,7 +2,7 @@ import {Component, OnInit, OnDestroy} from "@angular/core";
 import {MatDialog, MatDialogRef} from "@angular/material";
 import "rxjs/add/observable/of";
 import {GroupService} from "../../model/service/group.service";
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 import {DataSenderService} from "../../model/service/data-sender.service";
 import {DialogComponent} from "./dialog/dialog.component";
 import {Subscription} from 'rxjs/Subscription';

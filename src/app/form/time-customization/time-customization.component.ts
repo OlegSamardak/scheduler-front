@@ -87,6 +87,7 @@ export class TimeCustomizationComponent implements OnInit, OnDestroy {
 
   changeNumberOfWeeks(numberOfWeeks){
     this.selectedNumberOfWeeks = numberOfWeeks;
+    this.dataSender.template.number_of_weeks = this.selectedNumberOfWeeks;
   }
 
   changeStudyBeginning(studyBeginning){
