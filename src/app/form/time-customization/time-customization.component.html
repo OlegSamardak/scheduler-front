@@ -11,8 +11,8 @@
 
     <h5>Кількість навчальних тижнів</h5>
     <mat-form-field [style.width]="'70%'">
-      <mat-select [(value)]="selectedNumberOfWeeks"  placeholder='Кількість навчальних тижнів'>
-        <mat-option *ngFor="let number of numberOfWeeks" [value]="number" (click)="changeNumberOfWeeks(selectedNumberOfWeeks)">
+      <mat-select [(value)]="selectedNumberOfWeeks" (valueChange)="changeNumberOfWeeks(selectedNumberOfWeeks)"  placeholder='Кількість навчальних тижнів'>
+        <mat-option *ngFor="let number of numberOfWeeks" [value]="number">
           {{number.value}}
         </mat-option>
       </mat-select>
@@ -28,8 +28,8 @@
 
         <h5>Час початку занять</h5>
         <mat-form-field [style.width]="'70%'">
-          <mat-select [(value)]="selectedStudyBeginning"  placeholder='Час початку першої пари'>
-            <mat-option *ngFor="let time of studyBeginningTime" [value]="time" (click)="changeStudyBeginning(selectedStudyBeginning)">
+          <mat-select [(value)]="selectedStudyBeginning" (valueChange)="changeStudyBeginning(selectedStudyBeginning)" placeholder='Час початку першої пари'>
+            <mat-option *ngFor="let time of studyBeginningTime" [value]="time.value">
               {{time.value}}
             </mat-option>
           </mat-select>
@@ -37,8 +37,8 @@
 
         <h5>Тривалість пари</h5>
         <mat-form-field [style.width]="'70%'">
-          <mat-select [(value)]="selectedLessonDuration" placeholder='Тривалість пари'>
-            <mat-option *ngFor="let duration of lessonDuration" [value]="duration" (click)="changeLessonDuration(selectedLessonDuration)">
+          <mat-select [(value)]="selectedLessonDuration" (valueChange)="changeLessonDuration(selectedLessonDuration)" placeholder='Тривалість пари'>
+            <mat-option *ngFor="let duration of lessonDuration" [value]="duration.value">
               {{duration.value}}
             </mat-option>
           </mat-select>

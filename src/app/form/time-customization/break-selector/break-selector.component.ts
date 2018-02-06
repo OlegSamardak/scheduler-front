@@ -6,8 +6,10 @@ import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
   styleUrls: ['./break-selector.component.scss']
 })
 export class BreakSelectorComponent implements OnInit {
+
   @Input() lesson: string;
   @Output() onDuration = new EventEmitter();
+
   selectedDuration: {
     value: any;
   };

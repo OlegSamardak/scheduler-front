@@ -32,12 +32,14 @@ export class TimeCustomizationComponent implements OnInit, OnDestroy {
     {value: '19'},
     {value: '20'}
   ];
+
   studyBeginningTime = [
     {value: '08:00'},
     {value: '08:30'},
     {value: '09:00'},
     {value: '09:30'}
   ];
+
   lessonDuration =[
     {value: '45'},
     {value: '80'}
@@ -89,8 +91,8 @@ export class TimeCustomizationComponent implements OnInit, OnDestroy {
   }
 
   changeStudyBeginning(studyBeginning){
-    this.dataSender.template.first_lesson = this.selectedStudyBeginning;
     this.selectedStudyBeginning = studyBeginning;
+    this.dataSender.template.first_lesson = this.selectedStudyBeginning;
   }
 
   changeLessonDuration(lessonDuration){
@@ -104,31 +106,29 @@ export class TimeCustomizationComponent implements OnInit, OnDestroy {
   }
 
   setStandartCHDTU(){
-    this.selectedStudyBeginning = '08:30';
-    this.selectedLessonDuration = '80';
-    this.breaks[0].selectedValue = '10';
-    this.breaks[1].selectedValue = '30';
-    this.breaks[2].selectedValue = '10';
-    this.breaks[3].selectedValue = '10';
-    this.breaks[4].selectedValue = '10';
-    this.breaks[5].selectedValue = '10';
-    this.breaks[6].selectedValue = '10';
-    this.breaks[7].selectedValue = '10';
-    console.log(this.dataSender.template);
+    this.changeStudyBeginning('08:30');
+    this.changeLessonDuration('80');
+    this.breakChange('0', '10');
+    this.breakChange('1', '30');
+    this.breakChange('2', '10');
+    this.breakChange('3', '10');
+    this.breakChange('4', '10');
+    this.breakChange('5', '10');
+    this.breakChange('6', '10');
+    this.breakChange('7', '10');
   }
 
   setStandartCHNU(){
-    this.selectedStudyBeginning = '08:00';
-    this.selectedLessonDuration = '80';
-    this.breaks[0].selectedValue = '20';
-    this.breaks[1].selectedValue = '20';
-    this.breaks[2].selectedValue = '20';
-    this.breaks[3].selectedValue = '20';
-    this.breaks[4].selectedValue = '15';
-    this.breaks[5].selectedValue = '15';
-    this.breaks[6].selectedValue = '15';
-    this.breaks[7].selectedValue = '15';
-    console.log(this.dataSender.template);
+    this.changeStudyBeginning('08:00');
+    this.changeLessonDuration('80');
+    this.breakChange('0', '20');
+    this.breakChange('1', '20');
+    this.breakChange('2', '20');
+    this.breakChange('3', '20');
+    this.breakChange('4', '15');
+    this.breakChange('5', '15');
+    this.breakChange('6', '15');
+    this.breakChange('7', '15');
   }
 
   previousStep(){

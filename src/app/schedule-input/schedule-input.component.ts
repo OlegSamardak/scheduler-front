@@ -26,13 +26,11 @@ export class ScheduleInputComponent implements OnInit, OnDestroy {
   }
 
   copySchedule(){
-    this.schedule[1] = this.schedule[0];
+    this.weekChange(1, this.schedule[0]);
   }
 
   templateFactory() {
     this.dataSender.template.schedule_template = this.schedule;
-    console.dir(this.dataSender.template);
-
     this.dataSender.postTemplate(this.dataSender.template, localStorage.getItem('code')).subscribe();
     this.router.navigate(['/finish']);
   }
