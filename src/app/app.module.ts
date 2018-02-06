@@ -20,11 +20,13 @@ import {AppRoutingModule} from ".//app-routing.module";
 import {RouterModule} from "@angular/router";
 import {EndPageComponent} from "./end-page/end-page.component";
 import {DataSenderService} from "./model/service/data-sender.service";
+import { StartPageComponent } from './start-page/start-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    EndPageComponent
+    EndPageComponent,
+    StartPageComponent
   ],
   imports: [
     BrowserModule,

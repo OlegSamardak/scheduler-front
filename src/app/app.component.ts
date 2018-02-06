@@ -10,9 +10,6 @@ import {Subscription} from "rxjs/Subscription";
 })
 export class AppComponent implements OnInit, OnDestroy {
 
-  groupName;
-  timeCustomization;
-
   code = '';
   private loggedIn = false;
   sub: Subscription;
@@ -21,34 +18,14 @@ export class AppComponent implements OnInit, OnDestroy {
 
   }
 
-  setGroup(groupName) {
-    this.groupName = groupName;
-    console.log(this.groupName);
-  }
-
-  setTimeCustomization(timeCustomization) {
-    this.timeCustomization = timeCustomization;
-    console.log(this.timeCustomization);
-  }
-
-  authorize(){
-    this.authorizationService.authorize().subscribe((redirectUri) => {
-      if (this.code == '' && !this.loggedIn) {
-        this.loggedIn = true;
-        window.location.href = redirectUri.response;
-      }
-    });
-  }
-
   ngOnInit() {
     this.sub = this.route.queryParams.subscribe(params => {
       console.log(params['code']);
       if (params['code']) {
         this.code = params['code'] || 0;
-        this.authorizationService.codeForApi(this.code).subscribe(response => console.log('logged in'));
+        localStorage.setItem('code', this.code);
+        // this.authorizationService.codeForApi(this.code).subscribe(response => console.log('logged in'));
       }
-      else
-        this.authorize();
     });
   }
 

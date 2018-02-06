@@ -4,11 +4,13 @@ import {GroupSelectComponent} from "./form/group-select/group-select.component";
 import {TimeCustomizationComponent} from "./form/time-customization/time-customization.component";
 import {ScheduleInputComponent} from "./schedule-input/schedule-input.component";
 import {EndPageComponent} from "./end-page/end-page.component";
+import {StartPageComponent} from "./start-page/start-page.component";
 
 const routes: Routes = [
-  { path: '', component: GroupSelectComponent },
+  { path: 'start', component: StartPageComponent },
+  { path: 'group', component: GroupSelectComponent },
   { path: 'time', component: TimeCustomizationComponent },
-  { path: '', redirectTo: '', pathMatch:'full'},
+  { path: '', redirectTo: '/start', pathMatch:'full'},
   { path: 'lessons', component: ScheduleInputComponent },
   { path: 'finish', component: EndPageComponent }
 ];
