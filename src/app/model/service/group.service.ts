@@ -8,8 +8,8 @@ export class GroupService {
 
   constructor (private http: HttpClient) { }
 
-  public checkGroupExistence(group: string): Observable<boolean> {
-    return this.http.get<boolean>(`http://localhost:9000/groups/${group}`);
+  public checkGroupExistence(name: string): Observable<boolean> {
+    return this.http.get<boolean>(`http://localhost:9000/groups/${name}`);
   }
 
 }

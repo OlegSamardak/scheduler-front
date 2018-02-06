@@ -76,7 +76,7 @@ export class TimeCustomizationComponent implements OnInit, OnDestroy {
 
   toTimestamp(strDate){
     const datum = Date.parse(strDate);
-    return datum / 1000;
+    return datum;
   }
 
   changeStudyBeginningDate(inputDate){
