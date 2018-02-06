@@ -33,7 +33,8 @@ export class ScheduleInputComponent implements OnInit, OnDestroy {
   templateFactory() {
     this.dataSender.template.schedule_template = this.schedule;
     console.dir(this.dataSender.template);
-    this.dataSender.postTemplate(this.dataSender.template).subscribe();
+
+    this.dataSender.postTemplate(this.dataSender.template, localStorage.getItem('code')).subscribe();
     this.router.navigate(['/finish']);
   }
 
