@@ -20,7 +20,7 @@ export class GroupSelectComponent implements OnInit, OnDestroy {
   groupName: string;
   dialogRef: MatDialogRef<DialogComponent>;
 
-  constructor(private groupService: GroupService, public dialog: MatDialog, private router: Router, public dataSender: DataSenderService, private route: ActivatedRoute) {
+  constructor(private groupService: GroupService, public dialog: MatDialog, public dataSender: DataSenderService, private route: ActivatedRoute) {
     this.acceptGroup = false;
    }
 
@@ -30,7 +30,7 @@ export class GroupSelectComponent implements OnInit, OnDestroy {
   }
 
   openDialog(accept): void {
-    if (accept) this.dialogRef = this.dialog.open(DialogComponent, {
+    if (!accept) this.dialogRef = this.dialog.open(DialogComponent, {
         data: {accept: this.acceptGroup}
     });
     else this.dialogRef = this.dialog.open(DialogComponent, {
@@ -50,7 +50,6 @@ export class GroupSelectComponent implements OnInit, OnDestroy {
       if (params['code']) {
         this.code = params['code'] || 0;
         localStorage.setItem('code', this.code);
-        // this.authorizationService.codeForApi(this.code).subscribe(response => console.log('logged in'));
       }
     });
   }
