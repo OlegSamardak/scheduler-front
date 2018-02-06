@@ -16,7 +16,7 @@ import {
   MatNativeDateModule
 } from "@angular/material";
 import {BreakSelectorComponent} from "./time-customization/break-selector/break-selector.component";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {DialogComponent} from "./group-select/dialog/dialog.component";
 import {RouterModule} from "@angular/router";
 
@@ -26,23 +26,28 @@ import {RouterModule} from "@angular/router";
     MatSelectModule,
     BrowserAnimationsModule,
     FormsModule,
+    ReactiveFormsModule,
     MatButtonModule,
-    BrowserAnimationsModule,
     MatFormFieldModule,
     MatInputModule,
     BrowserModule,
     HttpClientModule,
-    FormsModule,
     MatDialogModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    RouterModule
+    RouterModule,
   ],
-  declarations: [GroupSelectComponent, FormComponent, TimeCustomizationComponent, BreakSelectorComponent, DialogComponent],
+  declarations: [
+    GroupSelectComponent,
+    FormComponent,
+    TimeCustomizationComponent,
+    BreakSelectorComponent,
+    DialogComponent
+  ],
   exports:[
     FormComponent,
   ],
-  entryComponents: [
+  entryComponents:[
     DialogComponent
   ],
 })

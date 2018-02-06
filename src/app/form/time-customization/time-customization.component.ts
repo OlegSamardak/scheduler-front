@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnDestroy, OnInit, Output} from "@angular/core";
+import {Component, OnDestroy, OnInit} from "@angular/core";
 import {Router} from "@angular/router";
 import {DataSenderService} from "../../model/service/data-sender.service";
 
@@ -69,12 +69,6 @@ export class TimeCustomizationComponent implements OnInit, OnDestroy {
     {value: '8', selectedValue: ''}
   ];
 
-  @Output() onNumberOfWeeks = new EventEmitter();
-  @Output() onStudyBeginningDate = new EventEmitter();
-  @Output() onStudyBeginning = new EventEmitter();
-  @Output() onLessonDuration = new EventEmitter();
-  @Output() onBreak = new EventEmitter();
-
   myFilter = (d: Date): boolean => {
     const day = d.getDay();
     return day !== 0 && day !== 6;
@@ -89,30 +83,25 @@ export class TimeCustomizationComponent implements OnInit, OnDestroy {
     this.selectedStudyBeginningDate = this.toTimestamp(inputDate);
     this.dataSender.template.first_day = this.selectedStudyBeginningDate;
     console.log(this.selectedStudyBeginningDate);
-    this.onStudyBeginningDate.emit(this.selectedStudyBeginningDate);
   }
 
   changeNumberOfWeeks(numberOfWeeks){
     this.selectedNumberOfWeeks = numberOfWeeks;
-    this.onNumberOfWeeks.emit(this.selectedNumberOfWeeks);
   }
 
   changeStudyBeginning(studyBeginning){
     this.dataSender.template.first_lesson = this.selectedStudyBeginning;
     this.selectedStudyBeginning = studyBeginning;
-    this.onStudyBeginning.emit(this.selectedStudyBeginning);
   }
 
   changeLessonDuration(lessonDuration){
     this.selectedLessonDuration = lessonDuration;
     this.dataSender.template.lesson_duration = this.selectedLessonDuration;
-    this.onLessonDuration.emit(this.selectedLessonDuration);
   }
 
   breakChange(index, value){
     this.breaks[index].selectedValue = value;
     this.dataSender.template.breaks = this.breaks;
-    // this.onBreak.emit(this.breaks);
   }
 
   setStandartCHDTU(){
@@ -146,7 +135,7 @@ export class TimeCustomizationComponent implements OnInit, OnDestroy {
   }
 
   nextStep() {
-    // this.router.navigate(['/lessons']);
+    this.router.navigate(['/lessons']);
   }
 
   ngOnInit() {

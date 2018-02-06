@@ -11,7 +11,8 @@ import {
   MAT_DATE_LOCALE,
   NativeDateModule,
   MatDatepickerModule,
-  MatStepperModule
+  MatStepperModule,
+  MatDialogModule
 } from "@angular/material";
 import {HttpClientModule} from "@angular/common/http";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
@@ -39,6 +40,7 @@ import {DataSenderService} from "./model/service/data-sender.service";
     MatDatepickerModule,
     NativeDateModule,
     AppRoutingModule,
+    MatDialogModule,
     RouterModule.forRoot([])
   ],
   providers: [

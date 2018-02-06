@@ -5,7 +5,13 @@ import {HttpClientModule} from "@angular/common/http";
 import {MatSelectModule} from "@angular/material/select";
 import {MatButtonModule} from "@angular/material/button";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {MatFormFieldModule, MatInputModule, MatExpansionModule, MatTabsModule} from "@angular/material";
+import {
+  MatFormFieldModule,
+  MatInputModule,
+  MatExpansionModule,
+  MatTabsModule,
+  MatCheckboxModule
+} from "@angular/material";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ScheduleInputComponent} from "./schedule-input.component";
 import {DayComponent} from "./day/day.component";
@@ -21,6 +27,7 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
     BrowserAnimationsModule,
     MatFormFieldModule,
     MatInputModule,
+    MatCheckboxModule,
     BrowserModule,
     HttpClientModule,
     FormsModule,
