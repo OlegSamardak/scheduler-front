@@ -33,6 +33,9 @@ export class LessonComponent implements OnInit {
   checkLessonExistence(){
     if(this.lessonAbsence) {
       this.lesson.subject = 'none';
+      this.lesson.teacher = ' ';
+      this.lesson.lectureHall = ' ';
+      this.lesson.lessonType = ' ';
       this.isLessonInputsDisabled = true;
     }
     else {
