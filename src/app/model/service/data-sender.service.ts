@@ -5,6 +5,7 @@ import {HttpClient} from '@angular/common/http';
 export class DataSenderService {
 
   template = {
+    code: '',
     group: '',
     breaks: [
     ],
@@ -16,8 +17,8 @@ export class DataSenderService {
     ]
   };
 
-  postTemplate(template: any){
-    return this.http.post(`http://localhost:9000/template`, template);
+  postTemplate(template: any, code: string){
+    return this.http.post(`http://localhost:9000/template/?code=${code}`, template);
   }
 
   constructor(private http: HttpClient) { }

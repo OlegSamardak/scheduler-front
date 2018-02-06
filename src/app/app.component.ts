@@ -20,8 +20,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   authorize(){
     this.authorizationService.authorize().subscribe((redirectUri) => {
-      if (this.code == '' && !this.loggedIn) {
-        this.loggedIn = true;
+      if (this.code == '') {
         window.location.href = redirectUri.response;
       }
     });
@@ -32,7 +31,8 @@ export class AppComponent implements OnInit, OnDestroy {
       console.log(params['code']);
       if (params['code']) {
         this.code = params['code'] || 0;
-        this.authorizationService.codeForApi(this.code).subscribe(response => console.log('logged in'));
+        localStorage.setItem('code', this.code);
+        // this.authorizationService.codeForApi(this.code).subscribe(response => console.log('logged in'));
       }
       else
         this.authorize();
