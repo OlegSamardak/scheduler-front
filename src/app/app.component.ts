@@ -10,25 +10,12 @@ import {Subscription} from "rxjs/Subscription";
 })
 export class AppComponent implements OnInit, OnDestroy {
 
-  groupName;
-  timeCustomization;
-
   code = '';
   private loggedIn = false;
   sub: Subscription;
 
   constructor(private authorizationService: AuthorizationService, private route: ActivatedRoute) {
 
-  }
-
-  setGroup(groupName) {
-    this.groupName = groupName;
-    console.log(this.groupName);
-  }
-
-  setTimeCustomization(timeCustomization) {
-    this.timeCustomization = timeCustomization;
-    console.log(this.timeCustomization);
   }
 
   authorize(){
