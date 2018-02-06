@@ -31,7 +31,7 @@ export class GroupSelectComponent implements OnInit, OnDestroy {
     if (accept) this.dialogRef = this.dialog.open(DialogComponent, {
         data: {accept: this.acceptGroup}
     });
-    this.dialogRef = this.dialog.open(DialogComponent, {
+    else this.dialogRef = this.dialog.open(DialogComponent, {
       data: {accept: this.acceptGroup}
     });
   }
