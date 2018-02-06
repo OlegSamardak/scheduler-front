@@ -131,7 +131,7 @@ export class TimeCustomizationComponent implements OnInit, OnDestroy {
   }
 
   previousStep(){
-    this.router.navigate(['/group']);
+    this.router.navigate(['/']);
   }
 
   nextStep() {

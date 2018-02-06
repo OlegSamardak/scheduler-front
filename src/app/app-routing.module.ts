@@ -6,9 +6,9 @@ import {ScheduleInputComponent} from "./schedule-input/schedule-input.component"
 import {EndPageComponent} from "./end-page/end-page.component";
 
 const routes: Routes = [
-  { path: 'group', component: GroupSelectComponent },
+  { path: '', component: GroupSelectComponent },
   { path: 'time', component: TimeCustomizationComponent },
-  { path: '', redirectTo: '/group', pathMatch:'full'},
+  { path: '', redirectTo: '', pathMatch:'full'},
   { path: 'lessons', component: ScheduleInputComponent },
   { path: 'finish', component: EndPageComponent }
 ];
