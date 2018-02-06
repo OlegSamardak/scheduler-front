@@ -29,11 +29,8 @@ export class GroupSelectComponent implements OnInit, OnDestroy {
     this.dataSender.template.group = groupName;
   }
 
-  openDialog(accept): void {
-    if (!accept) this.dialogRef = this.dialog.open(DialogComponent, {
-        data: {accept: this.acceptGroup}
-    });
-    else this.dialogRef = this.dialog.open(DialogComponent, {
+  openDialog(): void {
+    this.dialogRef = this.dialog.open(DialogComponent, {
       data: {accept: this.acceptGroup}
     });
   }
@@ -41,7 +38,7 @@ export class GroupSelectComponent implements OnInit, OnDestroy {
   checkExistence(name: string) {
     this.groupService.checkGroupExistence(name).subscribe(accept => this.acceptGroup = accept);
     this.transmitGroup(name);
-    this.openDialog(this.acceptGroup);
+    this.openDialog();
   }
 
   ngOnInit() {

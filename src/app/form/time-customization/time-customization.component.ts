@@ -12,7 +12,6 @@ export class TimeCustomizationComponent implements OnInit, OnDestroy {
 
   constructor(private router: Router, private dataSender: DataSenderService) { }
 
-
   inputDate;
   group: string;
   selectedStudyBeginningDate;
@@ -82,7 +81,6 @@ export class TimeCustomizationComponent implements OnInit, OnDestroy {
   changeStudyBeginningDate(inputDate){
     this.selectedStudyBeginningDate = this.toTimestamp(inputDate);
     this.dataSender.template.first_day = this.selectedStudyBeginningDate;
-    console.log(this.selectedStudyBeginningDate);
   }
 
   changeNumberOfWeeks(numberOfWeeks){
@@ -116,6 +114,7 @@ export class TimeCustomizationComponent implements OnInit, OnDestroy {
     this.breaks[5].selectedValue = '10';
     this.breaks[6].selectedValue = '10';
     this.breaks[7].selectedValue = '10';
+    console.log(this.dataSender.template);
   }
 
   setStandartCHNU(){
@@ -129,6 +128,7 @@ export class TimeCustomizationComponent implements OnInit, OnDestroy {
     this.breaks[5].selectedValue = '15';
     this.breaks[6].selectedValue = '15';
     this.breaks[7].selectedValue = '15';
+    console.log(this.dataSender.template);
   }
 
   previousStep(){
