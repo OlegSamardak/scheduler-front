@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from "@angular/core";
 import {AuthorizationService} from "./model/service/authorization.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from '@angular/router';
 import {Subscription} from "rxjs/Subscription";
 @Component({
   selector: 'app-root',
@@ -14,22 +14,19 @@ export class AppComponent implements OnInit, OnDestroy {
   private loggedIn = false;
   sub: Subscription;
 
-  constructor(private authorizationService: AuthorizationService, private route: ActivatedRoute) {
+  constructor(private authorizationService: AuthorizationService, private router: Router) {
 
+  }
+
+  logout(){
+    this.router.navigate(['/start']);
+    localStorage.removeItem('code');
+    window.location.assign('https://accounts.google.com/Logout');
   }
 
   ngOnInit() {
-    this.sub = this.route.queryParams.subscribe(params => {
-      console.log(params['code']);
-      if (params['code']) {
-        this.code = params['code'] || 0;
-        localStorage.setItem('code', this.code);
-        // this.authorizationService.codeForApi(this.code).subscribe(response => console.log('logged in'));
-      }
-    });
   }
 
-  ngOnDestroy(){
-    this.sub.unsubscribe();
+  ngOnDestroy() {
   }
 }
