@@ -6,6 +6,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {DataSenderService} from "../../model/service/data-sender.service";
 import {DialogComponent} from "./dialog/dialog.component";
 import {Subscription} from 'rxjs/Subscription';
+import {FormControl, Validators} from '@angular/forms';
 
 @Component({
   selector: 'group-select',
@@ -19,6 +20,10 @@ export class GroupSelectComponent implements OnInit, OnDestroy {
   acceptGroup: boolean;
   groupName: string;
   dialogRef: MatDialogRef<DialogComponent>;
+  emailFormControl = new FormControl('', [
+    Validators.required,
+  ]);
+  // matcher = new MyErrorStateMatcher();
 
   constructor(private groupService: GroupService, public dialog: MatDialog, public dataSender: DataSenderService, private route: ActivatedRoute) {
     this.acceptGroup = false;
@@ -59,4 +64,6 @@ export class GroupSelectComponent implements OnInit, OnDestroy {
     this.dataSender.template.group = this.groupName;
     console.log(this.dataSender.template.group);
   }
+
+
 }
