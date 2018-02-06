@@ -2,7 +2,7 @@ import {Component, OnInit, OnDestroy} from "@angular/core";
 import {MatDialog, MatDialogRef} from "@angular/material";
 import "rxjs/add/observable/of";
 import {GroupService} from "../../model/service/group.service";
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {DataSenderService} from "../../model/service/data-sender.service";
 import {DialogComponent} from "./dialog/dialog.component";
 import {Subscription} from 'rxjs/Subscription';
@@ -31,14 +31,17 @@ export class GroupSelectComponent implements OnInit, OnDestroy {
 
   openDialog(): void {
     this.dialogRef = this.dialog.open(DialogComponent, {
-      data: {accept: this.acceptGroup}
+        data: {accept: this.acceptGroup}
     });
   }
 
   checkExistence(name: string) {
-    this.groupService.checkGroupExistence(name).subscribe(accept => this.acceptGroup = accept);
+    this.groupService.checkGroupExistence(name).subscribe(accept => {
+      this.acceptGroup = accept;
+      this.openDialog();
+    });
     this.transmitGroup(name);
-    this.openDialog();
+
   }
 
   ngOnInit() {
