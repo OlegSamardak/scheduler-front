@@ -27,7 +27,6 @@ export class ScheduleInputComponent implements OnInit, OnDestroy {
 
   copySchedule(){
     this.schedule[1] = this.schedule[0];
-    console.log(this.schedule[1]);
   }
 
   templateFactory() {
@@ -40,16 +39,10 @@ export class ScheduleInputComponent implements OnInit, OnDestroy {
 
   constructor(private router: Router, public dataSender: DataSenderService) { }
 
-  ngOnInit() {
-    console.dir(this.dataSender.template);
-  }
+  ngOnInit() {  }
 
   previousStep(){
     this.router.navigate(['/time']);
-  }
-
-  nextStep(){
-    this.router.navigate(['/finish']);
   }
 
   ngOnDestroy(){}

@@ -1,9 +1,10 @@
-import {Component, OnInit, Output, EventEmitter, OnDestroy} from "@angular/core";
-import {MatDialog} from "@angular/material";
+import {Component, OnInit, OnDestroy} from "@angular/core";
+import {MatDialog, MatDialogRef} from "@angular/material";
 import "rxjs/add/observable/of";
 import {GroupService} from "../../model/service/group.service";
 import {Router} from "@angular/router";
 import {DataSenderService} from "../../model/service/data-sender.service";
+import {DialogComponent} from "./dialog/dialog.component";
 
 @Component({
   selector: 'group-select',
@@ -12,9 +13,10 @@ import {DataSenderService} from "../../model/service/data-sender.service";
   providers: [GroupService, MatDialog]
 })
 export class GroupSelectComponent implements OnInit, OnDestroy {
+
   acceptGroup: boolean;
   groupName: string;
-  @Output() onGroupName = new EventEmitter<string>();
+  dialogRef: MatDialogRef<DialogComponent>;
 
   constructor(private groupService: GroupService, public dialog: MatDialog, private router: Router, public dataSender: DataSenderService) {
     this.acceptGroup = false;
@@ -23,21 +25,21 @@ export class GroupSelectComponent implements OnInit, OnDestroy {
   transmitGroup(groupName: string) {
     this.groupName = groupName;
     this.dataSender.template.group = groupName;
-    this.onGroupName.emit(this.groupName);
   }
 
-  // openDialog(): void {
-  //   let dialogRef = this.dialog.open(DialogComponent, );
-  // }
+  openDialog(accept): void {
+    if (accept) this.dialogRef = this.dialog.open(DialogComponent, {
+        data: {accept: this.acceptGroup}
+    });
+    this.dialogRef = this.dialog.open(DialogComponent, {
+      data: {accept: this.acceptGroup}
+    });
+  }
 
   checkExistence(name: string) {
     this.groupService.checkGroupExistence(name).subscribe(accept => this.acceptGroup = accept);
     this.transmitGroup(name);
-    // this.openDialog();
-  }
-
-  nextStep(){
-    // this.router.navigate(['/time']);
+    this.openDialog(this.acceptGroup);
   }
 
   ngOnInit() {
@@ -47,5 +49,4 @@ export class GroupSelectComponent implements OnInit, OnDestroy {
     this.dataSender.template.group = this.groupName;
     console.log(this.dataSender.template.group);
   }
-
 }

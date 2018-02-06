@@ -1,3 +1,18 @@
-<!--<div>-->
-  <!--<p>something</p>-->
-<!--</div>-->
+<div *ngIf="data.accept">
+  <h1 mat-dialog-title>Розклад для групи вже існує</h1>
+  <div mat-dialog-content>
+    Якщо ви точно впевнені, що назва групи правильна і розклад для цієї групи не існує,<br>
+    то ви можете продовжити створення календарю.<br>
+  </div>
+</div>
+<div *ngIf="!data.accept">
+  <h1 mat-dialog-title>Розклад для групи не існує в форматі гугл-календаря</h1>
+</div>
+
+<div mat-dialog-content>
+  Продовжити створення розкладу?
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button (click) = "nextStep()">Так</button>
+  <button mat-raised-button (click) = "onClick()">Ні</button>
+</div>

@@ -2,20 +2,12 @@
 <div class="group-select card">
   <div class="card-body">
     <h2>Група</h2>
-    <h5>Введіть групу, для якої хочете ввести розклад:</h5>
+    <h5>Введіть групу, для якої хочете створити розклад, щоб перевірити, чи створювався вже для неї розклад:</h5>
     <div class="base-component">
       <mat-form-field class="group-select-small-width">
         <input matInput [(ngModel)] = "groupName" placeholder="Група">
       </mat-form-field>
-      <button mat-raised-button (click)="checkExistence(groupName)">Вибрати</button>
-      <p *ngIf="acceptGroup">Розклад для групи вже існує</p>
+      <button mat-raised-button (click)="checkExistence(groupName)">Ввести группу</button>
     </div>
   </div>
-</div>
-
-
-<div>
-  <p class="m-0 text-center text-black">
-    <button mat-raised-button [routerLink]="'/time'" (click)="nextStep()" >Наступний крок</button>
-  </p>
 </div>

@@ -2,23 +2,26 @@
   <div class="base-component">
 
       <mat-form-field class="subject">
-        <input matInput [(ngModel)] = "lesson.subject" (ngModelChange)="lessonChange()" placeholder="Предмет">
+        <input matInput [(ngModel)] = "lesson.subject" (ngModelChange)="lessonChange()" placeholder="Предмет" [(disabled)]="isLessonInputsDisabled">
       </mat-form-field>
 
       <mat-form-field class="teacher">
-        <input matInput [(ngModel)] = "lesson.teacher" (ngModelChange)="lessonChange()" placeholder="Викладач">
+        <input matInput [(ngModel)] = "lesson.teacher" (ngModelChange)="lessonChange()" placeholder="Викладач" [(disabled)]="isLessonInputsDisabled">
       </mat-form-field>
 
       <mat-form-field class="lectureHall">
-        <input matInput [(ngModel)] = "lesson.lectureHall" (ngModelChange)="lessonChange()" placeholder="Аудиторія">
+        <input matInput [(ngModel)] = "lesson.lectureHall" (ngModelChange)="lessonChange()" placeholder="Аудиторія" [(disabled)]="isLessonInputsDisabled">
       </mat-form-field>
 
       <mat-form-field class="lessonType">
-        <mat-select [(value)]="lesson.lessonType" placeholder='Тип пари'>
+        <mat-select [(value)]="lesson.lessonType" placeholder='Тип пари' [(disabled)]="isLessonInputsDisabled">
           <mat-option *ngFor="let type of lessonTypes" [value]="type" (click)="lessonChange()">
             {{type}}
           </mat-option>
         </mat-select>
       </mat-form-field>
+
+    <mat-checkbox [(ngModel)]="lessonAbsence" (ngModelChange)="checkLessonExistence()">Відмітьте, якщо цієї пари немає</mat-checkbox>
+
   </div>
 </div>
