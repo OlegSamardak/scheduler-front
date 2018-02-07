@@ -3,10 +3,8 @@ import {MatDialogRef, MAT_DIALOG_DATA} from "@angular/material";
 import {Router} from "@angular/router";
 
 @Component({
-  selector: 'dialog',
   templateUrl: './dialog.component.html',
   styleUrls: ['./dialog.component.scss'],
-  providers: []
 })
 export class DialogComponent implements OnInit {
 
