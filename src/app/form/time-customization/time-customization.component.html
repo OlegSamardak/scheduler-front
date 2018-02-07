@@ -1,13 +1,13 @@
 <div class="card">
-  <div class="card-body">
-    <h2>Час навчання</h2>
+    <div class="card-body">
+      <h2>Час навчання</h2>
 
-    <h5>Дата початку занять</h5>
-    <mat-form-field  [style.width]="'70%'">
-      <input matInput [(ngModel)]="inputDate" (ngModelChange)="changeStudyBeginningDate(inputDate)" [matDatepickerFilter]="myFilter" [matDatepicker]="dp" placeholder="Виберіть дату" disabled>
-      <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
-      <mat-datepicker touchUi="true" #dp disabled="false"></mat-datepicker>
-    </mat-form-field>
+      <h5>Дата початку занять</h5>
+      <mat-form-field  [style.width]="'70%'">
+        <input matInput [(ngModel)]="inputDate" (ngModelChange)="changeStudyBeginningDate(inputDate)" [matDatepickerFilter]="myFilter" [matDatepicker]="dp" placeholder="Виберіть дату" disabled>
+        <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+        <mat-datepicker touchUi="true" #dp disabled="false"></mat-datepicker>
+      </mat-form-field>
 
     <h5>Кількість навчальних тижнів</h5>
     <mat-form-field [style.width]="'70%'">
@@ -44,24 +44,24 @@
           </mat-select>
         </mat-form-field>
 
-        <div class="row">
-          <div class="col-6">
-            <break-selector *ngFor="let activeBreak of evenBreaks; let i = index" [lesson]="activeBreak.value" (onDuration)="breakChange(activeBreak.value-1, $event)">
-            </break-selector>
-          </div>
-          <div class="col-6">
-            <break-selector *ngFor="let activeBreak of oddBreaks; let i = index" [lesson]="activeBreak.value" (onDuration)="breakChange(activeBreak.value-1, $event)">
-            </break-selector>
+          <div class="row">
+            <div class="col-6">
+              <break-selector *ngFor="let activeBreak of evenBreaks; let i = index" [lesson]="activeBreak.value" (onDuration)="breakChange(activeBreak.value-1, $event)">
+              </break-selector>
+            </div>
+            <div class="col-6">
+              <break-selector *ngFor="let activeBreak of oddBreaks; let i = index" [lesson]="activeBreak.value" (onDuration)="breakChange(activeBreak.value-1, $event)">
+              </break-selector>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 </div>
 
 <div>
   <p class="m-0 text-center text-black">
     <button mat-raised-button [routerLink]="'/group'" (click)="previousStep()" >Попередній крок</button>
-    <button mat-raised-button [routerLink]="'/lessons'" (click)="nextStep()">Наступний крок</button>
+    <button mat-raised-button [routerLink]="'/lessons'" [disabled]="studyBeginningEmpty || studyBeginningDayEmpty || lessonDurationEmpty || numberOfWeeksEmpty || breaksEmpty" (click)="nextStep()">Наступний крок</button>
   </p>
 </div>

@@ -5,9 +5,10 @@
     <h5>Введіть групу, для якої хочете створити розклад, щоб перевірити, чи створювався вже для неї розклад:</h5>
     <div class="base-component">
       <mat-form-field class="group-select-small-width">
-        <input matInput [(ngModel)] = "groupName" placeholder="Група">
+        <input matInput [(ngModel)] = "groupName" placeholder="Група" [formControl]="emailFormControl">
+        <mat-error *ngIf="emailFormControl.hasError('required')">Поле обов'язкове для введення</mat-error>
       </mat-form-field>
-      <button mat-raised-button (click)="checkExistence(groupName)">Ввести группу</button>
+      <button mat-raised-button [disabled]="emailFormControl.hasError('required')" (click)="checkExistence(groupName)">Ввести группу</button>
     </div>
   </div>
 </div>

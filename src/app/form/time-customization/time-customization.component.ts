@@ -1,6 +1,7 @@
 import {Component, OnDestroy, OnInit} from "@angular/core";
 import {Router} from "@angular/router";
 import {DataSenderService} from "../../model/service/data-sender.service";
+import {FormBuilder, FormControl, Validators} from '@angular/forms';
 
 @Component({
   selector: 'time-customization',
@@ -11,6 +12,11 @@ import {DataSenderService} from "../../model/service/data-sender.service";
 export class TimeCustomizationComponent implements OnInit, OnDestroy {
 
   constructor(private router: Router, private dataSender: DataSenderService) { }
+  studyBeginningDayEmpty = true;
+  numberOfWeeksEmpty = true;
+  studyBeginningEmpty = true;
+  lessonDurationEmpty = true;
+  breaksEmpty = true;
 
   inputDate;
   group: string;
@@ -18,7 +24,6 @@ export class TimeCustomizationComponent implements OnInit, OnDestroy {
   selectedNumberOfWeeks;
   selectedStudyBeginning;
   selectedLessonDuration;
-
   numberOfWeeks = [
     {value: '10'},
     {value: '11'},
@@ -44,36 +49,41 @@ export class TimeCustomizationComponent implements OnInit, OnDestroy {
     {value: '45'},
     {value: '80'}
   ];
-
   oddBreaks = [
     {value: '2'},
     {value: '4'},
     {value: '6'},
     {value: '8'},
   ];
-
   evenBreaks = [
     {value: '1'},
     {value: '3'},
     {value: '5'},
     {value: '7'},
   ];
-
   breaks = [
-    {value: '1', selectedValue: ''},
-    {value: '2', selectedValue: ''},
-    {value: '3', selectedValue: ''},
-    {value: '4', selectedValue: ''},
-    {value: '5', selectedValue: ''},
-    {value: '6', selectedValue: ''},
-    {value: '7', selectedValue: ''},
-    {value: '8', selectedValue: ''}
+    {value: '1', selectedValue: '', empty: true},
+    {value: '2', selectedValue: '', empty: true},
+    {value: '3', selectedValue: '', empty: true},
+    {value: '4', selectedValue: '', empty: true},
+    {value: '5', selectedValue: '', empty: true},
+    {value: '6', selectedValue: '', empty: true},
+    {value: '7', selectedValue: '', empty: true},
+    {value: '8', selectedValue: '', empty: true}
   ];
 
   myFilter = (d: Date): boolean => {
     const day = d.getDay();
     return day !== 0 && day !== 6;
   };
+
+  checkEmpty(value: string): boolean {
+    if (value == null || value === '') {
+      return true;
+    }
+    else
+      return false;
+  }
 
   toTimestamp(strDate){
     const datum = Date.parse(strDate);
@@ -83,25 +93,38 @@ export class TimeCustomizationComponent implements OnInit, OnDestroy {
   changeStudyBeginningDate(inputDate){
     this.selectedStudyBeginningDate = this.toTimestamp(inputDate);
     this.dataSender.template.first_day = this.selectedStudyBeginningDate;
+    this.studyBeginningDayEmpty = this.checkEmpty(inputDate);
+    console.log(this.selectedStudyBeginningDate);
   }
 
   changeNumberOfWeeks(numberOfWeeks){
     this.selectedNumberOfWeeks = numberOfWeeks;
+    this.numberOfWeeksEmpty = this.checkEmpty(numberOfWeeks);
     this.dataSender.template.number_of_weeks = this.selectedNumberOfWeeks;
   }
 
   changeStudyBeginning(studyBeginning){
     this.selectedStudyBeginning = studyBeginning;
     this.dataSender.template.first_lesson = this.selectedStudyBeginning;
+    this.studyBeginningEmpty = this.checkEmpty(studyBeginning);
   }
 
   changeLessonDuration(lessonDuration){
     this.selectedLessonDuration = lessonDuration;
     this.dataSender.template.lesson_duration = this.selectedLessonDuration;
+    this.lessonDurationEmpty = this.checkEmpty(lessonDuration);
   }
 
   breakChange(index, value){
-    this.breaks[index].selectedValue = value;
+    this.breaks[index].selectedValue = value.value;
+    this.breaks[index].empty = value.empty;
+    this.breaksEmpty = false;
+    for (let activeBreak of this.breaks){
+      if (activeBreak.empty === true) {
+        this.breaksEmpty = true;
+        break;
+      }
+    }
     this.dataSender.template.breaks = this.breaks;
   }
 
