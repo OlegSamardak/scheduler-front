@@ -24,7 +24,12 @@ export class AuthorizationService implements CanActivate{
   }
 
   canActivate() {
-    return this.isUserLoggedIn();
+    if (this.isUserLoggedIn())
+      return true;
+    else {
+      window.alert('Ви не авторизовані. Будь ласка, увійдіть у свій Google акаунт для роботи.');
+      return false;
+    }
   }
 
 }
