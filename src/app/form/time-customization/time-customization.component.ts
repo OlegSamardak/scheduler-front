@@ -24,6 +24,7 @@ export class TimeCustomizationComponent implements OnInit, OnDestroy {
   selectedNumberOfWeeks;
   selectedStudyBeginning;
   selectedLessonDuration;
+
   numberOfWeeks = [
     {value: '10'},
     {value: '11'},
@@ -62,14 +63,14 @@ export class TimeCustomizationComponent implements OnInit, OnDestroy {
     {value: '7'},
   ];
   breaks = [
-    {value: '1', selectedValue: '', empty: true},
-    {value: '2', selectedValue: '', empty: true},
-    {value: '3', selectedValue: '', empty: true},
-    {value: '4', selectedValue: '', empty: true},
-    {value: '5', selectedValue: '', empty: true},
-    {value: '6', selectedValue: '', empty: true},
-    {value: '7', selectedValue: '', empty: true},
-    {value: '8', selectedValue: '', empty: true}
+    {selectedValue: '', empty: true},
+    {selectedValue: '', empty: true},
+    {selectedValue: '', empty: true},
+    {selectedValue: '', empty: true},
+    {selectedValue: '', empty: true},
+    {selectedValue: '', empty: true},
+    {selectedValue: '', empty: true},
+    {selectedValue: '', empty: true}
   ];
 
   myFilter = (d: Date): boolean => {
@@ -116,7 +117,7 @@ export class TimeCustomizationComponent implements OnInit, OnDestroy {
   }
 
   breakChange(index, value){
-    this.breaks[index].selectedValue = value.value;
+    this.breaks[index].selectedValue = value.selectedValue;
     this.breaks[index].empty = value.empty;
     this.breaksEmpty = false;
     for (let activeBreak of this.breaks){
@@ -126,32 +127,32 @@ export class TimeCustomizationComponent implements OnInit, OnDestroy {
       }
     }
     this.dataSender.template.breaks = this.breaks;
+    console.log(this.dataSender.template);
   }
 
   setStandartCHDTU(){
     this.changeStudyBeginning('08:30');
     this.changeLessonDuration('80');
-    this.breakChange('0', '10');
-    this.breakChange('1', '30');
-    this.breakChange('2', '10');
-    this.breakChange('3', '10');
-    this.breakChange('4', '10');
-    this.breakChange('5', '10');
-    this.breakChange('6', '10');
-    this.breakChange('7', '10');
+    this.breakChange('0', {selectedValue: '10', empty: false});
+    this.breakChange('1', {selectedValue: '30', empty: false});
+    this.breakChange('2', {selectedValue: '10', empty: false});
+    this.breakChange('3', {selectedValue: '10', empty: false});
+    this.breakChange('4', {selectedValue: '10', empty: false});
+    this.breakChange('5', {selectedValue: '10', empty: false});
+    this.breakChange('6', {selectedValue: '10', empty: false});
+    this.breakChange('7', {selectedValue: '10', empty: false});
   }
 
   setStandartCHNU(){
     this.changeStudyBeginning('08:00');
     this.changeLessonDuration('80');
-    this.breakChange('0', '20');
-    this.breakChange('1', '20');
-    this.breakChange('2', '20');
-    this.breakChange('3', '20');
-    this.breakChange('4', '15');
-    this.breakChange('5', '15');
-    this.breakChange('6', '15');
-    this.breakChange('7', '15');
+    this.breakChange('0', {selectedValue: '20', empty: false});
+    this.breakChange('1', {selectedValue: '20', empty: false});
+    this.breakChange('2', {selectedValue: '20', empty: false});
+    this.breakChange('3', {selectedValue: '20', empty: false});
+    this.breakChange('4', {selectedValue: '15', empty: false});
+    this.breakChange('5', {selectedValue: '15', empty: false});
+    this.breakChange('6', {selectedValue: '15', empty: false});
   }
 
   previousStep(){

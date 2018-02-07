@@ -10,8 +10,8 @@ export class BreakSelectorComponent implements OnInit {
   @Input() lesson: string;
   @Output() onDuration = new EventEmitter();
 
-  selectedDuration: {
-    value: any,
+  @Input() selectedDuration: {
+    selectedValue: any,
     empty: boolean
   };
 
@@ -30,13 +30,13 @@ export class BreakSelectorComponent implements OnInit {
     {value: '60'},
   ];
 
-  durationChange(breakDuration){
-    this.selectedDuration.empty = this.checkEmpty(breakDuration);
-    this.onDuration.emit(breakDuration);
+  durationChange(){
+    this.selectedDuration.empty = this.checkEmpty();
+    this.onDuration.emit(this.selectedDuration);
   }
 
-  checkEmpty(breakDuration): boolean {
-    if (breakDuration.value == null || breakDuration.value === '')
+  checkEmpty(): boolean {
+    if (this.selectedDuration.selectedValue == null || this.selectedDuration.selectedValue === '')
       return true;
     else
       return false;
