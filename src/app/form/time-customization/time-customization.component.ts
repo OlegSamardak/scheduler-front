@@ -98,6 +98,7 @@ export class TimeCustomizationComponent implements OnInit, OnDestroy {
   changeNumberOfWeeks(numberOfWeeks){
     this.selectedNumberOfWeeks = numberOfWeeks;
     this.numberOfWeeksEmpty = this.checkEmpty(numberOfWeeks);
+    this.dataSender.template.number_of_weeks = this.selectedNumberOfWeeks;
   }
 
   changeStudyBeginning(studyBeginning){
@@ -136,6 +137,7 @@ export class TimeCustomizationComponent implements OnInit, OnDestroy {
     this.breaks[5].selectedValue = '10';
     this.breaks[6].selectedValue = '10';
     this.breaks[7].selectedValue = '10';
+    console.log(this.dataSender.template);
   }
 
   setStandartCHNU(){
@@ -149,6 +151,7 @@ export class TimeCustomizationComponent implements OnInit, OnDestroy {
     this.breaks[5].selectedValue = '15';
     this.breaks[6].selectedValue = '15';
     this.breaks[7].selectedValue = '15';
+    console.log(this.dataSender.template);
   }
 
   previousStep(){
