@@ -14,4 +14,12 @@ export class AuthorizationService {
     return this.http.get(`http://localhost:9000/login/google?code=${code}`);
   }
 
+  isUserLoggedIn(): boolean{
+    if (localStorage.getItem('code')) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
 }
