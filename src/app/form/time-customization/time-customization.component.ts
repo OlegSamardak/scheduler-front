@@ -128,7 +128,6 @@ export class TimeCustomizationComponent implements OnInit, OnDestroy {
     this.breakChange('4', '15');
     this.breakChange('5', '15');
     this.breakChange('6', '15');
-    this.breakChange('7', '15');
   }
 
   previousStep(){

@@ -46,11 +46,11 @@
 
         <div class="row">
           <div class="col-6">
-            <break-selector *ngFor="let activeBreak of evenBreaks; let i = index" [lesson]="activeBreak.value" (onDuration)="breakChange(activeBreak.value-1, $event)">
+            <break-selector *ngFor="let activeBreak of evenBreaks; let i = index" [lesson]="activeBreak.value" [selectedDuration]="breaks[activeBreak.value-1].selectedValue" (onDuration)="breakChange(activeBreak.value-1, $event)">
             </break-selector>
           </div>
           <div class="col-6">
-            <break-selector *ngFor="let activeBreak of oddBreaks; let i = index" [lesson]="activeBreak.value" (onDuration)="breakChange(activeBreak.value-1, $event)">
+            <break-selector *ngFor="let activeBreak of oddBreaks; let i = index" [lesson]="activeBreak.value" [selectedDuration]="breaks[activeBreak.value-1].selectedValue" (onDuration)="breakChange(activeBreak.value-1, $event)">
             </break-selector>
           </div>
         </div>

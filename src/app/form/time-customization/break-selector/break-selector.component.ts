@@ -10,7 +10,7 @@ export class BreakSelectorComponent implements OnInit {
   @Input() lesson: string;
   @Output() onDuration = new EventEmitter();
 
-  selectedDuration: {
+  @Input() selectedDuration: {
     value: any;
   };
 
