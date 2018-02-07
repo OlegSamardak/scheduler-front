@@ -1,11 +1,13 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
-import {CanActivate} from "@angular/router";
+import {ActivatedRoute, CanActivate, Router} from '@angular/router';
+import {Observable} from 'rxjs/Observable';
+import {Subscription} from 'rxjs/Subscription';
 
 @Injectable()
 export class AuthorizationService implements CanActivate{
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) { }
 
   authorize(){
     return this.http.get<any>(`http://localhost:9000/login/google`);
@@ -16,18 +18,18 @@ export class AuthorizationService implements CanActivate{
   }
 
   isUserLoggedIn(): boolean{
-    if (localStorage.getItem('code')) {
+    if(localStorage.getItem('code'))
       return true;
-    } else {
+    else
       return false;
-    }
   }
 
   canActivate() {
     if (this.isUserLoggedIn())
       return true;
-    else {
-      window.alert('Ви не авторизовані. Будь ласка, увійдіть у свій Google акаунт для роботи.');
+    else{
+      window.alert('Для роботи в системі вам потробно авторизуватись.');
+      this.router.navigate(['/start']);
       return false;
     }
   }

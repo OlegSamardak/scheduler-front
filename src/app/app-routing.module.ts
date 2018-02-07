@@ -9,7 +9,7 @@ import {AuthorizationService} from './model/service/authorization.service';
 
 const routes: Routes = [
   { path: 'start', component: StartPageComponent },
-  { path: 'group', component: GroupSelectComponent, canActivate: [AuthorizationService] },
+  { path: 'group', component: GroupSelectComponent },
   { path: 'time', component: TimeCustomizationComponent, canActivate: [AuthorizationService] },
   { path: '', redirectTo: '/start', pathMatch:'full'},
   { path: 'lessons', component: ScheduleInputComponent, canActivate: [AuthorizationService]  },
