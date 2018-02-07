@@ -1,8 +1,9 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
+import {CanActivate} from "@angular/router";
 
 @Injectable()
-export class AuthorizationService {
+export class AuthorizationService implements CanActivate{
 
   constructor(private http: HttpClient) { }
 
@@ -20,6 +21,10 @@ export class AuthorizationService {
     } else {
       return false;
     }
+  }
+
+  canActivate() {
+    return this.isUserLoggedIn();
   }
 
 }
