@@ -73,7 +73,7 @@ export class TimeCustomizationComponent implements OnInit, OnDestroy {
     return day !== 0 && day !== 6;
   };
 
-  changeEmpty(value: string): boolean {
+  checkEmpty(value: string): boolean {
     if (value == null || value === '') {
       return true;
     }
@@ -89,25 +89,25 @@ export class TimeCustomizationComponent implements OnInit, OnDestroy {
   changeStudyBeginningDate(inputDate){
     this.selectedStudyBeginningDate = this.toTimestamp(inputDate);
     this.dataSender.template.first_day = this.selectedStudyBeginningDate;
-    this.studyBeginningDayEmpty = this.changeEmpty(inputDate);
+    this.studyBeginningDayEmpty = this.checkEmpty(inputDate);
     console.log(this.selectedStudyBeginningDate);
   }
 
   changeNumberOfWeeks(numberOfWeeks){
     this.selectedNumberOfWeeks = numberOfWeeks;
-    this.numberOfWeeksEmpty = this.changeEmpty(numberOfWeeks);
+    this.numberOfWeeksEmpty = this.checkEmpty(numberOfWeeks);
   }
 
   changeStudyBeginning(studyBeginning){
     this.dataSender.template.first_lesson = this.selectedStudyBeginning;
     this.selectedStudyBeginning = studyBeginning;
-    this.studyBeginningEmpty = this.changeEmpty(studyBeginning);
+    this.studyBeginningEmpty = this.checkEmpty(studyBeginning);
   }
 
   changeLessonDuration(lessonDuration){
     this.selectedLessonDuration = lessonDuration;
     this.dataSender.template.lesson_duration = this.selectedLessonDuration;
-    this.lessonDurationEmpty = this.changeEmpty(lessonDuration);
+    this.lessonDurationEmpty = this.checkEmpty(lessonDuration);
   }
 
   breakChange(index, value){
