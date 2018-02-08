@@ -24,7 +24,6 @@ export class ScheduleInputComponent implements OnInit, OnDestroy {
     this.scheduleInWork[index].oneWeek = week;
     this.schedule[index] = this.scheduleInWork[index].oneWeek;
     this.dataSender.template.schedule_template = this.schedule;
-    console.log(this.dataSender.template);
   }
 
   copySchedule(){
