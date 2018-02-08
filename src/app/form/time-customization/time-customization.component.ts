@@ -153,6 +153,7 @@ export class TimeCustomizationComponent implements OnInit, OnDestroy {
     this.breakChange('4', {selectedValue: '15', empty: false});
     this.breakChange('5', {selectedValue: '15', empty: false});
     this.breakChange('6', {selectedValue: '15', empty: false});
+    this.breakChange('7', {selectedValue: '15', empty: false});
   }
 
   previousStep(){
