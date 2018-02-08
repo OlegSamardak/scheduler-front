@@ -4,6 +4,8 @@
       {{day.name}}
     </ng-template>
     <ng-template ngbPanelContent>
+      <mat-checkbox class="right-float">Відмітьте, якщо пар в цій день немає</mat-checkbox><br>
+      <br>
       <day (onOneDay)="dayChange(i,$event)"></day>
     </ng-template>
   </ngb-panel>
