@@ -11,7 +11,7 @@ export class LessonComponent implements OnInit {
   @Input() lessonAbsence = false;
   isLessonInputsDisabled = false;
 
-  @Input() lesson = {
+  lesson = {
     lessonType: null,
     subject: null,
     teacher: null,
@@ -30,16 +30,17 @@ export class LessonComponent implements OnInit {
     this.onOneLesson.emit(this.lesson);
   }
 
+
   checkLessonExistence(){
     if(this.lessonAbsence) {
       this.lesson.subject = 'none';
-      this.lesson.teacher = ' ';
-      this.lesson.lectureHall = ' ';
-      this.lesson.lessonType = ' ';
+      this.lesson.teacher = '';
+      this.lesson.lectureHall = '';
+      this.lesson.lessonType = '';
       this.isLessonInputsDisabled = true;
     }
     else {
-      this.lesson.subject = ' ';
+      this.lesson.subject = '';
       this.isLessonInputsDisabled = false;
     }
     this.onOneLesson.emit(this.lesson);

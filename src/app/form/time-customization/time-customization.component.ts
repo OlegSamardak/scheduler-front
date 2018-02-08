@@ -75,7 +75,7 @@ export class TimeCustomizationComponent implements OnInit, OnDestroy {
 
   myFilter = (d: Date): boolean => {
     const day = d.getDay();
-    return day !== 0 && day !== 6;
+    return day !== 0 && day !== 2 && day !== 3 && day !== 4&& day !== 5 && day !== 6;
   };
 
   checkEmpty(value: string): boolean {

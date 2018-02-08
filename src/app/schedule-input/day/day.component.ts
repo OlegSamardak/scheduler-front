@@ -1,4 +1,4 @@
-import {Component, OnInit, Output, EventEmitter} from "@angular/core";
+import {Component, OnInit, Output, EventEmitter, Input} from "@angular/core";
 
 @Component({
   selector: 'day',
@@ -8,6 +8,7 @@ import {Component, OnInit, Output, EventEmitter} from "@angular/core";
 export class DayComponent implements OnInit {
 
   @Output() onOneDay = new EventEmitter();
+  emptyDay = false;
 
   dayInWork = [
     {oneLesson: null},
@@ -22,55 +23,16 @@ export class DayComponent implements OnInit {
   ];
 
   day = [
-    {lessonType: null,
-      subject: null,
-      teacher: null,
-      lectureHall: null,},
-    {lessonType: null,
-      subject: null,
-      teacher: null,
-      lectureHall: null,},
-    {lessonType: null,
-      subject: null,
-      teacher: null,
-      lectureHall: null,},
-    {lessonType: null,
-      subject: null,
-      teacher: null,
-      lectureHall: null,},
-    {lessonType: null,
-      subject: null,
-      teacher: null,
-      lectureHall: null,},
-    {lessonType: null,
-      subject: null,
-      teacher: null,
-      lectureHall: null,},
-    {lessonType: null,
-      subject: null,
-      teacher: null,
-      lectureHall: null,},
-    {lessonType: null,
-      subject: null,
-      teacher: null,
-      lectureHall: null,},
-    {lessonType: null,
-      subject: null,
-      teacher: null,
-      lectureHall: null,},
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
   ];
-
-  lessonAbsence = [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-  ]
 
   dayChange(){
     this.onOneDay.emit(this.day);
