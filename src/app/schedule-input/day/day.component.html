@@ -4,7 +4,7 @@
     <br>
     <ol>
       <li *ngFor="let lesson of dayInWork; let i = index">
-        <lesson (onOneLesson)="lessonChange(i, $event)" [lessonAbsence]="emptyDay"></lesson>
+        <lesson (onOneLesson)="lessonChange(i, $event)" [(lessonAbsence)]="emptyDay"></lesson>
       </li>
     </ol>
   </div>
