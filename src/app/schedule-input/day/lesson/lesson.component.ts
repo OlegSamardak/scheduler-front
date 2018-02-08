@@ -19,11 +19,21 @@ export class LessonComponent implements OnInit {
   };
 
   lessonTypes = [
-    'Лекція',
-    'Практичне заняття',
-    'Семінар',
-    'Лабораторна робота',
-    'Самостійна робота',
+    {value: 'Лекція', styles : {
+        'background-color': '#7ae7bf',
+      }},
+    {value: 'Практичне заняття', styles : {
+        'background-color': '#00C3D5',
+      }},
+    {value: 'Семінар', styles : {
+        'background-color': '#FFE135',
+      }},
+    {value: 'Лабораторна робота', styles : {
+        'background-color': '#F9A7B0',
+      }},
+    {value: 'Самостійна робота', styles : {
+        'background-color': '#F28500',
+      }},
   ];
 
   lessonChange(){
