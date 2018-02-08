@@ -28,6 +28,7 @@ export class ScheduleInputComponent implements OnInit, OnDestroy {
 
   copySchedule(){
     this.weekChange(1, this.schedule[0]);
+    console.log(this.dataSender.template);
   }
 
   templateFactory() {

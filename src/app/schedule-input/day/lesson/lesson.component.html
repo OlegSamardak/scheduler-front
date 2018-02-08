@@ -2,19 +2,19 @@
   <div class="base-component">
 
       <mat-form-field class="subject">
-        <input matInput [(ngModel)] = "lesson.subject" (ngModelChange)="lessonChange()" placeholder="Предмет" [(disabled)]="isLessonInputsDisabled">
+        <input matInput [(ngModel)] = "lesson.subject" (ngModelChange)="lessonChange()" placeholder="Предмет" [(disabled)]="lessonAbsence">
       </mat-form-field>
 
       <mat-form-field class="teacher">
-        <input matInput [(ngModel)] = "lesson.teacher" (ngModelChange)="lessonChange()" placeholder="Викладач" [(disabled)]="isLessonInputsDisabled">
+        <input matInput [(ngModel)] = "lesson.teacher" (ngModelChange)="lessonChange()" placeholder="Викладач" [(disabled)]="lessonAbsence">
       </mat-form-field>
 
       <mat-form-field class="lectureHall">
-        <input matInput [(ngModel)] = "lesson.lectureHall" (ngModelChange)="lessonChange()" placeholder="Аудиторія" [(disabled)]="isLessonInputsDisabled">
+        <input matInput [(ngModel)] = "lesson.lectureHall" (ngModelChange)="lessonChange()" placeholder="Аудиторія" [(disabled)]="lessonAbsence">
       </mat-form-field>
 
       <mat-form-field class="lessonType">
-        <mat-select [(value)]="lesson.lessonType" placeholder='Тип пари' [(disabled)]="isLessonInputsDisabled">
+        <mat-select [(value)]="lesson.lessonType" placeholder='Тип пари' [(disabled)]="lessonAbsence">
           <mat-option *ngFor="let type of lessonTypes" [ngStyle]="type.styles" [value]="type.value" (click)="lessonChange()">
             {{type.value}}
           </mat-option>
