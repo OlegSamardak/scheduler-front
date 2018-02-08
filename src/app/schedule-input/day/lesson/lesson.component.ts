@@ -42,6 +42,7 @@ export class LessonComponent implements OnInit {
       this.lesson.subject = ' ';
       this.isLessonInputsDisabled = false;
     }
+    this.onOneLesson.emit(this.lesson);
   }
 
   constructor() { }
