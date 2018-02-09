@@ -3,8 +3,8 @@
   <div class="card-body">
     <h2>Група</h2>
     <h5>Введіть групу, для якої хочете створити розклад, щоб перевірити, чи створювався вже для неї розклад:</h5>
-    <div class="base-component">
-      <mat-form-field class="group-select-small-width">
+    <div class="base-component text-center">
+      <mat-form-field class="group-select-small-width" [style.width]="'40%'">
         <input matInput [(ngModel)] = "groupName" placeholder="Група" [formControl]="emailFormControl">
         <mat-error *ngIf="emailFormControl.hasError('required')">Поле обов'язкове для введення</mat-error>
       </mat-form-field>

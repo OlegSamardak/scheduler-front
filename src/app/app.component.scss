@@ -1,5 +1,10 @@
 @import "../styles.scss";
 
+* {
+  margin: 0;
+  padding: 0;
+}
+
 .navigation{
   @extend .navbar;
   @extend .navbar-expand-lg;
@@ -10,3 +15,6 @@
   cursor: pointer;
 }
 
+.content{
+  min-height: calc(100vh - 74px);
+}
