@@ -3,14 +3,25 @@ import {HttpClient} from "@angular/common/http";
 import {ActivatedRoute, CanActivate, Router} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
 import {Subscription} from 'rxjs/Subscription';
+declare const gapi : any;
 
 @Injectable()
 export class AuthorizationService implements CanActivate{
 
-  constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) { }
+  constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) {
+    gapi.load('auth2',function () {
+      gapi.auth2.init()
+    })
+  }
 
   authorize(){
-    return this.http.get<any>(`http://localhost:9000/login/google`);
+    // return this.http.get<any>(`http://localhost:9000/login/google`);
+    let googleAuth = gapi.auth2.getAuthInstance();
+    googleAuth.then(() => {
+      googleAuth.signIn({scope: 'profile email https://www.googleapis.com/auth/calendar'}).then(googleUser => {
+        console.log(googleUser.getBasicProfile());
+      });
+    });
   }
 
   codeForApi(code){
