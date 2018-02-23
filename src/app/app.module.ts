@@ -21,6 +21,18 @@ import {RouterModule} from "@angular/router";
 import {EndPageComponent} from "./end-page/end-page.component";
 import {DataSenderService} from "./model/service/data-sender.service";
 import { StartPageComponent } from './start-page/start-page.component';
+import {GoogleApiModule, NG_GAPI_CONFIG, NgGapiClientConfig} from "ng-gapi";
+
+let gapiClientConfig: NgGapiClientConfig = {
+  client_id: "684471065070-5cp2vm76ajefqvvql14krnsujd44resm.apps.googleusercontent.com",
+  discoveryDocs: ["https://analyticsreporting.googleapis.com/$discovery/rest?version=v4"],
+  scope: [
+    'profile',
+    'email',
+    'https://www.googleapis.com/auth/calendar',
+    'https://www.googleapis.com/auth/calendar.readonly',
+  ].join(" ")
+};
 
 @NgModule({
   declarations: [
@@ -43,7 +55,11 @@ import { StartPageComponent } from './start-page/start-page.component';
     NativeDateModule,
     AppRoutingModule,
     MatDialogModule,
-    RouterModule.forRoot([])
+    RouterModule.forRoot([]),
+    GoogleApiModule.forRoot({
+      provide: NG_GAPI_CONFIG,
+      useValue: gapiClientConfig
+    }),
   ],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'uk-UA'},

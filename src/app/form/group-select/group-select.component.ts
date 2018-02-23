@@ -7,12 +7,13 @@ import {DataSenderService} from "../../model/service/data-sender.service";
 import {DialogComponent} from "./dialog/dialog.component";
 import {Subscription} from 'rxjs/Subscription';
 import {FormControl, Validators} from '@angular/forms';
+import {AuthorizationService} from "../../model/service/authorization.service";
 
 @Component({
   selector: 'group-select',
   templateUrl: './group-select.component.html',
   styleUrls: ['./group-select.component.scss'],
-  providers: [GroupService, MatDialog]
+  providers: [GroupService, MatDialog, AuthorizationService]
 })
 export class GroupSelectComponent implements OnInit, OnDestroy {
   sub: Subscription;
@@ -25,7 +26,7 @@ export class GroupSelectComponent implements OnInit, OnDestroy {
   ]);
   // matcher = new MyErrorStateMatcher();
 
-  constructor(private groupService: GroupService, public dialog: MatDialog, public dataSender: DataSenderService, private route: ActivatedRoute) {
+  constructor(private groupService: GroupService, public dialog: MatDialog, public dataSender: DataSenderService, private route: ActivatedRoute, private authorizationService: AuthorizationService) {
     this.acceptGroup = false;
    }
 
@@ -41,10 +42,11 @@ export class GroupSelectComponent implements OnInit, OnDestroy {
   }
 
   checkExistence(name: string) {
-    this.groupService.checkGroupExistence(name).subscribe(accept => {
-      this.acceptGroup = accept;
-      this.openDialog();
-    });
+    // this.groupService.checkGroupExistence(name).subscribe(accept => {
+    //   this.acceptGroup = accept;
+    //   this.openDialog();
+    // });
+    this.authorizationService.getCalendars().subscribe(response => console.dir(response));
     this.transmitGroup(name);
 
   }

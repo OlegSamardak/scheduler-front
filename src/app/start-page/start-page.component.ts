@@ -16,7 +16,7 @@ export class StartPageComponent implements OnInit {
   }
 
   authorize(){
-    this.authorizationService.authorize();
+    this.authorizationService.signIn();
   }
 
 

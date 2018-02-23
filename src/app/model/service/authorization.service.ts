@@ -1,68 +1,69 @@
 import {ElementRef, Injectable} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {ActivatedRoute, CanActivate, Router} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
 import {Subscription} from 'rxjs/Subscription';
+import GoogleUser = gapi.auth2.GoogleUser;
+import {GoogleAuthService} from "ng-gapi";
 declare const gapi : any;
 
 @Injectable()
-export class AuthorizationService implements CanActivate{
-  private redirectUri:string = 'http://localhost:4200/group';
-  private clientId:string = '684471065070-5cp2vm76ajefqvvql14krnsujd44resm.apps.googleusercontent.com';
-  private scope = [
-    'profile',
-    'email',
-    'https://www.googleapis.com/auth/calendar',
-  ].join(' ');
-  public auth2: any;
+export class AuthorizationService{
+  // private redirectUri:string = 'http://localhost:4200/group';
+  // private clientId:string = '684471065070-5cp2vm76ajefqvvql14krnsujd44resm.apps.googleusercontent.com';
+  // private scope = [
+  //   'profile',
+  //   'email',
+  //   'https://www.googleapis.com/auth/calendar',
+  // ].join(' ');
+  // public auth2: any;
   private isSignedIn : boolean;
+  httpOptions = {
+  headers: new HttpHeaders({
+    'Authorization': 'Bearer '+sessionStorage.getItem(AuthorizationService.SESSION_STORAGE_KEY)
+  })
+};
+  public static SESSION_STORAGE_KEY: string = 'accessToken';
+  private user: GoogleUser;
 
-  constructor(private http: HttpClient, private router: Router, private route: Router) {
+  constructor(private http: HttpClient, private router: Router, private route: Router, private googleAuth: GoogleAuthService) {
   }
 
-  public googleInit() {
-    gapi.load('auth2', () => {
-      this.auth2 = gapi.auth2.init({
-        client_id: this.clientId,
-        cookiepolicy: 'single_host_origin',
-        scope: this.scope,
-        redirect_uri: this.redirectUri,
-        ux_mode: 'popup'
-      });
-      this.attachSignin();
-    });
-  }
-
-  public attachSignin() {
-    this.auth2.signIn().then(googleUser => {
-      let profile = googleUser.getBasicProfile();
-      console.log('Token || ' + googleUser.getAuthResponse().id_token);
-      console.log('ID: ' + profile.getId());
-      sessionStorage.setItem('token', googleUser.getAuthResponse().id_token);
-      window.location.href = 'http://localhost:4200/group';
-    });
-  }
-
-  authorize(){
-    // return this.http.get<any>(`http://localhost:9000/login/google`);
-    this.googleInit();
-  }
-
-  isUserLoggedIn(): boolean{
-    if(localStorage.getItem('code'))
-      return true;
-    else
-      return false;
-  }
-
-  canActivate() {
-    if (this.isUserLoggedIn())
-      return true;
-    else{
-      window.alert('Для роботи в системі вам потробно авторизуватись.');
-      this.router.navigate(['/start']);
-      return false;
+  public getToken(): string {
+    let token: string = sessionStorage.getItem(AuthorizationService.SESSION_STORAGE_KEY);
+    if (!token) {
+      throw new Error("no token set , authentication required");
     }
+    return sessionStorage.getItem(AuthorizationService.SESSION_STORAGE_KEY);
   }
+
+  public signIn(): void {
+    this.googleAuth.getAuth()
+      .subscribe((auth) => {
+        auth.signIn().then(res => this.signInSuccessHandler(res));
+      });
+  }
+
+  getCalendars(){
+    return this.http.get(`https://www.googleapis.com/calendar/v3/users/me/calendarList`, this.httpOptions);
+  }
+
+  private signInSuccessHandler(res: GoogleUser) {
+    this.user = res;
+    sessionStorage.setItem(
+      AuthorizationService.SESSION_STORAGE_KEY, res.getAuthResponse().access_token
+    );
+    window.location.href = 'http://localhost:4200/group'
+  }
+
+  // canActivate() {
+  //   if (this.isUserLoggedIn())
+  //     return true;
+  //   else{
+  //     window.alert('Для роботи в системі вам потробно авторизуватись.');
+  //     this.router.navigate(['/start']);
+  //     return false;
+  //   }
+  // }
 
 }
