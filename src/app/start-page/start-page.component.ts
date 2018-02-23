@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthorizationService} from '../model/service/authorization.service';
+import {ActivatedRoute, Router} from "@angular/router";
 declare const gapi : any;
 
 @Component({
@@ -9,21 +10,21 @@ declare const gapi : any;
   providers: [AuthorizationService]
 })
 export class StartPageComponent implements OnInit {
-
-  constructor(private authorizationService: AuthorizationService) {
+  private authorizaed: boolean;
+  constructor(private authorizationService: AuthorizationService, private rout:Router) {
 
   }
 
   authorize(){
-    // this.authorizationService.authorize().subscribe((redirectUri) => {
-    //     window.location.href = redirectUri.response;
-    // });
     this.authorizationService.authorize();
   }
 
 
 
   ngOnInit() {
+    this.authorizationService.isAuthorized()
+    if (this.authorizationService.isAuthorized())
+      this.rout.navigate(['/group']);
   }
 
 }

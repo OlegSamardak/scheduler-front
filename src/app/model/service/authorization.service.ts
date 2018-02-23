@@ -7,6 +7,7 @@ declare const gapi : any;
 
 @Injectable()
 export class AuthorizationService implements CanActivate{
+  private redirectUri:string = 'http://localhost:4200/group';
   private clientId:string = '684471065070-5cp2vm76ajefqvvql14krnsujd44resm.apps.googleusercontent.com';
   private scope = [
     'profile',
@@ -14,8 +15,8 @@ export class AuthorizationService implements CanActivate{
     'https://www.googleapis.com/auth/calendar',
   ].join(' ');
   public auth2: any;
-
-  constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute, private element: ElementRef) {
+  private isSignedIn : boolean;
+  constructor(private http: HttpClient, private router: Router, private route: Router, private element: ElementRef) {
     console.log('ElementRef: ', this.element);
   }
 
@@ -24,7 +25,9 @@ export class AuthorizationService implements CanActivate{
       this.auth2 = gapi.auth2.init({
         client_id: this.clientId,
         cookiepolicy: 'single_host_origin',
-        scope: this.scope
+        scope: this.scope,
+        redirect_uri: this.redirectUri,
+        ux_mode: 'popup'
       });
       this.attachSignin();
     });
@@ -36,6 +39,7 @@ export class AuthorizationService implements CanActivate{
       console.log('Token || ' + googleUser.getAuthResponse().id_token);
       console.log('ID: ' + profile.getId());
       sessionStorage.setItem('token', googleUser.getAuthResponse().id_token);
+      this.router.navigate(['/group'])
     });
   }
 
@@ -46,6 +50,14 @@ export class AuthorizationService implements CanActivate{
 
   codeForApi(code){
     return this.http.get(`http://localhost:9000/login/google?code=${code}`);
+  }
+
+  isAuthorized() {
+    this.auth2.isSignedIn.listen(function (loggedIn) {
+      console.log('Signin state changed to ', loggedIn);
+      if (loggedIn)
+        this.route.navigate(['/group']);
+    });
   }
 
   isUserLoggedIn(): boolean{
