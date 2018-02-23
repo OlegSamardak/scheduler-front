@@ -16,8 +16,8 @@ export class AuthorizationService implements CanActivate{
   ].join(' ');
   public auth2: any;
   private isSignedIn : boolean;
-  constructor(private http: HttpClient, private router: Router, private route: Router, private element: ElementRef) {
-    console.log('ElementRef: ', this.element);
+
+  constructor(private http: HttpClient, private router: Router, private route: Router) {
   }
 
   public googleInit() {
@@ -39,25 +39,13 @@ export class AuthorizationService implements CanActivate{
       console.log('Token || ' + googleUser.getAuthResponse().id_token);
       console.log('ID: ' + profile.getId());
       sessionStorage.setItem('token', googleUser.getAuthResponse().id_token);
-      this.router.navigate(['/group'])
+      window.location.href = 'http://localhost:4200/group';
     });
   }
 
   authorize(){
     // return this.http.get<any>(`http://localhost:9000/login/google`);
     this.googleInit();
-  }
-
-  codeForApi(code){
-    return this.http.get(`http://localhost:9000/login/google?code=${code}`);
-  }
-
-  isAuthorized() {
-    this.auth2.isSignedIn.listen(function (loggedIn) {
-      console.log('Signin state changed to ', loggedIn);
-      if (loggedIn)
-        this.route.navigate(['/group']);
-    });
   }
 
   isUserLoggedIn(): boolean{

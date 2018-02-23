@@ -22,9 +22,9 @@ export class StartPageComponent implements OnInit {
 
 
   ngOnInit() {
-    this.authorizationService.isAuthorized()
-    if (this.authorizationService.isAuthorized())
-      this.rout.navigate(['/group']);
+    // this.authorizationService.isAuthorized()
+    // if (this.authorizationService.isAuthorized())
+    //   this.rout.navigate(['/group']);
   }
 
 }
