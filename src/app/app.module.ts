@@ -29,8 +29,8 @@ let gapiClientConfig: NgGapiClientConfig = {
   scope: [
     'profile',
     'email',
-    'https://www.googleapis.com/auth/calendar',
-    'https://www.googleapis.com/auth/calendar.readonly',
+    'https://www.googleapis.com/auth/newCalendar',
+    'https://www.googleapis.com/auth/newCalendar.readonly',
   ].join(" ")
 };
 
