@@ -26,21 +26,17 @@ export class AuthorizationService implements CanActivate{
         cookiepolicy: 'single_host_origin',
         scope: this.scope
       });
-      this.attachSignin(this.element.nativeElement.firstChild);
+      this.attachSignin();
     });
   }
 
-  public attachSignin(element) {
-    this.auth2.attachClickHandler(element, {},
-      (googleUser) => {
-        let profile = googleUser.getBasicProfile();
-        console.log('Token || ' + googleUser.getAuthResponse().id_token);
-        console.log('ID: ' + profile.getId());
-        // localStorage.setItem('token', googleUser.getAuthResponse().id_token)
-        // ...
-      }, function (error) {
-        console.log(JSON.stringify(error, undefined, 2));
-      });
+  public attachSignin() {
+    this.auth2.signIn().then(googleUser => {
+      let profile = googleUser.getBasicProfile();
+      console.log('Token || ' + googleUser.getAuthResponse().id_token);
+      console.log('ID: ' + profile.getId());
+      sessionStorage.setItem('token', googleUser.getAuthResponse().id_token);
+    });
   }
 
   authorize(){
