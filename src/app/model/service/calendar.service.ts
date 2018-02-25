@@ -17,12 +17,12 @@ export class CalendarService {
     return this.http.post(`https://www.googleapis.com/calendar/v3/calendars`, {summary: name}, this.httpOptions)
   }
 
-  getAllTimesOfLessonsForWeek(breaks: {selectedValue: string, empty:boolean}[], lessonDuration, lessonBeginningDate, lessonBeginningTime){
+  getAllTimesOfLessonsForWeek(breaks: {selectedValue: string, empty:boolean}[], lessonDuration, lessonBeginningDate: Date, lessonBeginningTime){
     let times = [{
       start: '',
       end: ''
     }];
-    let beginning = new Date(lessonBeginningDate);
+    let beginning = lessonBeginningDate;
     let firstLessonHours;
     let firstLessonMinutes;
     firstLessonHours = lessonBeginningTime.charAt(0)+lessonBeginningTime.charAt(1);
@@ -70,13 +70,23 @@ export class CalendarService {
   }
 
   createDay(times){
+    console.dir(times);
+    for (let i = 0; i<times.length; i++){
+      this.createEvent(times[i]);
+    }
+  }
+
+  createWeek(breaks: {selectedValue: string, empty:boolean}[], lessonDuration, lessonBeginningDate, lessonBeginningTime){
     this.createCalendarAndSetId('test').toPromise().then(calendar => {
       this.newCalendar = calendar;
-      console.dir(times);
-      for (let i = 0; i<times.length; i++){
-        this.createEvent(times[i]);
-
+      let dayTimes = [];
+      let day = new Date(lessonBeginningDate);
+      dayTimes.push(this.getAllTimesOfLessonsForWeek(breaks, lessonDuration, day, lessonBeginningTime));
+      for (let i = 0; i<5; i++){
+        day = new Date(day.getTime()+86400000);
+        dayTimes.push(this.getAllTimesOfLessonsForWeek(breaks, lessonDuration, day, lessonBeginningTime));
       }
+      console.log(dayTimes);
     });
   }
 }
