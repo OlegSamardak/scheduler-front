@@ -163,7 +163,7 @@ export class TimeCustomizationComponent implements OnInit, OnDestroy {
 
   nextStep() {
     let times = this.calendarService.getAllTimesOfLessonsForWeek(this.breaks,this.selectedLessonDuration,this.selectedStudyBeginningDate,this.selectedStudyBeginning)
-    this.calendarService.createEvent(times);
+    this.calendarService.createDay(times);
     // this.router.navigate(['/lessons']);
   }
 

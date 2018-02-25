@@ -17,18 +17,11 @@ export class CalendarService {
     return this.http.post(`https://www.googleapis.com/calendar/v3/calendars`, {summary: name}, this.httpOptions)
   }
 
-  createMapEventsForDay(breaks, lessonDuration, lessonBeginning){
-    // let eventDates = new Map();
-    // eventDates.set(Date.parse(lessonBeginning))
-  }
-
-  getAllTimesOfLessonsForWeek(breaks, lessonDuration, lessonBeginningDate, lessonBeginningTime){
-    // let eventDates = new Map();
-    // eventDates.set(Date.parse(lessonBeginning));
-    let times = {
+  getAllTimesOfLessonsForWeek(breaks: {selectedValue: string, empty:boolean}[], lessonDuration, lessonBeginningDate, lessonBeginningTime){
+    let times = [{
       start: '',
       end: ''
-    };
+    }];
     let beginning = new Date(lessonBeginningDate);
     let firstLessonHours;
     let firstLessonMinutes;
@@ -38,34 +31,52 @@ export class CalendarService {
     console.dir(firstLessonMinutes);
     beginning.setHours(+firstLessonHours);
     beginning.setMinutes(+firstLessonMinutes);
-    times.start = beginning.toISOString();
+    times[0].start = beginning.toISOString();
     console.log(`first lesson start: `+beginning.toISOString());
     let end = beginning;
     end.setTime(beginning.getTime()+(+lessonDuration*60*1000));
-    times.end = end.toISOString();
+    times[0].end = end.toISOString();
     console.log(`first lesson end: `+beginning.toISOString());
+
+    for(let i = 0; i<breaks.length;i++){
+      let time = {
+        start: '',
+        end: ''
+      };
+      end.setTime(end.getTime()+(+breaks[i].selectedValue*60*1000));
+      time.start = end.toISOString();
+      end.setTime(end.getTime()+(+lessonDuration*60*1000));
+      time.end = end.toISOString();
+      times.push(time);
+    }
     return times;
   }
 
-  createEvent(body){
-    this.createCalendarAndSetId('test').toPromise().then(calendar =>{
-      this.newCalendar = calendar;
+  createEvent(times){
       this.http.post(`https://www.googleapis.com/calendar/v3/calendars/${this.newCalendar.id}/events`,
         {summary: 'test',
           end:{
-            dateTime: body.end,
+            dateTime: times.end,
             timeZone: 'Europe/Kiev'
 
           },
           start:{
-            dateTime: body.start,
+            dateTime: times.start,
             timeZone: 'Europe/Kiev'
           }
         }, this.httpOptions).subscribe(event =>{
-        console.info('event created: '+event);
+        console.info('event created: '+event.toString());
       });
-    });
-
   }
 
+  createDay(times){
+    this.createCalendarAndSetId('test').toPromise().then(calendar => {
+      this.newCalendar = calendar;
+      console.dir(times);
+      for (let i = 0; i<times.length; i++){
+        this.createEvent(times[i]);
+
+      }
+    });
+  }
 }
