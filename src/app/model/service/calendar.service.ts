@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {AuthorizationService} from "./authorization.service";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 
 @Injectable()
 export class CalendarService {
@@ -66,6 +66,14 @@ export class CalendarService {
           }
         }, this.httpOptions).subscribe(event =>{
         console.info('event created: '+event.toString());
+      },
+      error =>{
+        if (error instanceof HttpErrorResponse) {
+          console.error('An error occurred:', error.error.message)
+          window.setTimeout(()=>{
+            this.createEvent(times);
+          }, 1000)
+        }
       });
   }
 
@@ -87,6 +95,11 @@ export class CalendarService {
         dayTimes.push(this.getAllTimesOfLessonsForWeek(breaks, lessonDuration, day, lessonBeginningTime));
       }
       console.log(dayTimes);
+      for (let dayTime of dayTimes){
+        for (let times of dayTime){
+          this.createEvent(times);
+        }
+      }
     });
   }
 }
