@@ -52,9 +52,10 @@ export class CalendarService {
     return times;
   }
 
-  createEvent(times){
+  createEvent(times, numberOfWeeks){
       this.http.post(`https://www.googleapis.com/calendar/v3/calendars/${this.newCalendar.id}/events`,
-        {summary: 'test',
+        {
+          summary: 'test',
           end:{
             dateTime: times.end,
             timeZone: 'Europe/Kiev'
@@ -63,28 +64,33 @@ export class CalendarService {
           start:{
             dateTime: times.start,
             timeZone: 'Europe/Kiev'
-          }
+          },
+          recurrence: [
+            `RRULE:FREQ=WEEKLY;COUNT=${numberOfWeeks};INTERVAL=2`
+
+          ]
         }, this.httpOptions).subscribe(event =>{
         console.info('event created: '+event.toString());
       },
-      error =>{
-        if (error instanceof HttpErrorResponse) {
-          console.error('An error occurred:', error.error.message)
-          window.setTimeout(()=>{
-            this.createEvent(times);
-          }, 1000)
-        }
-      });
+      // error =>{
+      //   if (error instanceof HttpErrorResponse) {
+      //     console.error('An error occurred:', error.error.message)
+      //     window.setTimeout(()=>{
+      //       this.createEvent(times,numberOfWeeks);
+      //     }, 1000)
+      //   }
+      // }
+      );
   }
 
-  createDay(times){
+  createDay(times, numberOfWeeks){
     console.dir(times);
     for (let i = 0; i<times.length; i++){
-      this.createEvent(times[i]);
+      this.createEvent(times[i], numberOfWeeks);
     }
   }
 
-  createWeek(breaks: {selectedValue: string, empty:boolean}[], lessonDuration, lessonBeginningDate, lessonBeginningTime){
+  createWeek(breaks: {selectedValue: string, empty:boolean}[], lessonDuration, lessonBeginningDate, lessonBeginningTime, numberOfWeeks){
     this.createCalendarAndSetId('test').toPromise().then(calendar => {
       this.newCalendar = calendar;
       let dayTimes = [];
@@ -97,7 +103,7 @@ export class CalendarService {
       console.log(dayTimes);
       for (let dayTime of dayTimes){
         for (let times of dayTime){
-          this.createEvent(times);
+          this.createEvent(times, numberOfWeeks);
         }
       }
     });

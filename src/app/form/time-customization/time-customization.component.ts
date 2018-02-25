@@ -162,7 +162,7 @@ export class TimeCustomizationComponent implements OnInit, OnDestroy {
   }
 
   nextStep() {
-    this.calendarService.createWeek(this.breaks,this.selectedLessonDuration,this.selectedStudyBeginningDate,this.selectedStudyBeginning)
+    this.calendarService.createWeek(this.breaks,this.selectedLessonDuration,this.selectedStudyBeginningDate,this.selectedStudyBeginning, this.selectedNumberOfWeeks.value)
     // this.calendarService.createDay(times);
     // this.router.navigate(['/lessons']);
   }
@@ -175,6 +175,7 @@ export class TimeCustomizationComponent implements OnInit, OnDestroy {
     this.dataSender.template.lesson_duration = this.selectedLessonDuration;
     this.dataSender.template.first_lesson = this.selectedStudyBeginning;
     this.dataSender.template.first_day = this.selectedStudyBeginningDate;
+    this.dataSender.template.number_of_weeks = this.selectedNumberOfWeeks;
   }
 
 }
