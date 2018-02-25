@@ -62,7 +62,7 @@
 
 <div>
   <p class="m-0 text-center text-black">
-    <button mat-raised-button [routerLink]="'/group'" (click)="previousStep()" >Попередній крок</button>
-    <button mat-raised-button [routerLink]="'/lessons'" [disabled]="studyBeginningEmpty || studyBeginningDayEmpty || lessonDurationEmpty || numberOfWeeksEmpty || breaksEmpty" (click)="nextStep()">Наступний крок</button>
+    <button mat-raised-button (click)="previousStep()" >Попередній крок</button>
+    <button mat-raised-button [disabled]="studyBeginningEmpty || studyBeginningDayEmpty || lessonDurationEmpty || numberOfWeeksEmpty || breaksEmpty" (click)="nextStep()">Наступний крок</button>
   </p>
 </div>

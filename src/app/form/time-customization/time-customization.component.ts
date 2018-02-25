@@ -2,16 +2,17 @@ import {Component, OnDestroy, OnInit} from "@angular/core";
 import {Router} from "@angular/router";
 import {DataSenderService} from "../../model/service/data-sender.service";
 import {FormBuilder, FormControl, Validators} from '@angular/forms';
+import {CalendarService} from "../../model/service/calendar.service";
 
 @Component({
   selector: 'time-customization',
   templateUrl: './time-customization.component.html',
   styleUrls: ['./time-customization.component.scss'],
-  providers: []
+  providers: [CalendarService]
 })
 export class TimeCustomizationComponent implements OnInit, OnDestroy {
 
-  constructor(private router: Router, private dataSender: DataSenderService) { }
+  constructor(private router: Router, private dataSender: DataSenderService, private calendarService: CalendarService) { }
   studyBeginningDayEmpty = true;
   numberOfWeeksEmpty = true;
   studyBeginningEmpty = true;
@@ -157,11 +158,13 @@ export class TimeCustomizationComponent implements OnInit, OnDestroy {
   }
 
   previousStep(){
-    this.router.navigate(['/']);
+    this.router.navigate(['/groups']);
   }
 
   nextStep() {
-    this.router.navigate(['/lessons']);
+    let times = this.calendarService.getAllTimesOfLessonsForWeek(this.breaks,this.selectedLessonDuration,this.selectedStudyBeginningDate,this.selectedStudyBeginning)
+    this.calendarService.createEvent(times);
+    // this.router.navigate(['/lessons']);
   }
 
   ngOnInit() {
