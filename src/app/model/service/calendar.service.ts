@@ -72,14 +72,14 @@ export class CalendarService {
         }, this.httpOptions).subscribe(event =>{
         console.info('event created: '+event.toString());
       },
-      // error =>{
-      //   if (error instanceof HttpErrorResponse) {
-      //     console.error('An error occurred:', error.error.message)
-      //     window.setTimeout(()=>{
-      //       this.createEvent(times,numberOfWeeks);
-      //     }, 1000)
-      //   }
-      // }
+      error =>{
+        if (error instanceof HttpErrorResponse) {
+          console.error('An error occurred:', error.error.message)
+          window.setTimeout(()=>{
+            this.createEvent(times,numberOfWeeks);
+          }, 1000)
+        }
+      }
       );
   }
 
