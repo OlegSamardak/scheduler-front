@@ -3,23 +3,24 @@ import {AuthorizationService} from "./authorization.service";
 import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {Lesson} from "../entity/lesson";
 
+// MAIN PART OF LOGIC WITH GOOGLE CALENDAR API
+
 @Injectable()
 export class CalendarService {
-  newCalendar: any;
-  httpOptions = {
-    headers: new HttpHeaders({
+  private newCalendar: any;
+  private httpOptions = {headers: new HttpHeaders({
       'Authorization': 'Bearer ' + sessionStorage.getItem(AuthorizationService.SESSION_STORAGE_KEY)
     })
   };
-  weekLastDay: Date;
+  private weekLastDay: Date;
 
   constructor(private http: HttpClient) { }
 
-  createCalendarAndSetId(name: string){
+  private createCalendarAndSetId(name: string){
     return this.http.post(`https://www.googleapis.com/calendar/v3/calendars`, {summary: name}, this.httpOptions)
   }
 
-  getAllTimesOfLessonsForDay(breaks: {selectedValue: string, empty:boolean}[], lessonDuration, lessonBeginningDate: Date, lessonBeginningTime){
+  private getAllTimesOfLessonsForDay(breaks: {selectedValue: string, empty:boolean}[], lessonDuration, lessonBeginningDate: Date, lessonBeginningTime){
     let times = [{
       start: '',
       end: ''
@@ -27,8 +28,8 @@ export class CalendarService {
     let beginning = lessonBeginningDate;
     let firstLessonHours;
     let firstLessonMinutes;
-    firstLessonHours = lessonBeginningTime.charAt(0)+lessonBeginningTime.charAt(1);
-    firstLessonMinutes = lessonBeginningTime.charAt(3)+lessonBeginningTime.charAt(4);
+    firstLessonHours = lessonBeginningTime.charAt(0)+lessonBeginningTime.charAt(1); //parsing string for hours
+    firstLessonMinutes = lessonBeginningTime.charAt(3)+lessonBeginningTime.charAt(4); // parsing for minutes
     console.dir(firstLessonHours);
     console.dir(firstLessonMinutes);
     beginning.setHours(+firstLessonHours);
@@ -39,7 +40,6 @@ export class CalendarService {
     end.setTime(beginning.getTime()+(+lessonDuration*60*1000));
     times[0].end = end.toISOString();
     console.log(`first lesson end: `+beginning.toISOString());
-
     for(let i = 0; i<breaks.length;i++){
       let time = {
         start: '',
@@ -67,9 +67,7 @@ export class CalendarService {
       return '4';
   }
 
-  createEvent(times, numberOfWeeks, lesson: Lesson){
-    let color;
-
+  private createEvent(times, numberOfWeeks, lesson: Lesson){
       this.http.post(`https://www.googleapis.com/calendar/v3/calendars/${this.newCalendar.id}/events`,
         {
           summary: `${lesson.subject}`,
@@ -79,7 +77,6 @@ export class CalendarService {
           end:{
             dateTime: times.end,
             timeZone: 'Europe/Kiev'
-
           },
           start:{
             dateTime: times.start,
@@ -87,14 +84,13 @@ export class CalendarService {
           },
           recurrence: [
             `RRULE:FREQ=WEEKLY;COUNT=${numberOfWeeks.value};INTERVAL=2`
-
           ]
         }, this.httpOptions).subscribe(event =>{
         console.info('event created: '+event.toString());
       },
       error =>{
         if (error instanceof HttpErrorResponse) {
-          console.error('An error occurred:', error.error.message)
+          console.error('An error occurred:', error.error.message);
           window.setTimeout(()=>{
             this.createEvent(times,numberOfWeeks, lesson);
           }, 1000)
@@ -103,7 +99,7 @@ export class CalendarService {
       );
   }
 
-  createWeek(breaks: {selectedValue: string, empty:boolean}[], lessonDuration, lessonBeginningDate: Date, lessonBeginningTime, numberOfWeeks, lessons: Lesson[][]){
+  private createWeek(breaks: {selectedValue: string, empty:boolean}[], lessonDuration, lessonBeginningDate: Date, lessonBeginningTime, numberOfWeeks, lessons: Lesson[][]){
       let dayTimes = [];
       let day = lessonBeginningDate;
       dayTimes.push(this.getAllTimesOfLessonsForDay(breaks, lessonDuration, day, lessonBeginningTime));
