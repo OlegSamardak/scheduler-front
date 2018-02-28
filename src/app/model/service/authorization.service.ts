@@ -8,25 +8,12 @@ import {GoogleAuthService} from "ng-gapi";
 declare const gapi : any;
 
 @Injectable()
-export class AuthorizationService{
-  // private redirectUri:string = 'http://localhost:4200/group';
-  // private clientId:string = '684471065070-5cp2vm76ajefqvvql14krnsujd44resm.apps.googleusercontent.com';
-  // private scope = [
-  //   'profile',
-  //   'email',
-  //   'https://www.googleapis.com/auth/calendar',
-  // ].join(' ');
-  // public auth2: any;
-  private isSignedIn : boolean;
-  httpOptions = {
-  headers: new HttpHeaders({
-    'Authorization': 'Bearer '+sessionStorage.getItem(AuthorizationService.SESSION_STORAGE_KEY)
-  })
-};
+export class AuthorizationService implements CanActivate{
+
   public static SESSION_STORAGE_KEY: string = 'accessToken';
   private user: GoogleUser;
 
-  constructor(private http: HttpClient, private router: Router, private route: Router, private googleAuth: GoogleAuthService) {
+  constructor(private http: HttpClient, private googleAuth: GoogleAuthService, private router: Router) {
   }
 
   public getToken(): string {
@@ -44,26 +31,36 @@ export class AuthorizationService{
       });
   }
 
-  getCalendars(){
-    return this.http.get(`https://www.googleapis.com/calendar/v3/users/me/calendarList`, this.httpOptions);
+  public signOut(): void {
+    this.googleAuth.getAuth()
+      .subscribe(auth => {
+        auth.signOut().then(res => {
+          console.log(res);
+          sessionStorage.removeItem(AuthorizationService.SESSION_STORAGE_KEY);
+          window.location.href = 'http://localhost:4200/start'
+        })
+      })
   }
 
   private signInSuccessHandler(res: GoogleUser) {
     this.user = res;
+    console.log(res);
+    console.log(this.user);
     sessionStorage.setItem(
       AuthorizationService.SESSION_STORAGE_KEY, res.getAuthResponse().access_token
     );
-    window.location.href = 'http://localhost:4200/group'
+    if (AuthorizationService.SESSION_STORAGE_KEY)
+      // this.router.navigate(['/group'])
+      window.location.href = 'http://localhost:4200/group'
   }
 
-  // canActivate() {
-  //   if (this.isUserLoggedIn())
-  //     return true;
-  //   else{
-  //     window.alert('Для роботи в системі вам потробно авторизуватись.');
-  //     this.router.navigate(['/start']);
-  //     return false;
-  //   }
-  // }
-
+  canActivate() {
+    if (sessionStorage.getItem(AuthorizationService.SESSION_STORAGE_KEY))
+      return true;
+    else{
+      window.alert('Для роботи з системою вам потрібно авторизуватись.');
+      this.router.navigate(['/start']);
+      return false;
+    }
+  }
 }

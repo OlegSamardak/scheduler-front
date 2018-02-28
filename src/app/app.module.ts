@@ -22,6 +22,7 @@ import {EndPageComponent} from "./end-page/end-page.component";
 import {DataSenderService} from "./model/service/data-sender.service";
 import { StartPageComponent } from './start-page/start-page.component';
 import {GoogleApiModule, NG_GAPI_CONFIG, NgGapiClientConfig} from "ng-gapi";
+import {AuthorizationService} from "./model/service/authorization.service";
 
 let gapiClientConfig: NgGapiClientConfig = {
   client_id: "684471065070-5cp2vm76ajefqvvql14krnsujd44resm.apps.googleusercontent.com",
@@ -63,7 +64,8 @@ let gapiClientConfig: NgGapiClientConfig = {
   ],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'uk-UA'},
-    DataSenderService
+    DataSenderService,
+    AuthorizationService
   ],
   bootstrap: [AppComponent]
 })
