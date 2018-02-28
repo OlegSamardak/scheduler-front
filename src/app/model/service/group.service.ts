@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Group} from "../entity/group";
+import {Lesson} from "../entity/lesson";
 import {Observable} from "rxjs/Observable";
 import {QueryEncoder} from '@angular/http';
 

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {AuthorizationService} from "./authorization.service";
 import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
+import {Lesson} from "../entity/lesson";
 
 @Injectable()
 export class CalendarService {
@@ -53,10 +54,28 @@ export class CalendarService {
     return times;
   }
 
-  createEvent(times, numberOfWeeks){
+  private getEventColorId(type){
+    if (type == 'Лекція')
+      return '2';
+    if (type == 'Практичне заняття')
+      return '7';
+    if (type == 'Семінар')
+      return '5';
+    if (type == 'Лабораторна робота')
+      return '6';
+    if (type == 'Самостійна робота')
+      return '4';
+  }
+
+  createEvent(times, numberOfWeeks, lesson: Lesson){
+    let color;
+
       this.http.post(`https://www.googleapis.com/calendar/v3/calendars/${this.newCalendar.id}/events`,
         {
-          summary: 'test',
+          summary: `${lesson.subject}`,
+          location: `${lesson.lectureHall}`,
+          description: `${lesson.teacher}`,
+          colorId: `${this.getEventColorId(lesson.lessonType)}`,
           end:{
             dateTime: times.end,
             timeZone: 'Europe/Kiev'
@@ -67,7 +86,7 @@ export class CalendarService {
             timeZone: 'Europe/Kiev'
           },
           recurrence: [
-            `RRULE:FREQ=WEEKLY;COUNT=${numberOfWeeks};INTERVAL=2`
+            `RRULE:FREQ=WEEKLY;COUNT=${numberOfWeeks.value};INTERVAL=2`
 
           ]
         }, this.httpOptions).subscribe(event =>{
@@ -77,46 +96,41 @@ export class CalendarService {
         if (error instanceof HttpErrorResponse) {
           console.error('An error occurred:', error.error.message)
           window.setTimeout(()=>{
-            this.createEvent(times,numberOfWeeks);
+            this.createEvent(times,numberOfWeeks, lesson);
           }, 1000)
         }
       }
       );
   }
 
-  createDay(times, numberOfWeeks){
-    console.dir(times);
-    for (let i = 0; i<times.length; i++){
-      this.createEvent(times[i], numberOfWeeks);
-    }
-  }
-
-  createWeek(breaks: {selectedValue: string, empty:boolean}[], lessonDuration, lessonBeginningDate: Date, lessonBeginningTime, numberOfWeeks){
+  createWeek(breaks: {selectedValue: string, empty:boolean}[], lessonDuration, lessonBeginningDate: Date, lessonBeginningTime, numberOfWeeks, lessons: Lesson[][]){
       let dayTimes = [];
       let day = lessonBeginningDate;
       dayTimes.push(this.getAllTimesOfLessonsForDay(breaks, lessonDuration, day, lessonBeginningTime));
       for (let i = 0; i<5; i++){
-        day = new Date(day.getTime()+86400000);
+        day = new Date(day.getTime()+86400000); // add 1 day to current event date
         dayTimes.push(this.getAllTimesOfLessonsForDay(breaks, lessonDuration, day, lessonBeginningTime));
       }
       console.log(dayTimes);
-      for (let dayTime of dayTimes){
-        for (let times of dayTime){
-          this.createEvent(times, numberOfWeeks);
-        }
+      for (let i = 0; i<dayTimes.length; i++){
+        if (lessons[i])
+          for (let j = 0; j<dayTimes[i].length; j++){
+            if (lessons[i][j])
+              this.createEvent(dayTimes[i][j], numberOfWeeks, lessons[i][j]);
+          }
       }
       this.weekLastDay = dayTimes[dayTimes.length-1][dayTimes[dayTimes.length-1].length-1].end;
       console.log(this.weekLastDay);
   }
 
-  createTwoWeeks(breaks: {selectedValue: string, empty:boolean}[], lessonDuration, lessonBeginningDate, lessonBeginningTime, numberOfWeeks){
-    this.createCalendarAndSetId('test').toPromise().then(calendar =>{
+  createTwoWeeks(breaks: {selectedValue: string, empty:boolean}[], lessonDuration, lessonBeginningDate, lessonBeginningTime, numberOfWeeks, lessons: Lesson[][][], groupName){
+    this.createCalendarAndSetId(`Розклад для групи ${groupName}`).toPromise().then(calendar =>{
       this.newCalendar = calendar;
       let upperWeekBeginning = new Date(lessonBeginningDate);
-      this.createWeek(breaks,lessonDuration,upperWeekBeginning,lessonBeginningTime,numberOfWeeks);
+      this.createWeek(breaks,lessonDuration,upperWeekBeginning,lessonBeginningTime,numberOfWeeks, lessons[0]);
       let lowerWeekBeginning = new Date(this.weekLastDay);
-      lowerWeekBeginning.setTime(lowerWeekBeginning.getTime()+86400000*2);
-      this.createWeek(breaks,lessonDuration, lowerWeekBeginning, lessonBeginningTime,numberOfWeeks);
+      lowerWeekBeginning.setTime(lowerWeekBeginning.getTime()+86400000*2); //add 2 days (to get monday)
+      this.createWeek(breaks,lessonDuration, lowerWeekBeginning, lessonBeginningTime,numberOfWeeks, lessons[1]);
     });
   }
 }

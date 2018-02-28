@@ -162,9 +162,8 @@ export class TimeCustomizationComponent implements OnInit, OnDestroy {
   }
 
   nextStep() {
-    this.calendarService.createTwoWeeks(this.breaks,this.selectedLessonDuration,this.selectedStudyBeginningDate,this.selectedStudyBeginning, this.selectedNumberOfWeeks.value)
     // this.calendarService.createDay(times);
-    // this.router.navigate(['/lessons']);
+    this.router.navigate(['/lessons']);
   }
 
   ngOnInit() {

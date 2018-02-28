@@ -28,7 +28,7 @@ export class GroupSelectComponent implements OnInit, OnDestroy {
   // matcher = new MyErrorStateMatcher();
 
   constructor(private groupService: GroupService, public dialog: MatDialog, public dataSender: DataSenderService, private route: ActivatedRoute, private authorizationService: AuthorizationService,
-              private calendarService: CalendarService) {
+              private calendarService: CalendarService, private router: Router) {
     this.acceptGroup = false;
    }
 
@@ -45,6 +45,7 @@ export class GroupSelectComponent implements OnInit, OnDestroy {
 
   checkExistence(name: string) {
     this.transmitGroup(name);
+    this.router.navigate(['/time'])
   }
 
   ngOnInit() {
