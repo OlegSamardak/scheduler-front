@@ -37,7 +37,7 @@ export class AuthorizationService implements CanActivate{
         auth.signOut().then(res => {
           console.log(res);
           sessionStorage.removeItem(AuthorizationService.SESSION_STORAGE_KEY);
-          window.location.href = 'http://localhost:4200/start'
+          window.location.href = 'https://scheduler-univ.herokuapp.com/start'
         })
       })
   }
@@ -51,7 +51,7 @@ export class AuthorizationService implements CanActivate{
     );
     if (AuthorizationService.SESSION_STORAGE_KEY)
       // this.router.navigate(['/group'])
-      window.location.href = 'http://localhost:4200/group'
+      window.location.href = 'https://scheduler-univ.herokuapp.com/group'
   }
 
   canActivate() {
