@@ -89,12 +89,13 @@ export class CalendarService {
         console.info('event created: '+event.toString());
       },
       error =>{
-        if (error instanceof HttpErrorResponse) {
+        if (error.status === 503 || error.status === 403) {
           console.error('An error occurred:', error.error.message);
           window.setTimeout(()=>{
             this.createEvent(times,numberOfWeeks, lesson);
           }, 1000)
-        }
+        } else
+          console.error(error.message)
       }
       );
   }
