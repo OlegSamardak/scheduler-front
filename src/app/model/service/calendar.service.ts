@@ -86,7 +86,6 @@ export class CalendarService {
             `RRULE:FREQ=WEEKLY;COUNT=${numberOfWeeks.value};INTERVAL=2`
           ]
         }, this.httpOptions).subscribe(event =>{
-        console.info('event created: '+event.toString());
       },
       error =>{
         if (error.status === 503 || error.status === 403) {
@@ -108,7 +107,6 @@ export class CalendarService {
         day = new Date(day.getTime()+86400000); // add 1 day to current event date
         dayTimes.push(this.getAllTimesOfLessonsForDay(breaks, lessonDuration, day, lessonBeginningTime));
       }
-      console.log(dayTimes);
       for (let i = 0; i<dayTimes.length; i++){
         if (lessons[i])
           for (let j = 0; j<dayTimes[i].length; j++){
@@ -117,7 +115,6 @@ export class CalendarService {
           }
       }
       this.weekLastDay = dayTimes[dayTimes.length-1][dayTimes[dayTimes.length-1].length-1].end;
-      console.log(this.weekLastDay);
   }
 
   createTwoWeeks(breaks: {selectedValue: string, empty:boolean}[], lessonDuration, lessonBeginningDate, lessonBeginningTime, numberOfWeeks, lessons: Lesson[][][], groupName){

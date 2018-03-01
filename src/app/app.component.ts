@@ -10,18 +10,11 @@ import {Subscription} from "rxjs/Subscription";
 })
 export class AppComponent implements OnInit, OnDestroy {
 
-  code = '';
-  private loggedIn = false;
-  sub: Subscription;
-
   constructor(private authorizationService: AuthorizationService, private router: Router) {
 
   }
 
   logout(){
-    // this.router.navigate(['/start']);
-    // localStorage.removeItem('code');
-    // window.location.assign('https://accounts.google.com/Logout');
     this.authorizationService.signOut();
   }
 

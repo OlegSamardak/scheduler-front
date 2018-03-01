@@ -35,7 +35,6 @@ export class AuthorizationService implements CanActivate{
     this.googleAuth.getAuth()
       .subscribe(auth => {
         auth.signOut().then(res => {
-          console.log(res);
           sessionStorage.removeItem(AuthorizationService.SESSION_STORAGE_KEY);
           window.location.href = 'https://scheduler-univ.herokuapp.com/start'
         })
@@ -44,8 +43,6 @@ export class AuthorizationService implements CanActivate{
 
   private signInSuccessHandler(res: GoogleUser) {
     this.user = res;
-    console.log(res);
-    console.log(this.user);
     sessionStorage.setItem(
       AuthorizationService.SESSION_STORAGE_KEY, res.getAuthResponse().access_token
     );

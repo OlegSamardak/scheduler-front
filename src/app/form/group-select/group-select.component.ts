@@ -61,7 +61,6 @@ export class GroupSelectComponent implements OnInit, OnDestroy {
   ngOnDestroy(){
     this.sub.unsubscribe();
     this.dataSender.template.group = this.groupName;
-    console.log(this.dataSender.template.group);
   }
 
 

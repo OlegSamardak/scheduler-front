@@ -96,7 +96,6 @@ export class TimeCustomizationComponent implements OnInit, OnDestroy {
     this.selectedStudyBeginningDate = this.toTimestamp(inputDate);
     this.dataSender.template.first_day = this.selectedStudyBeginningDate;
     this.studyBeginningDayEmpty = this.checkEmpty(inputDate);
-    console.log(this.selectedStudyBeginningDate);
   }
 
   changeNumberOfWeeks(numberOfWeeks){
@@ -128,7 +127,6 @@ export class TimeCustomizationComponent implements OnInit, OnDestroy {
       }
     }
     this.dataSender.template.breaks = this.breaks;
-    console.log(this.dataSender.template);
   }
 
   setStandartCHDTU(){
