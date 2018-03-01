@@ -13,9 +13,9 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/cdk": "5.0.1",
     "@angular-devkit/core": "0.0.28",
     "@angular/animations": "5.1.2",
+    "@angular/cdk": "^5.0.1",
     "@angular/cli": "^1.7.2",
     "@angular/common": "5.1.2",
     "@angular/compiler": "5.1.2",
@@ -24,6 +24,7 @@
     "@angular/flex-layout": "2.0.0-beta.10-4905443",
     "@angular/forms": "5.1.0",
     "@angular/http": "5.1.0",
+    "@angular/material": "^5.0.0",
     "@angular/material-moment-adapter": "git+https://github.com/angular/material2-moment-adapter-builds.git",
     "@angular/platform-browser": "5.1.2",
     "@angular/platform-browser-dynamic": "5.1.2",
