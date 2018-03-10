@@ -88,8 +88,8 @@ export class CalendarService {
         }, this.httpOptions).subscribe(event =>{
       },
       error =>{
-        if (error.status === 503 || error.status === 403) {
-          console.error('An error occurred:', error.error.message);
+        if (error) {
+          console.error('An error occurred:', error.message);
           window.setTimeout(()=>{
             this.createEvent(times,numberOfWeeks, lesson);
           }, 1000)
