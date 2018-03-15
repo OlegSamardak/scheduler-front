@@ -1,37 +1,66 @@
-import {Injectable} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
+import {ElementRef, Injectable} from "@angular/core";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {ActivatedRoute, CanActivate, Router} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
 import {Subscription} from 'rxjs/Subscription';
+import GoogleUser = gapi.auth2.GoogleUser;
+import {GoogleAuthService} from "ng-gapi";
+declare const gapi : any;
 
 @Injectable()
 export class AuthorizationService implements CanActivate{
 
-  constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) { }
+  public static SESSION_STORAGE_KEY: string = 'accessToken';
+  private user: GoogleUser;
 
-  authorize(){
-    return this.http.get<any>(`http://localhost:9000/login/google`);
+  constructor(private http: HttpClient, private googleAuth: GoogleAuthService, private router: Router) {
   }
 
-  codeForApi(code){
-    return this.http.get(`http://localhost:9000/login/google?code=${code}`);
+  public getToken(): string {
+    let token: string = sessionStorage.getItem(AuthorizationService.SESSION_STORAGE_KEY);
+    if (!token) {
+      throw new Error("no token set , authentication required");
+    }
+    return sessionStorage.getItem(AuthorizationService.SESSION_STORAGE_KEY);
   }
 
-  isUserLoggedIn(): boolean{
-    if(localStorage.getItem('code'))
-      return true;
-    else
-      return false;
+  public signIn(): void {
+    this.googleAuth.getAuth()
+      .subscribe((auth) => {
+        auth.signIn().then(res => this.signInSuccessHandler(res));
+      });
+  }
+
+  public signOut(): void {
+    this.googleAuth.getAuth()
+      .subscribe(auth => {
+        auth.signOut().then(res => {
+          console.log(res);
+          sessionStorage.removeItem(AuthorizationService.SESSION_STORAGE_KEY);
+          window.location.href = 'http://localhost:4200/start'
+        })
+      })
+  }
+
+  private signInSuccessHandler(res: GoogleUser) {
+    this.user = res;
+    console.log(res);
+    console.log(this.user);
+    sessionStorage.setItem(
+      AuthorizationService.SESSION_STORAGE_KEY, res.getAuthResponse().access_token
+    );
+    if (AuthorizationService.SESSION_STORAGE_KEY)
+      // this.router.navigate(['/group'])
+      window.location.href = 'http://localhost:4200/group'
   }
 
   canActivate() {
-    if (this.isUserLoggedIn())
+    if (sessionStorage.getItem(AuthorizationService.SESSION_STORAGE_KEY))
       return true;
     else{
-      window.alert('Для роботи в системі вам потробно авторизуватись.');
+      window.alert('Для роботи з системою вам потрібно авторизуватись.');
       this.router.navigate(['/start']);
       return false;
     }
   }
-
 }

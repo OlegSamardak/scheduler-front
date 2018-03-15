@@ -1,12 +1,13 @@
 import {Component, OnDestroy, OnInit} from "@angular/core";
 import {Router} from "@angular/router";
 import {DataSenderService} from "../model/service/data-sender.service";
+import {CalendarService} from "../model/service/calendar.service";
 
 @Component({
   selector: 'schedule-input',
   templateUrl: './schedule-input.component.html',
   styleUrls: ['./schedule-input.component.scss'],
-  providers: []
+  providers: [CalendarService]
 })
 export class ScheduleInputComponent implements OnInit, OnDestroy {
 
@@ -33,11 +34,13 @@ export class ScheduleInputComponent implements OnInit, OnDestroy {
 
   templateFactory() {
     this.dataSender.template.schedule_template = this.schedule;
-    this.dataSender.postTemplate(this.dataSender.template, localStorage.getItem('code')).subscribe();
+    // this.dataSender.postTemplate(this.dataSender.template, localStorage.getItem('code')).subscribe();
+    console.dir(this.dataSender.template);
+    this.calendarService.createTwoWeeks(this.dataSender.template.breaks,this.dataSender.template.lesson_duration,this.dataSender.template.first_day,this.dataSender.template.first_lesson, this.dataSender.template.number_of_weeks, this.dataSender.template.schedule_template, this.dataSender.template.group);
     this.router.navigate(['/finish']);
   }
 
-  constructor(private router: Router, public dataSender: DataSenderService) { }
+  constructor(private router: Router, public dataSender: DataSenderService, private calendarService: CalendarService) { }
 
   ngOnInit() {  }
 

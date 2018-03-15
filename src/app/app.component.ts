@@ -19,9 +19,10 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   logout(){
-    this.router.navigate(['/start']);
-    localStorage.removeItem('code');
-    window.location.assign('https://accounts.google.com/Logout');
+    // this.router.navigate(['/start']);
+    // localStorage.removeItem('code');
+    // window.location.assign('https://accounts.google.com/Logout');
+    this.authorizationService.signOut();
   }
 
   ngOnInit() {

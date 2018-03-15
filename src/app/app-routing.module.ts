@@ -9,11 +9,11 @@ import {AuthorizationService} from './model/service/authorization.service';
 
 const routes: Routes = [
   { path: 'start', component: StartPageComponent },
-  { path: 'group', component: GroupSelectComponent },
-  { path: 'time', component: TimeCustomizationComponent},
+  { path: 'group', component: GroupSelectComponent, canActivate: [AuthorizationService] },
+  { path: 'time', component: TimeCustomizationComponent, canActivate: [AuthorizationService]},
   { path: '', redirectTo: '/start', pathMatch:'full'},
-  { path: 'lessons', component: ScheduleInputComponent},
-  { path: 'finish', component: EndPageComponent}
+  { path: 'lessons', component: ScheduleInputComponent, canActivate: [AuthorizationService]},
+  { path: 'finish', component: EndPageComponent, canActivate: [AuthorizationService]}
 ];
 
 @NgModule({
