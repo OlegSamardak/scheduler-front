@@ -172,6 +172,6 @@ export class TimeCustomizationComponent implements OnInit, OnDestroy {
     this.dataSender.template.lesson_duration = this.selectedLessonDuration;
     this.dataSender.template.first_lesson = this.selectedStudyBeginning;
     this.dataSender.template.first_day = this.selectedStudyBeginningDate;
-  }
+  
 
 }
